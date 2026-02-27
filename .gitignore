@@ -1,0 +1,38 @@
+# Voice notes and audio files
+*.ogg
+*.wav
+*.mp3
+*.m4a
+*.flac
+
+# Transcript directories (voice notes and text transcripts)
+**/*transcripts*/
+**/*_transcripts/
+**/voiceNotes/
+**/*_voice/
+**/audio_transcripts/
+**/Transcripts/
+
+# Text transcript files (raw transcription output)
+**/listingMonopoly_text/
+**/*_text/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary
+*.tmp
+*.temp
+*.bak
+*.log
