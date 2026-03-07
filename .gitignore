@@ -36,3 +36,6 @@ desktop.ini
 *.temp
 *.bak
 *.log
+
+# Draft/TODO topic folders
+TODO-*/
