@@ -12,7 +12,6 @@ Research papers, dissertations, and documentation for Vibe Trading—permissionl
 | **04_proof_of_value** | LP economics, capital efficiency, value creation |
 | **09_token_margined_issues_perculator** | Token-margined structural risks, Percolator analysis |
 | **11_due_diligence_questionnaire** | DDQ, risk walkthrough, solver scenarios |
-| **16_vibe_full_derivation** | Mathematical specification (funding, defense hierarchy, bell-curve) |
 
 ## Papers
 
