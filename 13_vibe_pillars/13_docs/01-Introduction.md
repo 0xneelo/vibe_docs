@@ -1,6 +1,6 @@
 # Introduction
 
-The dream of permissionless perpetuals sounds simple: let any token have a derivative market. In practice, this is one of the hardest products in crypto to build well, because permissionless means it also has to work for low-cap assets.
+The dream of permissionless perpetuals sounds simple: let any token have a derivative market. In practice, this is one of the hardest products in crypto to build well, especially for low-cap assets.
 
 The reason is structural. A perpetual market is not just a price chart with leverage attached. It is a credit system. Traders receive exposure through margin. Counterparties absorb risk. Liquidity providers or market makers stand behind the market during periods of stress. If any part of this chain is weak, the venue either becomes exploitable, unbootstrappable, or uneconomic.
 
