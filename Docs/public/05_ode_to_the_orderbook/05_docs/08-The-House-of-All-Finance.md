@@ -1,4 +1,4 @@
-# Section 7: The House of All Finance
+# Section 8: The House of All Finance (Hyperliquid, Symmio and Vibe)
 
 If finance is to become truly open, then listing must become more protocol-defined and less relationship-defined.
 

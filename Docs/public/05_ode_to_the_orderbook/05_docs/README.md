@@ -14,11 +14,12 @@ This dissertation argues that Vibe does not compete with order books. It complet
 | **1. Introduction** | [01-Introduction.md](./01-Introduction.md) | Why order books need help |
 | **2. The Limit of Order Books** | [02-The-Limit-of-Order-Books.md](./02-The-Limit-of-Order-Books.md) | Selectivity, cost, and the listing gap |
 | **3. Vibe as Bootstrap Layer** | [03-Vibe-as-Bootstrap-Layer.md](./03-Vibe-as-Bootstrap-Layer.md) | Hybrid solver and continuous liquidity |
-| **4. The Assembly Line** | [04-The-Assembly-Line.md](./04-The-Assembly-Line.md) | Launchpad -> DEX -> Vibe -> Order Book |
+| **4. The Assembly Line** | [04-The-Assembly-Line.md](./04-The-Assembly-Line.md) | Launchpad -> DEX -> Vibe -> SSHE / Hyperliquid |
 | **5. Hardening the Lifecycle** | [05-Hardening-the-Lifecycle.md](./05-Hardening-the-Lifecycle.md) | Shorting, truth, and survival |
 | **6. Ode to OrderBooks** | [06-Ode-to-OrderBooks.md](./06-Ode-to-OrderBooks.md) | Why Vibe complements Hyperliquid |
-| **7. The House of All Finance** | [07-The-House-of-All-Finance.md](./07-The-House-of-All-Finance.md) | From crypto listing reform to finance-wide infrastructure |
-| **8. Conclusion** | [08-Conclusion.md](./08-Conclusion.md) | Final thesis |
+| **7. The Hyperliquid Upgrade** | [07-The-Hyperliquid-Upgrade.md](./07-The-Hyperliquid-Upgrade.md) | Why Vibe should sell Hyperliquid's community a better Hyperliquid |
+| **8. The House of All Finance** | [08-The-House-of-All-Finance.md](./08-The-House-of-All-Finance.md) | From crypto listing reform to finance-wide infrastructure |
+| **9. Conclusion** | [09-Conclusion.md](./09-Conclusion.md) | Final thesis |
 
 ---
 
@@ -28,6 +29,8 @@ This dissertation argues that Vibe does not compete with order books. It complet
 - They are poor at bootstrapping the millions of assets created in permissionless markets.
 - Vibe is the missing bootstrap and discovery layer beneath order books.
 - Vibe discovers demand; order books scale efficiency.
+- Vibe can improve Hyperliquid before it ever needs to compete with Hyperliquid.
+- SSHE can serve as an intermediate or fallback execution layer when direct Hyperliquid listing is too expensive.
 - A fully automated listing assembly line is how crypto matures into open finance.
 
 ---
@@ -38,4 +41,4 @@ Based primarily on `05_transcripts/transcript.md`, with supporting context from 
 
 ---
 
-*Version 1.0 — February 2026*
+*Version 1.0 - February 2026*
