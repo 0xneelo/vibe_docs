@@ -59,7 +59,7 @@ Cryptocurrency has evolved through distinct phases of permissionless innovation:
 | **Ethereum** | Smart contracts | Permissionless programmable value |
 | **Uniswap** | AMM DEX | Permissionless swapping |
 | **PumpFun** | Bonding curves | Permissionless creation of value |
-| **Permissionless perpetuals** | Perpetual derivatives | Permissionless derivatives of value |
+| **Permissionless perpetuals** | protocol operated solvers | Permissionless derivatives of value |
 
 Each phase removed a barrier. Uniswap eliminated the need for centralized exchanges to facilitate swaps. PumpFun eliminated the technical hurdle of creating tokens—launching a token became trivial. The remaining barrier is **derivatives**: the ability to short, hedge, and speculate on any token via perpetual markets.
 
