@@ -10,11 +10,11 @@ A protocol that enables **permissionless perpetual markets** for tokens that alr
 
 As established in Section 1, the evolution of permissionless infrastructure has proceeded:
 
-1. **Bitcoin** — Permissionless transfer
-2. **Ethereum** — Permissionless contracts
-3. **Uniswap** — Permissionless asset swapping
-4. **PumpFun** — Zero-cost asset creation
-5. **Permissionless perpetuals** — Permissionless and zero cost tools to transfer risks
+1. **Blockchains** — Like Bitcoin, Permissionless transfer
+2. **Smart Contract Chains** — Like Ethereum, Permissionless contracts
+3. **AMM DEXs** — Like Uniswap, Permissionless asset swapping
+4. **Bonding Curve Launchpads** — Like PumpFun, zero-cost asset creation
+5. **Permissionless Derivatives** — Permissionless and zero-cost derivatives as tools to transfer risks
 
 If this progression continues, derivatives are the next logical layer. Spot markets allow participation in a token's upside and downside through direct trading. Derivatives extend that market structure by adding leverage, hedging, and short exposure in a form that can be listed systematically rather than manually.
 
