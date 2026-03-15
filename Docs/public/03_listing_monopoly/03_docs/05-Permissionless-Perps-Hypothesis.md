@@ -12,11 +12,11 @@ As established in Section 1, the evolution of permissionless infrastructure has 
 
 1. **Bitcoin** — Permissionless transfer
 2. **Ethereum** — Permissionless contracts
-3. **Uniswap** — Permissionless swapping
-4. **PumpFun** — Permissionless creation
-5. **Permissionless perpetuals** — Permissionless derivatives
+3. **Uniswap** — Permissionless asset swapping
+4. **PumpFun** — Zero-cost asset creation
+5. **Permissionless perpetuals** — Permissionless and zero cost tools to transfer risks
 
-If this progression continues, perpetuals are the next logical layer. Spot markets allow participation in a token's upside and downside through direct trading. Perpetuals extend that market structure by adding leverage, hedging, and short exposure in a form that can be listed systematically rather than manually.
+If this progression continues, derivatives are the next logical layer. Spot markets allow participation in a token's upside and downside through direct trading. Derivatives extend that market structure by adding leverage, hedging, and short exposure in a form that can be listed systematically rather than manually.
 
 ---
 
