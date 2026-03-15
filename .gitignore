@@ -39,6 +39,12 @@ desktop.ini
 
 # Draft/TODO topic folders
 TODO-*/
+Docs/todo/
+Docs/private/
 
 # Copyrighted research/source materials
 11_private_law_societies/11_docs/11_sources/
+Docs/public/11_private_law_societies/11_docs/11_sources/
+
+# Generated docs website
+Website/site/
