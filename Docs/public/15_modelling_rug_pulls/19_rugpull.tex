@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{hyperref}
+\usepackage[normalem]{ulem}
+
+\title{Modelling rug pulls in cryptocurrency markets: Investigating the role of an Intent-Based perpetual liquidity provider, that can enable Short-Selling for any asset.}
+% \author{d.r.huddleston }
+\author{
+  0xNeelo \href{mailto:neelo@superflow.trading}{neelo@superflow.trading} \\
+  Superflow \href{https://superflow.trading}{superflow.trading} \\
+  Lafa (Symmio)
+}
+\date{August 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\href{https://www.pbs.org/newshour/show/explaining-meme-coins-and-why-the-joke-inspired-cryptocurrencies-often-crash}{Anecdotally}, cryptocurrencies and meme coins in particular may be susceptible to \href{https://en.wikipedia.org/wiki/Exit_scam}{exit scams} (also known as rug pulls), \href{https://en.wikipedia.org/wiki/Pump_and_dump}{pump and dump}, \href{https://ebooks.iospress.nl/DOI/10.3233/FAIA230501}{Stackelberg attack}, and other forms of market manipulation.  However, rigorous research into this question appears limited and that task is undertaken.  Furthermore, it is desired to demonstrate that the presence of a platform that enables short-selling for any asset via Intent-Based liquidity providers, so-called ``Solvers" as offered through \href{https://www.symm.io/}{Symmio} and provided by Exchanges like \href{https://www.vibe.trading/}{Vibe Trading} may meaningfully alter market outcomes in a manner favorable to outsiders/which may circumvent their potential exploitation by insiders.
+\section{Methods}
+Three approaches of increasing complexity reveal themselves:
+\begin{enumerate}
+    \item Toy modeling of market in/outsider entry; viz. Stackelberg (attack)
+    \item Agent-based modeling or other (e.g., \href{https://en.wikipedia.org/wiki/Discrete-event_simulation}{discrete-event}) simulation of market in/outsider entry/exit
+    \item Continuous-time stochastic (differential equation; SDE) modeling of coin prices and (via differential or mean-field games) market in/outsider wealth
+\end{enumerate}
+Much more can be and is said of these three approaches in the sequel, but note that the first and third approaches both generally require possibly debilitating tractability assumptions, e.g., excessively simple (linear) market impact in a toy model, or jump-diffusion coin price dynamics in a continuous-time stochastic one.  The second is more flexible in the sense that (theoretically, though not straightforwardly using \href{https://ccl.northwestern.edu/netlogo/}{NetLogo}) arbitrary assumptions regarding market in/outsider entry/exit (e.g., distributions for their entry/exit price or other conditions, order sizing and timing, and elaboration via Bayesian or machine learning) can be handled without insurmountable difficulty.  Such an approach also lends itself easily to experimentation (e.g., across the many various behavioral parameters) rather than abstracting to otherwise nebulous Greek-letter constants and resorting to comparative statics or other indirect analysis.  Of course, none of these approaches is mutually exclusive, and the second in particular also has the advantage of being able to partially subsume the other two (e.g., via more complex Stackelberg formulations or numerical coin price SDE simulation).  Some initial exploration of the first approach, highlighting its insufficiency, is followed by detailed investigations into the second.
+\subsection{Stackelberg toy model}
+Simplify all in/outsiders into `atomic' players $I$ (`leader,' sub-scripted `1') and $O$ (`follower,' sub-scripted `2'); the token-launch buy-in game is then similar to classical Stackelberg competition.  Namely, with the market impact model via \href{https://en.wikipedia.org/wiki/Market_impact#Measuring_market_impact}{Kyle's lambda}, a linear demand curve is retained:
+\begin{equation}\label{P}
+    P(q_1,q_2)\equiv\mu+\lambda(q_1+q_2)
+\end{equation}
+(Since $\lambda\ge0$ is understood, this contrasts with the usual Stackelberg case with negative price elasticity of demand and the corresponding term \textit{subtracted}.)  The payoff functions are as follows:
+\begin{align}
+    \label{Pi_1}\Pi_1\equiv q_1[P(q_1,q_2)-P(0\hphantom{_1}&,0)]\\
+    \label{Pi_2}\Pi_2\equiv q_2[P(q_1,q_2)-P(          q_1 &,0)]
+\end{align}
+(Again, this differs from classical Stackelberg competition without `production' costs and where profits are derived purely from speculation.)  This assumes that each player places an instantaneous, filled order; unrealistic since in practice, insiders will wait until outsiders have almost all `piled in,' prior to dumping their holdings and leaving the outsiders empty-handed.  
+\\\\
+Substituting the demand \eqref P into the payoff functions \eqref{Pi_1}-\eqref{Pi_2};
+\begin{align*}
+    \Pi_1=\lambda&q_1(q_1+q_2)\\
+    \Pi_2=\lambda&q_2^2
+\end{align*}
+This problem is, however, unbounded:  Given that $\lambda\ge0\le q_2$, the follower maximizes payoff by choosing $q_2$ arbitrarily large, e.g., up to some borrowing limit $\bar q_2$; whereupon the leader does the same up to an analogous value, $\bar q_1$.  This reflects a `gambler's mentality' whereby both follower and leader go `all-in,' leveraging to the extent available to each, anticipating the increasing demand \eqref P guaranteeing maximal returns which may be straightforwardly realized by selling after the follower's move.  Of course, this is a Ponzi scheme which is effective only if a `greater fool' is found to execute a further purchase of the leader and follower's holdings; in practice, the leader typically anticipates that the follower will be the greater fool from which they may profit.
+\subsection{NetLogo simulation}\label{2.2}
+In an initial model which does not actually leverage (heterogeneous) agents but is rather a stochastic simulation from two homogeneous populations, define the following parameters for in/outsiders ($i\in\{I,O\}$) at times $0\le t\in\mathbb Z$:
+\begin{itemize}
+    \item (Fiat) cash, $c_{i,t}\ge\uline c\in[-\infty,\infty)$; $c_{i,0}\equiv0$
+    \item (Coin) price, $p_t\ge0$; $p_0\equiv\mu$
+    \item Sentiment, $s_{i,t}\in\{0,1\}$
+    \begin{itemize}
+        \item $s_{I,0}=1$; insiders are presumed initially bullish but become permanently bearish once $p_t\ge\overline{p}_I>0$
+        \item $s_{O,t}\equiv1$; outsiders are presumed permanently bullish (or, $s_{I,t}$ captures only outsider buy orders without a short liquidity provider)
+    \end{itemize}
+    \item Order inter-arrival time \href{https://en.wikipedia.org/wiki/Poisson_distribution}{rate} parameter, $\lambda_i>0$
+    \item Insider delay, $\delta>0$
+    \item Order inter-arrival time, $T_{i,t}\sim\text{Pois}(\lambda_i+\delta[i=I])$
+    \item (Coin) wealth holdings, $w_{i,t}\ge\uline w\in[-\infty,\infty)$; $w_{i,0}\equiv0$
+    \item Portfolio (cash) liquidation value, $V_{i,t}\equiv c_{i,t}+p_tw_{i,t}$
+    \item (Buy) order size \href{https://en.wikipedia.org/wiki/Gamma_distribution}{rate (shape)} parameter, $\lambda_{i,o}>0$ ($\alpha_{i,o}>0$)
+    \item (Buy) order size, $s_{i,o}\sim\Gamma(\alpha_{i,o},\lambda_{i,o})$
+    \item Order, $S_{i,o}\equiv(-1)^{[s_i=0]}s_{i,o}$
+    \item Probability, $\uline u\in[0,1]$, for settling simultaneous order placement execution; out if $\uline u\le u\sim U[0,1]$ and insiders otherwise
+    \item Linear market impact \eqref{P} via \href{https://en.wikipedia.org/wiki/Market_impact#Measuring_market_impact}{Kyle's $\lambda\ge0$}; $p_{t+1}\equiv(p_t+\lambda s_{1,o})+\lambda s_{2,o}$
+    \begin{itemize}
+        \item Type 1 (out if $\uline u\le u$ and insiders otherwise) are presumed to have order precedence over type 2 (vice versa); the latter execute orders at the price impacted by the former
+        \item Neither are presumed `large' traders; their cash holdings are adjusted at the price unimpacted by their orders
+    \end{itemize}
+\end{itemize}
+Note that this is an evolving specification, and the following in particular:
+\begin{itemize}
+    \item Borrowing limits are not currently imposed, $\uline c=-\infty=\uline w$; this could possibly vary by both in/outsiders ($i\in\{I,O\}$) and times $0\le t\in\mathbb Z$
+    \item The one-time `breakout' bull-bearish sentiment flip assumed for in, and perpetual bullish for outsiders (or, the time-independence of $\alpha_{O,o}$ and $\lambda_{O,o}$), seems particularly unrealistic and should be more adaptive/strategic
+    \item The use of Poisson and Gamma distributions somewhat belies one justification for simulation (arbitrary, perhaps empirical ones); however, this technical snag of the off-the-shelf NetLogo functionality is a lesser priority
+    \item Linear market impact similarly belies another justification for simulation (arbitrary, more complex specifications less amenable to closed-form solution); this is of secondary importance to improving sentiment dynamics
+\end{itemize}
+These concerns aside, the current specification nonetheless already yield interesting results summarized in the sequel.  Note also further possible extensions:
+\begin{itemize}
+\item Replace/augment (linear) market impact with strategic, Stackelberg or other industrial organization stage games
+\item Have agents trade in a limit order book
+\item Spawn/destroy in/outsiders from distinct populations with heterogeneous behavioural parameters (e.g., draw rather than specify fixed hyperparameters $\lambda_{i}$, $\alpha_{i,o}$ and $\lambda_{i,o}$; possibly incorporate empirical Bayesian updating)
+\item Accelerate/have different (and smaller) sell than buy interarrival order times, to reflect agent `rush' or `panic' when a bubble bursts
+\item Similarly for order size, possibly varying for in/outsiders and buy/sell to reflect certainty/decisiveness or temporally via (Bayesian) learning
+\end{itemize}
+\section{Results}
+Results for the NetLogo simulation follow.
+\subsection{NetLogo simulation}
+Hyperparameters and results of the simulation described in section \ref{2.2} are shown in Figure \ref{fig:R}.
+\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{image.png}
+    \caption{NetLogo simulation hyperparameters and results}
+    \label{fig:R}
+\end{figure}
+\\
+Note that several classic rug-pull behaviours are exhibited:
+\begin{itemize}
+    \item Insiders aggressively buy in and drive up the price
+    \item After a delay, outsiders enter
+    \item Past $\overline{p}_I=100$, insiders begin to exit whilst outsiders continue buying in
+    \item In the end, the price crashes and there is a net portfolio value transfer from outsiders to insiders
+\end{itemize}
+Though these are interesting results which satisfy many of the simulation goals, they are subject to criticisms which motivate the planned generalizations.  Primarily, not only the hyperparameters (which could be themselves drawn in a similarly constructed/`contrived' manner from their own distributions), but essential model dynamics are designed to achieve these ends and may simply reflect a `self-fulfilling prophecy' rather than underlying non/human agent behaviour (with/out empirical validation).
+\section{Conclusions}
+Interesting results on modelling rug pulls in the absence of a short liquidity provider follow from relatively straightforward simulations; however, something more subtle is desirable and one priority is to generalize in/outsider sentiment beyond assuming that outsiders are uniformly bullish up to some exit price and insiders naively continue purchasing whilst the coin price plummets.  In tandem, modelling (the possibility of) a short liquidity provider is necessary to begin comparing the effects of its presence.
+% \section{Introduction}
+
+\end{document}
