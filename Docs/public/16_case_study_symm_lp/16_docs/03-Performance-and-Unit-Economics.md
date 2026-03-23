@@ -1,30 +1,58 @@
 # Performance and Unit Economics
 
-## 3.1 Concrete Performance Metrics (Single Deposit)
+## 3.1 Concrete Performance Metrics (Three Deposits)
 
 Inputs used for this performance view:
 
-- deposited tokens: `2.501.328,4` SYMM (LafaChief, SYMM LP)
-- deposit-time SYMM price: `$0.01`
+- deposited tokens (sum of txs): `2,271,131` SYMM
+- current token balance: `2,501,328.4` SYMM
+- token gain: `+230,197.4` SYMM (`+10.14%`)
+- average deposit SYMM price: `$0.01280`
 - current SYMM price: `$0.007`
 
-PnL components:
+USDC PnL components:
 
 - realized LP profit: `$5,895.90`
 - unrealized LP profit: `$7,999.32`
 - combined realized + unrealized: `$13,895.22`
 
-Implied return levels on deposit-time notional (`$25,013.284`):
+Implied USDC return levels on deposit-time notional (`$29,089.967`):
 
-- realized return: `5,895.90 / 25,013.284 = 23.57%`
-- unrealized return: `7,999.32 / 25,013.284 = 31.98%`
-- combined return: `13,895.22 / 25,013.284 = 55.55%`
+- realized return: `5,895.90 / 29,089.967 = 20.27%`
+- unrealized return: `7,999.32 / 29,089.967 = 27.50%`
+- combined return: `13,895.22 / 29,089.967 = 47.77%`
 
-Token-notional reference at current SYMM price:
+Token-side valuation references:
 
-- `2,501,328.4 * 0.007 = $17,509.2988`
+- deposited-token value at entry: `2,271,131 * 0.01280 = $29,089.967`
+- current-token value at current reference: `2,501,328.4 * 0.007 = $17,509.2988`
+- token gain valued at current reference: `230,197.4 * 0.007 = $1,611.3818`
 
-## 3.2 Metric Sign Convention (Critical)
+Reported average yield metrics:
+
+- average USDC yield per day: `0.88%`
+- average USDC yield per year: `319.87%`
+- average token yield per day: `0.15%`
+- average token yield per year: `55.46%`
+
+## 3.2 Volume Context and Driver Analysis
+
+Reported volume context for this case:
+
+- estimated total trading volume over the period: `~$100,000`
+- estimated average daily volume: `~$1,000`
+
+Interpretation:
+
+- the observed LP profit was not dependent on high market turnover;
+- the primary return driver was directional imbalance and user-side losses, with funding support;
+- this indicates LP economics can remain attractive even when token volume is low.
+
+Forward implication:
+
+- in markets with higher fluctuation and higher open/close activity, fee revenue can stack on top of the same funding and user-PnL channels.
+
+## 3.3 Metric Sign Convention (Critical)
 
 Per your protocol accounting definitions:
 
@@ -44,7 +72,7 @@ Example from the provided screenshot:
 
 `Current Debt` is realized and withdrawable for the LP, while `Current UPnL` remains mark-to-market and is not guaranteed as immediately withdrawable cash.
 
-## 3.3 Revenue Attribution (Qualitative)
+## 3.4 Revenue Attribution (Qualitative)
 
 The narrative states that the dominant share of LP revenue came from trader-side losses in a long-skew/down-price regime, with additional contribution from funding, fees, and liquidations.
 
@@ -54,7 +82,7 @@ Interpretation:
 - strategy sensitivity to crowding direction is high;
 - persistence of this split is uncertain across regimes.
 
-## 3.4 Measurement Gaps to Close
+## 3.5 Measurement Gaps to Close
 
 A production-grade case study should add:
 
