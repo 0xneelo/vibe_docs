@@ -1,6 +1,8 @@
 # Conclusion
 
-The SYMM LP case provides a credible example of Vibe's bootstrap LP model working in a real market context. The single tracked test deposit is `2.501.328,4` SYMM by LafaChief. Using `$0.01` deposit-time SYMM pricing, this corresponds to `$25,013.284` initial notional. Reported LP outcomes are `$5,895.90` realized profit and `$7,999.32` unrealized profit, with no token loss from LPing so far. These results are explained by trader crowding, adverse price movement for long-biased users, funding transfers, and fee/liquidation flows.
+The SYMM LP case provides a credible example of Vibe's bootstrap LP model working in a real market context. The tracked test consists of three deposits by LafaChief totaling `2,271,131` SYMM. Using an average deposit price of `$0.01280`, this corresponds to `$29,089.967` initial notional. Current token balance is `2,501,328.4` SYMM, which is `+230,197.4` tokens versus deposited amount. Reported LP outcomes are `$5,895.90` realized profit and `$7,999.32` unrealized profit. These results are explained by trader crowding, adverse price movement for long-biased users, funding transfers, and fee/liquidation flows.
+
+A key finding is that these outcomes were achieved in a low-volume environment (`~$100,000` total, `~$1,000` average daily volume). That suggests meaningful LP return potential can exist even without high trading turnover; in higher-volume markets, fee-driven upside can potentially layer on top.
 
 The most important strategic insight is not the headline APR figure. It is the mechanism:
 
