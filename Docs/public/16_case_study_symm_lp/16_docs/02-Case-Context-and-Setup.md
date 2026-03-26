@@ -15,7 +15,7 @@ This paper tracks one test case:
 - current token balance: `2,501,328.4` SYMM
 - token delta: `+230,197.4` SYMM (`+10.14%`)
 - average deposit reference price: `$0.01280`
-- current reference price used in this paper: `$0.007`
+- current reference price used in this paper: `$0.0074`
 
 Exact deposit transactions:
 

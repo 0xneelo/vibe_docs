@@ -27,8 +27,8 @@ From the provided dashboard state:
 - Current token balance: `2,501,328.4`
 - Token delta: `+230,197.4` (`+10.14%`)
 - Average deposit SYMM price (case input): `$0.01280`
-- Total notional deposit (case input): `$29,089.967`
-- Current SYMM price (case input): `$0.007`
+- Total notional deposit (case input): `$29,070.4768`
+- Current SYMM price (case input): `$0.0074`
 - Realized LP profit (case input): `$5,895.90`
 - Unrealized LP profit (case input): `$7,999.32`
 - Average USDC yield per day (case input): `0.88%`
@@ -58,3 +58,9 @@ Exact deposit transactions:
 - Do not treat one data cut as a full-cycle performance report.
 - Do not sum heterogeneous fields unless accounting methodology confirms additivity.
 - Distinguish clearly between realized and unrealized components in communications.
+
+## 7.5 Reproducibility Notes
+
+- Analysis window: first deposit timestamp (`29/12/2025 11:49:29`) through the referenced dashboard snapshot (`20:48:23` data cut used in this case study).
+- Daily-series source: same case-study source set listed in Section 7.1 (`../16_data.md` plus the provided SYMM dashboard screenshots).
+- Annualization convention: compute average per-day yield over the window, then annualize with `avgYield_year = avgYield_day * 365` (no compounding adjustment).
