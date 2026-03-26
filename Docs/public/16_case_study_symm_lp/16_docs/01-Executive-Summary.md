@@ -15,7 +15,7 @@ This case tracks one SYMM LP deployment on Vibe by LafaChief. The market regime 
 - **Unrealized LP profit (`Current UPnL`):** `$7,999.32` (mark-to-market).
 - **Token-side outcome:** no token loss; token count increased.
 
-- **Notional deposit at entry:** `$29,089.967`
+- **Notional deposit at entry:** `$29,070.4768`
 - **Total PnL (realized + unrealized):** `$13,895.22`
 - **Average USDC yield per day:** `0.88%`
 - **Average USDC yield per year:** `319.87%`
@@ -23,6 +23,9 @@ This case tracks one SYMM LP deployment on Vibe by LafaChief. The market regime 
 - **Average token yield per year:** `55.46%`
 - **Estimated total trading volume (period):** `~$100,000`
 - **Estimated average volume per day:** `~$1,000`
+- **Benchmark A (passive SYMM hold):** `-42.19%` (`-$12,264.1074`)
+- **Benchmark B (passive USDC hold):** `0%` (`$0`)
+- **LP combined spread vs benchmarks:** `+$26,159.33` vs passive SYMM and `+$13,895.22` vs passive USDC
 
 ### Exact Deposit Transactions
 
