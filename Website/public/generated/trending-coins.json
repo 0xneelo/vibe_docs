@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-03-30T12:14:05.486148+00:00",
+  "source": "fallback",
+  "count": 6,
+  "coins": [
+    {
+      "symbol": "SOL",
+      "name": "Solana",
+      "url": "https://dexscreener.com/solana"
+    },
+    {
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "url": "https://dexscreener.com/ethereum"
+    },
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "url": "https://dexscreener.com/ethereum/wbtc"
+    },
+    {
+      "symbol": "BONK",
+      "name": "Bonk",
+      "url": "https://dexscreener.com/solana/bonk"
+    },
+    {
+      "symbol": "PEPE",
+      "name": "Pepe",
+      "url": "https://dexscreener.com/ethereum/pepe"
+    },
+    {
+      "symbol": "DOGE",
+      "name": "Dogecoin",
+      "url": "https://dexscreener.com/solana/doge"
+    }
+  ]
+}
