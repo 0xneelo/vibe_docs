@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const navItems = [
-  { label: "Vibe Trading", href: "https://vibe.trading" },
+  { label: "Website", href: "https://vibe.trading" },
   { label: "Docs on Github", href: "https://github.com/0xneelo/vibe_docs" },
-  { label: "Try Closed Alpha", href: "https://closed-alpha.vibe.trading" },
+  { label: "Try our Closed Alpha", href: "https://closed-alpha.vibe.trading" },
   { label: "Twitter", href: "https://twitter.com/vibe_trading" },
 ];
 

@@ -21,7 +21,7 @@ export function HeroSection() {
 
         <div className="flex flex-col items-center px-4 pt-20 text-center">
           <h1
-            className="hero-heading-gradient bg-clip-text text-transparent"
+            className="text-white"
             style={{
               fontFamily: "'Agrandir', 'Geist Sans', sans-serif",
               fontSize: "clamp(5rem, 22vw, 230px)",
@@ -34,9 +34,9 @@ export function HeroSection() {
           </h1>
 
           <p className="mt-4 max-w-md text-center text-lg leading-8 text-hero-sub opacity-80">
-            The only permissionless perpetual futures
+          Scaling Permissionless Perpetuals Issuance
             <br />
-             protocol that can serve everyone.
+            from Hundreds to Millions of Markets.
           </p>
 
           <div className="mb-[66px] mt-8">
