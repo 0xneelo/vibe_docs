@@ -33,11 +33,12 @@ export function HeroSection() {
             Vibe Trading
           </h1>
 
-          <p className="mt-3 max-w-md text-center text-base leading-7 text-hero-sub opacity-85 sm:mt-4 sm:text-lg sm:leading-8">
-            Scaling Permissionless Perpetuals Issuance
-            <br />
-            from Hundreds to tens of Millions of Markets per year.
-          </p>
+          <p className="mt-3 max-w-lg mx-auto text-center text-base leading-7 text-hero-sub opacity-85 sm:mt-4 sm:text-lg sm:leading-8">
+  Scaling permissionless perpetual listings from 
+  <span className="font-semibold text-white"> hundreds </span> 
+  to <span className="font-semibold text-white"> tens of millions </span> 
+  of markets per year.
+</p>
 
           <div className="mb-2 mt-6 sm:mb-3 sm:mt-8">
             <LandingPageButton
