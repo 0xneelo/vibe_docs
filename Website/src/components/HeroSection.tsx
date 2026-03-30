@@ -19,12 +19,12 @@ export function HeroSection() {
       <div className="relative z-10">
         <HomeNavbar />
 
-        <div className="flex flex-col items-center px-4 pt-20 text-center">
+        <div className="flex flex-col items-center px-4 pt-12 text-center sm:pt-16 md:pt-20">
           <h1
             className="text-white"
             style={{
               fontFamily: "'Agrandir', 'Geist Sans', sans-serif",
-              fontSize: "clamp(5rem, 22vw, 230px)",
+              fontSize: "clamp(3.4rem, 16vw, 230px)",
               lineHeight: 1.02,
               fontWeight: 700,
               letterSpacing: "-0.024em",
@@ -33,16 +33,16 @@ export function HeroSection() {
             Vibe Trading
           </h1>
 
-          <p className="mt-4 max-w-md text-center text-lg leading-8 text-hero-sub opacity-80">
-          Scaling Permissionless Perpetuals Issuance
+          <p className="mt-3 max-w-md text-center text-base leading-7 text-hero-sub opacity-85 sm:mt-4 sm:text-lg sm:leading-8">
+            Scaling Permissionless Perpetuals Issuance
             <br />
-            from Hundreds to Millions of Markets.
+            from Hundreds to tens of Millions of Markets per year.
           </p>
 
-          <div className="mb-[66px] mt-8">
+          <div className="mb-2 mt-6 sm:mb-3 sm:mt-8">
             <LandingPageButton
               label="Whitepaper"
-              className="w-[320px] max-w-full"
+              className="w-[240px] max-w-full sm:w-[320px]"
               onClick={() => navigate("/library")}
             />
           </div>
