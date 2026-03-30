@@ -96,23 +96,23 @@ export function SocialProofSection() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden">
+    <section id="market-velocity" className="relative -mt-32 w-full overflow-hidden sm:-mt-36 lg:-mt-44">
       <video
         ref={videoRef}
         autoPlay
         muted
         playsInline
         preload="metadata"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute -top-32 bottom-0 left-0 right-0 h-[calc(100%+8rem)] w-full object-cover sm:-top-36 sm:h-[calc(100%+9rem)] lg:-top-44 lg:h-[calc(100%+11rem)]"
         style={{ opacity: 0 }}
       >
         <source src={videoSource} type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      <div className="absolute -top-32 bottom-0 left-0 right-0 bg-gradient-to-b from-background via-transparent to-background sm:-top-36 lg:-top-44" />
 
-      <div className="relative z-10 flex -translate-y-[10%] flex-col items-center px-4 pb-16 pt-12 sm:pb-20 sm:pt-16">
-        <div className="h-16 sm:h-24" />
+      <div className="relative z-10 flex translate-y-[6%] flex-col items-center px-4 pb-20 pt-16 sm:pb-24 sm:pt-24">
+        <div className="h-24 sm:h-32" />
 
         <div className="w-full max-w-7xl rounded-[30px] border border-white/10 bg-black/35 p-4 shadow-glow backdrop-blur-md sm:p-6">
           <div className="mb-6 flex flex-col gap-2 sm:mb-7">
