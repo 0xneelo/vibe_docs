@@ -14,7 +14,7 @@ export function HomeNavbar() {
 
   return (
     <div className="w-full">
-      <nav className="flex w-full items-center justify-between px-8 py-5">
+      <nav className="flex w-full items-center justify-between px-4 py-4 sm:px-6 md:px-8 md:py-5">
         <button
           type="button"
           className="flex items-center gap-3 text-left"
@@ -38,7 +38,11 @@ export function HomeNavbar() {
           ))}
         </div>
 
-        <button type="button" className="uiverse-nav-btn" onClick={() => navigate("/library")}>
+        <button
+          type="button"
+          className="uiverse-nav-btn h-10 px-4 sm:h-12 sm:px-6"
+          onClick={() => navigate("/library")}
+        >
           <span className="uiverse-nav-btn__label">Learn More</span>
         </button>
       </nav>

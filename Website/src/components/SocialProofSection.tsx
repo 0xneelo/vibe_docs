@@ -103,7 +103,7 @@ export function SocialProofSection() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
 
-      <div className="relative z-10 flex flex-col items-center gap-20 px-4 pb-24 pt-16">
+      <div className="relative z-10 flex -translate-y-[45%] flex-col items-center gap-20 px-4 pb-24 pt-16">
         <div className="h-40" />
 
         <div className="flex w-full max-w-6xl flex-col gap-6 rounded-[28px] border border-white/10 bg-black/30 p-6 shadow-glow backdrop-blur-sm lg:flex-row lg:items-center lg:justify-between">
