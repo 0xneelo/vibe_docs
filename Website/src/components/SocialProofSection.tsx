@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, type CSSProperties } from "react";
 
 const videoSource =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260308_114720_3dabeb9e-2c39-4907-b747-bc3544e2d5b7.mp4";
@@ -7,38 +7,46 @@ interface TrendingCoin {
   symbol: string;
   name: string;
   url: string;
+  listed: string;
 }
 
-const staticCoins: TrendingCoin[] = [
-  { symbol: "LOL", name: "LOL", url: "https://dexscreener.com/search?q=LOL" },
-  { symbol: "PIXEL", name: "Pixel Coin", url: "https://dexscreener.com/search?q=PIXEL" },
-  { symbol: "ANIME", name: "Anime Bitcoin", url: "https://dexscreener.com/search?q=ANIME" },
-  { symbol: "PERK", name: "PERK", url: "https://dexscreener.com/search?q=PERK" },
-  { symbol: "KID", name: "The Gaza Kid", url: "https://dexscreener.com/search?q=KID" },
-  { symbol: "Clippy", name: "Clippy", url: "https://dexscreener.com/search?q=Clippy" },
-  { symbol: "MONDAY", name: "MEMESCOPE MONDAY", url: "https://dexscreener.com/search?q=MONDAY" },
-  { symbol: "ROFL", name: "Rolling on the floor laughing", url: "https://dexscreener.com/search?q=ROFL" },
-  { symbol: "Anime", name: "ANIMEFICATION", url: "https://dexscreener.com/search?q=ANIMEFICATION" },
-  { symbol: "エックス", name: "Japanese X", url: "https://dexscreener.com/search?q=%E3%82%A8%E3%83%83%E3%82%AF%E3%82%B9" },
-  { symbol: "LOLA", name: "Lola the Otter", url: "https://dexscreener.com/search?q=LOLA" },
-  { symbol: "Lost", name: "Pumpfun ruined my life", url: "https://dexscreener.com/search?q=Pumpfun%20ruined%20my%20life" },
-  { symbol: "TRASHCAN", name: "trash can", url: "https://dexscreener.com/search?q=TRASHCAN" },
-  { symbol: "犬", name: "Japanese Dogs", url: "https://dexscreener.com/search?q=%E7%8A%AC" },
-  { symbol: "LGNS", name: "Longinus", url: "https://dexscreener.com/search?q=LGNS" },
-  { symbol: "Downald", name: "Downald Twump", url: "https://dexscreener.com/search?q=Downald" },
-  { symbol: "umi", name: "umi", url: "https://dexscreener.com/search?q=umi" },
-  { symbol: "Punch", name: "パンチ", url: "https://dexscreener.com/search?q=%E3%83%91%E3%83%B3%E3%83%81" },
-  { symbol: "PUMPPERPS", name: "PumpPerps", url: "https://dexscreener.com/search?q=PUMPPERPS" },
-  { symbol: "ATLAS", name: "Atlas", url: "https://dexscreener.com/search?q=ATLAS" },
+const rowOneCoins: TrendingCoin[] = [
+  { symbol: "$ANIME", name: "Anime Bitcoin 30", listed: "Listed 2m ago", url: "https://dexscreener.com/search?q=ANIME" },
+  { symbol: "$LOLA", name: "Lola the Otter", listed: "Listed 6m ago", url: "https://dexscreener.com/search?q=LOLA" },
+  { symbol: "$TRASHCAN", name: "trash can", listed: "Listed 9m ago", url: "https://dexscreener.com/search?q=TRASHCAN" },
+  { symbol: "$DOG", name: "Japanese Dogs", listed: "Just Listed", url: "https://dexscreener.com/search?q=%E7%8A%AC" },
+  { symbol: "$PIXEL", name: "Pixel Coin", listed: "Listed 11m ago", url: "https://dexscreener.com/search?q=PIXEL" },
+  { symbol: "$PERK", name: "PERK", listed: "Listed 14m ago", url: "https://dexscreener.com/search?q=PERK" },
+  { symbol: "$KID", name: "The Gaza Kid 10", listed: "Listed 18m ago", url: "https://dexscreener.com/search?q=KID" },
 ];
 
-const MARQUEE_DURATION_SECONDS = 60;
+const rowTwoCoins: TrendingCoin[] = [
+  { symbol: "$LOL", name: "LOL", listed: "Listed 1m ago", url: "https://dexscreener.com/search?q=LOL" },
+  { symbol: "$MONDAY", name: "MEMESCOPE MONDAY", listed: "Listed 4m ago", url: "https://dexscreener.com/search?q=MONDAY" },
+  { symbol: "$ROFL", name: "Rolling on the floor laughing 200", listed: "Listed 7m ago", url: "https://dexscreener.com/search?q=ROFL" },
+  { symbol: "$ATLAS", name: "Atlas 50", listed: "Listed 12m ago", url: "https://dexscreener.com/search?q=ATLAS" },
+  { symbol: "$PUMPPERPS", name: "PumpPerps", listed: "Listed 16m ago", url: "https://dexscreener.com/search?q=PUMPPERPS" },
+  { symbol: "$DOWNALD", name: "Downald Twump", listed: "Listed 22m ago", url: "https://dexscreener.com/search?q=Downald" },
+  { symbol: "$CLIPPY", name: "Clippy 150", listed: "Listed 31m ago", url: "https://dexscreener.com/search?q=Clippy" },
+];
+
+const rowThreeCoins: TrendingCoin[] = [
+  { symbol: "$UMI", name: "umi 30", listed: "Just Listed", url: "https://dexscreener.com/search?q=umi" },
+  { symbol: "$PUNCH", name: "パンチ", listed: "Listed 3m ago", url: "https://dexscreener.com/search?q=%E3%83%91%E3%83%B3%E3%83%81" },
+  { symbol: "$LOST", name: "Pumpfun ruined my life", listed: "Listed 5m ago", url: "https://dexscreener.com/search?q=Pumpfun%20ruined%20my%20life" },
+  { symbol: "$LGNS", name: "Longinus", listed: "Listed 8m ago", url: "https://dexscreener.com/search?q=LGNS" },
+  { symbol: "$ANIMEFICATION", name: "ANIMEFICATION 20", listed: "Listed 10m ago", url: "https://dexscreener.com/search?q=ANIMEFICATION" },
+  { symbol: "$X", name: "Japanese X", listed: "Listed 13m ago", url: "https://dexscreener.com/search?q=%E3%82%A8%E3%83%83%E3%82%AF%E3%82%B9" },
+  { symbol: "$PERK", name: "PERK", listed: "Listed 15m ago", url: "https://dexscreener.com/search?q=PERK" },
+];
 
 export function SocialProofSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const frameRef = useRef<number | null>(null);
   const resetTimeoutRef = useRef<number | null>(null);
-  const marqueeItems = useMemo(() => [...staticCoins, ...staticCoins], []);
+  const rowOne = useMemo(() => [...rowOneCoins, ...rowOneCoins], []);
+  const rowTwo = useMemo(() => [...rowTwoCoins, ...rowTwoCoins], []);
+  const rowThree = useMemo(() => [...rowThreeCoins, ...rowThreeCoins], []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -103,41 +111,114 @@ export function SocialProofSection() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
 
-      <div className="relative z-10 flex -translate-y-[45%] flex-col items-center gap-20 px-4 pb-24 pt-16">
-        <div className="h-40" />
+      <div className="relative z-10 flex -translate-y-[10%] flex-col items-center px-4 pb-16 pt-12 sm:pb-20 sm:pt-16">
+        <div className="h-16 sm:h-24" />
 
-        <div className="flex w-full max-w-6xl flex-col gap-6 rounded-[28px] border border-white/10 bg-black/30 p-6 shadow-glow backdrop-blur-sm lg:flex-row lg:items-center lg:justify-between">
-          <div className="shrink-0 whitespace-nowrap text-base leading-7 text-foreground/90">
-          Automated Perp Markets: 
-            <br />
-            If it's trending, it's on Vibe.
+        <div className="w-full max-w-7xl rounded-[30px] border border-white/10 bg-black/35 p-4 shadow-glow backdrop-blur-md sm:p-6">
+          <div className="mb-6 flex flex-col gap-2 sm:mb-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-foreground/55">Market Velocity Ticker</p>
+            <h2 className="max-w-3xl text-xl font-semibold tracking-[-0.02em] text-foreground sm:text-2xl">
+              Thousands of potential long-tail perp markets per day.
+            </h2>
+            <p className="text-sm leading-6 text-foreground/70">
+              With Vibe continuous listing velocity across micro-cap assets is not a dream anymore.
+            </p>
           </div>
 
-          <div className="reader-scrollbar relative overflow-hidden">
-            <div
-              className="flex min-w-max animate-marquee items-center gap-16 pr-16"
-              style={{ animationDuration: `${MARQUEE_DURATION_SECONDS}s` }}
-            >
-              {marqueeItems.map((coin, index) => (
-                <a
-                  key={`${coin.symbol}-${coin.name}-${index}`}
-                  href={coin.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 whitespace-nowrap transition hover:opacity-80"
-                >
-                  <div className="liquid-glass flex h-6 w-6 items-center justify-center rounded-lg text-xs font-semibold text-foreground">
-                    {coin.symbol?.[0] ?? "?"}
-                  </div>
-                  <span className="text-base font-semibold text-foreground drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
-                    {coin.symbol}
-                  </span>
-                </a>
-              ))}
-            </div>
+          <div
+            className="space-y-3"
+            style={{
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+              maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            }}
+          >
+            <TickerRow coins={rowOne} duration="46s" hoverDuration="62s" direction="normal" />
+            <TickerRow coins={rowTwo} duration="32s" hoverDuration="44s" direction="reverse" />
+            <TickerRow coins={rowThree} duration="22s" hoverDuration="30s" direction="normal" />
           </div>
         </div>
       </div>
+
+      <style>
+        {`
+          .velocity-track {
+            animation-name: velocityTicker;
+            animation-duration: var(--duration);
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: var(--direction);
+            will-change: transform;
+          }
+
+          .velocity-row:hover .velocity-track {
+            animation-duration: var(--hover-duration);
+          }
+
+          @keyframes velocityTicker {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+        `}
+      </style>
     </section>
+  );
+}
+
+function TickerRow({
+  coins,
+  duration,
+  hoverDuration,
+  direction,
+}: {
+  coins: TrendingCoin[];
+  duration: string;
+  hoverDuration: string;
+  direction: "normal" | "reverse";
+}) {
+  const rowStyle = {
+    "--duration": duration,
+    "--hover-duration": hoverDuration,
+    "--direction": direction,
+  } as CSSProperties;
+
+  return (
+    <div
+      className="velocity-row relative overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02] px-2 py-2"
+      style={rowStyle}
+    >
+      <div className="velocity-track flex min-w-max items-center gap-2 pr-2 sm:gap-3 sm:pr-3">
+        {coins.map((coin, index) => (
+          <a
+            key={`${coin.symbol}-${coin.name}-${index}`}
+            href={coin.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex min-w-[220px] items-center gap-3 rounded-xl border border-white/12 bg-white/[0.04] px-3 py-2.5 backdrop-blur-md transition hover:border-white/22 hover:bg-white/[0.08] sm:min-w-[260px]"
+          >
+            <div className="liquid-glass flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold text-foreground/95">
+              {coin.symbol.replace("$", "").charAt(0)}
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold text-foreground">{coin.symbol}</p>
+              <p className="truncate text-xs text-foreground/65">{coin.name}</p>
+            </div>
+
+            <div className="shrink-0 text-right">
+              <p className="rounded-full border border-white/14 bg-black/25 px-2 py-0.5 text-[10px] font-medium text-foreground/75">
+                {coin.listed}
+              </p>
+              <p className="mt-1 inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-[0.09em] text-foreground/68">
+                <span className="relative inline-flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-300/70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-yellow-300" />
+                </span>
+                Soon
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }

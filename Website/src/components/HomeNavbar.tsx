@@ -4,8 +4,8 @@ import logo from "@/assets/logo.png";
 
 const navItems = [
   { label: "Website", href: "https://vibe.trading" },
-  { label: "Docs on Github", href: "https://github.com/0xneelo/vibe_docs" },
-  { label: "Try our Closed Alpha", href: "https://closed-alpha.vibe.trading" },
+  { label: "Github", href: "https://github.com/0xneelo/vibe_docs" },
+  { label: "Trade now", href: "https://closed-alpha.vibe.trading" },
   { label: "Twitter", href: "https://twitter.com/vibe_trading" },
 ];
 
