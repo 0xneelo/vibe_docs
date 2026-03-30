@@ -19,7 +19,7 @@ export function HeroSection() {
       <div className="relative z-10 flex min-h-screen flex-col">
         <HomeNavbar />
 
-        <div className="flex flex-1 flex-col items-center justify-center px-4 pb-24 text-center sm:pb-28">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 pb-32 text-center sm:pb-28">
           <h1
             className="text-white"
             style={{
@@ -51,7 +51,7 @@ export function HeroSection() {
 
         <a
           href="#market-velocity"
-          className="absolute bottom-12 left-1/2 inline-flex -translate-x-1/2 flex-col items-center text-foreground/85 transition hover:text-foreground"
+          className="absolute bottom-4 left-1/2 z-30 inline-flex -translate-x-1/2 flex-col items-center text-foreground/85 transition hover:text-foreground sm:bottom-8"
           aria-label="Scroll down to market velocity"
         >
           <div className="scrolldown">

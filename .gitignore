@@ -48,6 +48,9 @@ Docs/public/11_private_law_societies/11_docs/11_sources/
 
 # Generated docs website
 Website/site/
+Website/node_modules/
+Website/__pycache__/
+__pycache__/
 
 # Case-study raw data/transcripts
 **/16_data.md

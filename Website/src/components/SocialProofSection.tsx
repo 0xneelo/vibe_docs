@@ -96,7 +96,7 @@ export function SocialProofSection() {
   }, []);
 
   return (
-    <section id="market-velocity" className="relative -mt-32 w-full overflow-hidden sm:-mt-36 lg:-mt-44">
+    <section id="market-velocity" className="pointer-events-none relative -mt-32 w-full overflow-hidden sm:-mt-36 lg:-mt-44">
       <video
         ref={videoRef}
         autoPlay
@@ -111,10 +111,10 @@ export function SocialProofSection() {
 
       <div className="absolute -top-32 bottom-0 left-0 right-0 bg-gradient-to-b from-background via-transparent to-background sm:-top-36 lg:-top-44" />
 
-      <div className="relative z-10 flex translate-y-[6%] flex-col items-center px-4 pb-20 pt-16 sm:pb-24 sm:pt-24">
+      <div className="pointer-events-none relative z-10 flex translate-y-[6%] flex-col items-center px-4 pb-20 pt-16 sm:pb-24 sm:pt-24">
         <div className="h-24 sm:h-32" />
 
-        <div className="w-full max-w-7xl rounded-[30px] border border-white/10 bg-black/35 p-4 shadow-glow backdrop-blur-md sm:p-6">
+        <div className="pointer-events-auto w-full max-w-7xl rounded-[30px] border border-white/10 bg-black/35 p-4 shadow-glow backdrop-blur-md sm:p-6">
           <div className="mb-6 flex flex-col gap-2 sm:mb-7">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-foreground/55">Market Velocity Ticker</p>
             <h2 className="max-w-3xl text-xl font-semibold tracking-[-0.02em] text-foreground sm:text-2xl">
@@ -213,7 +213,7 @@ function TickerRow({
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-300/70" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-yellow-300" />
                 </span>
-                Soon
+                Soon on Vibe
               </p>
             </div>
           </a>
