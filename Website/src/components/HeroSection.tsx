@@ -7,7 +7,7 @@ export function HeroSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-background">
+    <section className="relative min-h-screen overflow-hidden bg-background">
       <div
         className="absolute inset-0"
         style={{
@@ -16,10 +16,10 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 flex min-h-screen flex-col">
         <HomeNavbar />
 
-        <div className="flex flex-col items-center px-4 pt-12 text-center sm:pt-16 md:pt-20">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 pb-24 text-center sm:pb-28">
           <h1
             className="text-white"
             style={{
@@ -34,11 +34,11 @@ export function HeroSection() {
           </h1>
 
           <p className="mt-3 max-w-lg mx-auto text-center text-base leading-7 text-hero-sub opacity-85 sm:mt-4 sm:text-lg sm:leading-8">
-  Scaling permissionless perpetual listings from 
-  <span className="font-semibold text-white"> hundreds </span> 
-  to <span className="font-semibold text-white"> tens of millions </span> 
-  of markets per year.
-</p>
+            Scaling permissionless perpetual listings from
+            <span className="font-semibold text-white"> hundreds </span>
+            to <span className="font-semibold text-white"> tens of millions </span>
+            of markets per year.
+          </p>
 
           <div className="mb-2 mt-6 sm:mb-3 sm:mt-8">
             <LandingPageButton
@@ -48,6 +48,19 @@ export function HeroSection() {
             />
           </div>
         </div>
+
+        <a
+          href="#market-velocity"
+          className="absolute bottom-12 left-1/2 inline-flex -translate-x-1/2 flex-col items-center text-foreground/85 transition hover:text-foreground"
+          aria-label="Scroll down to market velocity"
+        >
+          <div className="scrolldown">
+            <div className="chevrons">
+              <div className="chevrondown" />
+              <div className="chevrondown" />
+            </div>
+          </div>
+        </a>
       </div>
     </section>
   );
