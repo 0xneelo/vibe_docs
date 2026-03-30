@@ -106,13 +106,11 @@ export function SocialProofSection() {
       <div className="relative z-10 flex flex-col items-center gap-20 px-4 pb-24 pt-16">
         <div className="h-40" />
 
-        <div className="flex w-full max-w-6xl flex-col gap-6 rounded-[28px] border border-white/10 bg-white/[0.02] p-6 shadow-glow lg:flex-row lg:items-center lg:justify-between">
-          <div className="shrink-0 whitespace-nowrap text-sm text-foreground/50">
-            Top 20 trending coins 
+        <div className="flex w-full max-w-6xl flex-col gap-6 rounded-[28px] border border-white/10 bg-black/30 p-6 shadow-glow backdrop-blur-sm lg:flex-row lg:items-center lg:justify-between">
+          <div className="shrink-0 whitespace-nowrap text-base leading-7 text-foreground/90">
+          Automated Perp Markets: 
             <br />
-            from DEX Screener,
-            <br />
-            that will all get a perp on Vibe.
+            If it's trending, it's on Vibe.
           </div>
 
           <div className="reader-scrollbar relative overflow-hidden">
@@ -131,7 +129,7 @@ export function SocialProofSection() {
                   <div className="liquid-glass flex h-6 w-6 items-center justify-center rounded-lg text-xs font-semibold text-foreground">
                     {coin.symbol?.[0] ?? "?"}
                   </div>
-                  <span className="text-base font-semibold text-foreground">
+                  <span className="text-base font-semibold text-foreground drop-shadow-[0_1px_1px_rgba(0,0,0,0.35)]">
                     {coin.symbol}
                   </span>
                 </a>
