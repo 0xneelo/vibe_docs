@@ -24,7 +24,7 @@ function ScrollToTop() {
 export default function App() {
   return (
     <DocsProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <GlobalBackground />
         <div className="relative z-10">
           <ScrollToTop />
