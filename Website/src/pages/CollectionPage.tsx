@@ -1,20 +1,17 @@
+import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 
-import { AmbientVideoBackground } from "@/components/AmbientVideoBackground";
 import { SiteHeader } from "@/components/SiteHeader";
-import { PageToc } from "@/components/docs/PageToc";
+import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
 import { useDocs } from "@/lib/docs";
-
-const COLLECTION_VIDEO_OPACITY = 0.2;
-const COLLECTION_OVERLAY_OPACITY = 0.64;
 
 export function CollectionPage() {
   const { collectionSlug = "" } = useParams();
-  const { collectionBySlug, pagesByCollection, loading, error } = useDocs();
+  const { collections, collectionBySlug, pagesByCollection, loading, error } = useDocs();
 
   if (loading) {
-    return <CollectionState message="Loading collection..." />;
+    return <CollectionState message="Loading chapter..." />;
   }
 
   if (error) {
@@ -27,65 +24,128 @@ export function CollectionPage() {
   }
 
   const pages = pagesByCollection.get(collection.slug) ?? [];
+  const cleanedOverviewHtml = useMemo(() => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(collection.overviewHtml, "text/html");
+    const chapterPrefix = collection.key.slice(0, 2);
+
+    const firstHeading = doc.body.querySelector("h1");
+    if (firstHeading) {
+      firstHeading.remove();
+    }
+
+    const firstParagraph = doc.body.querySelector("p");
+    if (firstParagraph) {
+      firstParagraph.remove();
+    }
+
+    const githubBase = "https://github.com/0xneelo/vibe_docs/blob/main/Docs/public";
+    doc.body.querySelectorAll("a").forEach((anchor) => {
+      const label = (anchor.textContent ?? "").trim();
+      const readmeMatch = label.match(/([0-9]{2}_docs\/README\.md)$/i);
+      const hrefMatch = (anchor.getAttribute("href") ?? "").match(/([0-9]{2}_docs\/README\.md)/i);
+      const docsPath = readmeMatch?.[1] ?? hrefMatch?.[1];
+      if (!docsPath) {
+        return;
+      }
+
+      const standardizedLabel = `${chapterPrefix}_docs/README.md`;
+      anchor.textContent = standardizedLabel;
+      anchor.setAttribute("href", `${githubBase}/${collection.key}/${docsPath}`);
+      anchor.setAttribute("target", "_blank");
+      anchor.setAttribute("rel", "noopener noreferrer");
+
+      const parentParagraph = anchor.closest("p");
+      if (parentParagraph) {
+        parentParagraph.innerHTML = `&rarr; See <a href="${githubBase}/${collection.key}/${docsPath}" target="_blank" rel="noopener noreferrer">${standardizedLabel}</a> for source files.`;
+      }
+    });
+
+    if (collection.key === "15_funding_model") {
+      const interactiveHeading = Array.from(doc.body.querySelectorAll("h2")).find((heading) =>
+        /interactive simulators/i.test((heading.textContent ?? "").trim()),
+      );
+      if (interactiveHeading) {
+        const next = interactiveHeading.nextElementSibling;
+        if (next && next.tagName.toLowerCase() === "ul") {
+          next.remove();
+        }
+
+        const intro = doc.createElement("p");
+        intro.textContent =
+          "Use these live simulator pages to test funding dynamics and visualize Z-score cone traversal behavior under different market stress conditions.";
+        interactiveHeading.insertAdjacentElement("afterend", intro);
+
+        const list = doc.createElement("ul");
+        list.innerHTML = `
+          <li><a href="/simulations/funding">Funding Simulator</a></li>
+          <li><a href="/simulations/z-score">Z-Score Cone Traversal Simulator</a></li>
+        `;
+        intro.insertAdjacentElement("afterend", list);
+      }
+    }
+
+    return doc.body.innerHTML;
+  }, [collection.key, collection.overviewHtml]);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <AmbientVideoBackground
-        videoOpacity={COLLECTION_VIDEO_OPACITY}
-        overlayOpacity={COLLECTION_OVERLAY_OPACITY}
-      />
-
       <div className="relative z-10">
         <SiteHeader />
 
-        <main className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-10 lg:grid-cols-[minmax(0,1fr)_260px] sm:px-6 lg:px-8">
+        <main className="mx-auto grid w-full max-w-[1680px] gap-6 px-4 py-8 lg:grid-cols-[300px_minmax(0,1fr)_260px] lg:px-8">
+          <div className="hidden lg:block">
+            <CollectionSidebar
+              collections={collections}
+              pagesByCollection={pagesByCollection}
+            />
+          </div>
+
           <section className="space-y-6">
-            <header>
-              <h1 className="text-4xl font-semibold tracking-[-0.04em] text-foreground sm:text-5xl">
+            <header className="card-surface-main px-5 py-6 sm:px-7">
+              <p className="text-[11px] font-semibold tracking-[0.14em] text-foreground/56 uppercase">Chapter landing</p>
+              <h1 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
                 {collection.overviewTitle || collection.title}
               </h1>
-              <p className="mt-3 max-w-2xl text-base text-foreground/65">
-                {collection.summary || "Collection overview and entry point into the whitepaper sections."}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2 text-xs text-foreground/55">
-                <span className="rounded-full border border-white/10 px-3 py-1">Collection</span>
-                <span className="rounded-full border border-white/10 px-3 py-1">{pages.length} sections</span>
+              <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                <span className="rounded-full border border-white/14 bg-white/[0.05] px-3 py-1 text-foreground/72">Chapter</span>
+                <span className="rounded-full border border-white/14 bg-white/[0.05] px-3 py-1 text-foreground/72">{pages.length} sections</span>
               </div>
             </header>
 
-            <article className="content-auto rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-              <div className="doc-content" dangerouslySetInnerHTML={{ __html: collection.overviewHtml }} />
+            <article className="card-surface-main content-auto p-6 sm:p-8">
+              <p className="mb-5 max-w-[68ch] text-[1rem] leading-8 text-foreground/68">
+                {collection.summary || "Chapter overview and entry point into the whitepaper sections."}
+              </p>
+              <div className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedOverviewHtml }} />
             </article>
 
-            <section className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
-              <div className="mb-4 flex items-center justify-between gap-4">
-                <h2 className="text-xl font-semibold tracking-[-0.02em] text-foreground">Paper sections</h2>
-                <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-foreground/55">
-                  {pages.length} sections
-                </span>
+            <section className="card-surface-main overflow-hidden">
+              <div className="border-b border-white/8 px-5 py-4 sm:px-6">
+                <h2 className="text-lg font-semibold tracking-[-0.02em] text-foreground">Paper sections</h2>
               </div>
-
-              <div className="grid gap-3">
-                {pages.map((page) => (
+              <div>
+                {pages.map((page, index) => (
                   <Link
                     key={page.id}
                     to={page.href}
-                    className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition hover:bg-white/[0.05]"
+                    className="group grid items-start gap-4 border-b border-white/8 px-5 py-4 transition last:border-b-0 hover:bg-white/[0.06] sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:px-6"
                   >
-                    <div>
-                      <div className="text-base font-semibold text-foreground">{page.title}</div>
-                      <div className="mt-1 text-sm text-foreground/55">{page.summary || page.relativePath}</div>
+                    <div className="hidden text-2xl leading-none font-semibold tracking-[-0.05em] text-foreground/22 transition group-hover:text-foreground/40 sm:block">
+                      {String(index + 1).padStart(2, "0")}
                     </div>
-                    <ArrowRight className="h-5 w-5 text-foreground/45 transition group-hover:text-foreground" />
+                    <div className="min-w-0">
+                      <div className="text-lg font-semibold tracking-[-0.02em] text-foreground">{page.title}</div>
+                      <div className="mt-1.5 text-sm leading-6 text-foreground/58">{page.summary || page.relativePath}</div>
+                    </div>
+                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-foreground/40 transition group-hover:translate-x-0.5 group-hover:text-foreground" />
                   </Link>
                 ))}
               </div>
             </section>
           </section>
 
-          <div className="hidden lg:block">
-            <PageToc headings={collection.overviewHeadings} />
-          </div>
+          <div className="hidden lg:block" aria-hidden="true" />
         </main>
       </div>
     </div>
@@ -95,14 +155,10 @@ export function CollectionPage() {
 function CollectionState({ message }: { message: string }) {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <AmbientVideoBackground
-        videoOpacity={COLLECTION_VIDEO_OPACITY}
-        overlayOpacity={COLLECTION_OVERLAY_OPACITY}
-      />
       <div className="relative z-10">
         <SiteHeader />
         <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-sm text-foreground/60">
+          <div className="card-surface-main p-6 text-sm text-foreground/60">
             {message}
           </div>
         </main>

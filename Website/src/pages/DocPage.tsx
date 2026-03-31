@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import { SiteHeader } from "@/components/SiteHeader";
@@ -35,6 +36,15 @@ export function DocPage() {
 
   const previousPage = page.prevId ? pageById.get(page.prevId) : undefined;
   const nextPage = page.nextId ? pageById.get(page.nextId) : undefined;
+  const cleanedPageHtml = useMemo(() => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(page.html, "text/html");
+    const firstHeading = doc.body.querySelector("h1");
+    if (firstHeading) {
+      firstHeading.remove();
+    }
+    return doc.body.innerHTML;
+  }, [page.html]);
 
   return (
     <div className="min-h-screen">
@@ -50,14 +60,14 @@ export function DocPage() {
         </div>
 
         <section className="space-y-6">
-          <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-8 shadow-glow">
+          <div className="card-surface-main p-8">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45">
               {collection.title}
             </p>
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] text-foreground sm:text-5xl">
+            <h1 className="max-w-[24ch] text-[clamp(2rem,4.6vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-foreground">
               {page.title}
             </h1>
-            <p className="mt-4 max-w-3xl text-base leading-8 text-foreground/65">
+            <p className="mt-4 max-w-[68ch] text-[1rem] leading-8 text-foreground/68">
               {page.summary || collection.summary}
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-xs text-foreground/45">
@@ -68,8 +78,8 @@ export function DocPage() {
             </div>
           </div>
 
-          <article className="content-auto rounded-[32px] border border-white/10 bg-white/[0.03] p-6 shadow-glow sm:p-8">
-            <div className="doc-content" dangerouslySetInnerHTML={{ __html: page.html }} />
+          <article className="card-surface-main content-auto p-6 sm:p-8">
+            <div className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedPageHtml }} />
           </article>
 
           <DocPager previousPage={previousPage} nextPage={nextPage} />
@@ -88,7 +98,7 @@ function DocState({ message }: { message: string }) {
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-6 text-sm text-foreground/60 shadow-glow">
+        <div className="card-surface-main p-6 text-sm text-foreground/60">
           {message}
         </div>
       </main>

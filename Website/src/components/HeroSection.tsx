@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { HomeNavbar } from "@/components/HomeNavbar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { LandingPageButton } from "@/components/ui/LandingPageButton";
 
 export function HeroSection() {
@@ -17,7 +17,7 @@ export function HeroSection() {
       />
 
       <div className="relative z-10 flex min-h-screen flex-col">
-        <HomeNavbar />
+        <SiteHeader />
 
         <div className="flex flex-1 flex-col items-center justify-center px-4 pb-32 text-center sm:pb-28">
           <h1

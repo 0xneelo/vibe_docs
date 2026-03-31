@@ -18,7 +18,7 @@ export function DocPager({ previousPage, nextPage }: DocPagerProps) {
       {previousPage ? (
         <Link
           to={previousPage.href}
-          className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 shadow-glow transition hover:bg-white/[0.05]"
+          className="card-surface-main card-surface-main-hover rounded-[24px] p-5"
         >
           <span className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45">
             <ArrowLeft className="h-4 w-4" />
@@ -33,7 +33,7 @@ export function DocPager({ previousPage, nextPage }: DocPagerProps) {
       {nextPage ? (
         <Link
           to={nextPage.href}
-          className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 text-right shadow-glow transition hover:bg-white/[0.05]"
+          className="card-surface-main card-surface-main-hover rounded-[24px] p-5 text-right"
         >
           <span className="mb-3 flex items-center justify-end gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45">
             Next

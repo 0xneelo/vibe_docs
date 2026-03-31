@@ -10,7 +10,7 @@ export function PageToc({ headings }: PageTocProps) {
 
   return (
     <aside className="sticky top-24 self-start">
-      <div className="reader-scrollbar max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain rounded-[24px] border border-white/10 bg-white/[0.03] p-4 shadow-glow">
+      <div className="card-surface-sidebar reader-scrollbar max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain p-4">
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45">
           On this page
         </p>
