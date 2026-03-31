@@ -50,7 +50,8 @@ interface Ball extends Vec3 {
 interface ControlsState {
   gravity: number;
   hSpread: number;
-  vSpread: number;
+  vSpreadStart: number;
+  vSpreadEnd: number;
   zScoreLimit: number;
   outlierPct: number;
   ballCount: number;
@@ -82,24 +83,46 @@ function randomVolumePosition(): Vec3 {
   };
 }
 
-function getNormalTargetWithForces(ball: Ball, g: number, hs: number, vs: number, zLimit: number): Vec3 {
+function spreadToCenterBias(spreadValue: number) {
+  // 0 -> edge-focused, 1 -> balanced edge/center, 2 -> center-focused
+  return clamp(spreadValue / 2, 0, 1);
+}
+
+function getNormalTargetWithForces(ball: Ball, g: number, hs: number, vsStart: number, vsEnd: number, zLimit: number): Vec3 {
   const maxRadius = Math.max(X_RANGE, Y_RANGE);
   const gravityFraction = g / 2;
   const hSpreadFraction = hs / 2;
-  const vSpreadFraction = vs / 2;
   const zLimitFraction = zLimit / 2;
 
   const canGoUp = gravityFraction >= ball.zThreshold;
-  const targetZ = canGoUp ? lerp(Z_MAX * zLimitFraction, ball.uniformZ * Z_MAX * zLimitFraction, vSpreadFraction) : 0;
+  const maxAllowedZ = Z_MAX * zLimitFraction;
+  const targetZ = canGoUp ? ball.uniformZ * maxAllowedZ : 0;
+  const zProgress = maxAllowedZ > 1e-9 ? clamp(targetZ / maxAllowedZ, 0, 1) : 0;
 
-  const baseRadius = Math.hypot(ball.base.x, ball.base.y);
-  const gravityRadius = lerp(baseRadius, 0, gravityFraction);
-  const gravityX = Math.cos(ball.angle) * gravityRadius * (X_RANGE / maxRadius);
-  const gravityY = Math.sin(ball.angle) * gravityRadius * (Y_RANGE / maxRadius);
+  const vSpreadAtZ = lerp(clamp(vsStart, 0, 2), clamp(vsEnd, 0, 2), zProgress);
+  const vCenterBias = spreadToCenterBias(vSpreadAtZ);
+
+  // Use square-boundary anchors so low spread reaches box edges (not a circle).
+  const dirX = Math.cos(ball.angle);
+  const dirY = Math.sin(ball.angle);
+  const tx = Math.abs(dirX) > 1e-9 ? X_RANGE / Math.abs(dirX) : Number.POSITIVE_INFINITY;
+  const ty = Math.abs(dirY) > 1e-9 ? Y_RANGE / Math.abs(dirY) : Number.POSITIVE_INFINITY;
+  const edgeScale = Math.min(tx, ty);
+  const edgeX = dirX * edgeScale;
+  const edgeY = dirY * edgeScale;
+  const spreadX = lerp(edgeX, 0, vCenterBias);
+  const spreadY = lerp(edgeY, 0, vCenterBias);
+
+  // When v-spread is near 0, keep a hard edge ring.
+  // As v-spread increases, allow stronger center pull and interior mixing.
+  const centerPull = gravityFraction * 0.35 * vCenterBias;
+  const interiorMix = hSpreadFraction * vCenterBias;
+  const gravityX = lerp(spreadX, 0, centerPull);
+  const gravityY = lerp(spreadY, 0, centerPull);
 
   return {
-    x: lerp(gravityX, ball.uniformPos.x, hSpreadFraction),
-    y: lerp(gravityY, ball.uniformPos.y, hSpreadFraction),
+    x: lerp(gravityX, ball.uniformPos.x, interiorMix),
+    y: lerp(gravityY, ball.uniformPos.y, interiorMix),
     z: targetZ,
   };
 }
@@ -107,7 +130,8 @@ function getNormalTargetWithForces(ball: Ball, g: number, hs: number, vs: number
 function getTargetPosition(ball: Ball, controls: ControlsState): Vec3 {
   const g = clamp(controls.gravity, 0, 2);
   const hs = clamp(controls.hSpread, 0, 2);
-  const vs = clamp(controls.vSpread, 0, 2);
+  const vsStart = clamp(controls.vSpreadStart, 0, 2);
+  const vsEnd = clamp(controls.vSpreadEnd, 0, 2);
   const zLimit = clamp(controls.zScoreLimit, 0, 2);
 
   switch (ball.behavior) {
@@ -142,9 +166,9 @@ function getTargetPosition(ball: Ball, controls: ControlsState): Vec3 {
       };
     }
     case BEHAVIOR.STRAGGLER:
-      return getNormalTargetWithForces(ball, g * ball.lagFactor, hs, vs, zLimit);
+      return getNormalTargetWithForces(ball, g * ball.lagFactor, hs, vsStart, vsEnd, zLimit);
     default:
-      return getNormalTargetWithForces(ball, g, hs, vs, zLimit);
+      return getNormalTargetWithForces(ball, g, hs, vsStart, vsEnd, zLimit);
   }
 }
 
@@ -236,6 +260,15 @@ function stepSimulation(balls: Ball[], controls: ControlsState) {
     ball.y = clamp(ball.y + (target.y - ball.y) * effectivePull + noise.y, -Y_RANGE, Y_RANGE);
     ball.z = clamp(ball.z + (target.z - ball.z) * effectivePull + noise.z, 0, Z_MAX);
     ball.age += 1;
+  }
+}
+
+function applyControlTargetsImmediately(balls: Ball[], controls: ControlsState) {
+  for (const ball of balls) {
+    const target = getTargetPosition(ball, controls);
+    ball.x = target.x;
+    ball.y = target.y;
+    ball.z = target.z;
   }
 }
 
@@ -331,7 +364,8 @@ export function ZScoreSimulatorPage() {
   const [controls, setControls] = useState<ControlsState>({
     gravity: 1,
     hSpread: 0.2,
-    vSpread: 0.35,
+    vSpreadStart: 0.35,
+    vSpreadEnd: 1.2,
     zScoreLimit: 2,
     outlierPct: 23,
     ballCount: 300,
@@ -383,6 +417,7 @@ export function ZScoreSimulatorPage() {
 
   function resetBalls(nextControls = controls) {
     ballsRef.current = createBalls(nextControls.ballCount, nextControls.outlierPct);
+    applyControlTargetsImmediately(ballsRef.current, nextControls);
     stepRef.current = 0;
     setCurrentStep(0);
     renderPlot();
@@ -440,6 +475,7 @@ export function ZScoreSimulatorPage() {
       return;
     }
     ballsRef.current = createBalls(controls.ballCount, controls.outlierPct);
+    applyControlTargetsImmediately(ballsRef.current, controls);
     void plotly.newPlot(plotRef.current, getTraces(ballsRef.current), layout, config);
     return () => {
       stopAnimation();
@@ -456,7 +492,7 @@ export function ZScoreSimulatorPage() {
     }
     resetBalls(controls);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [controls.ballCount, controls.outlierPct, controls.gravity, controls.hSpread, controls.vSpread, controls.zScoreLimit]);
+  }, [controls.ballCount, controls.outlierPct, controls.gravity, controls.hSpread, controls.vSpreadStart, controls.vSpreadEnd, controls.zScoreLimit]);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -497,7 +533,7 @@ export function ZScoreSimulatorPage() {
                   <ul className="mt-3 space-y-2 text-sm text-foreground/75">
                     <li>Outliers model behavior under adverse coordination.</li>
                     <li>Gravity captures systemic pull toward shared infrastructure.</li>
-                    <li>Horizontal/vertical spread controls field dispersion.</li>
+                    <li>Starting/ending V-spread interpolate radial concentration by Z height.</li>
                   </ul>
                 </div>
               </aside>
@@ -561,13 +597,22 @@ export function ZScoreSimulatorPage() {
                     onChange={(value) => setControls((prev) => ({ ...prev, hSpread: value }))}
                   />
                   <RangeField
-                    label="V-spread"
+                    label="Starting V-spread"
                     min={0}
                     max={2}
                     step={0.01}
-                    value={controls.vSpread}
+                    value={controls.vSpreadStart}
                     disabled={isRunning}
-                    onChange={(value) => setControls((prev) => ({ ...prev, vSpread: value }))}
+                    onChange={(value) => setControls((prev) => ({ ...prev, vSpreadStart: value }))}
+                  />
+                  <RangeField
+                    label="Ending V-spread"
+                    min={0}
+                    max={2}
+                    step={0.01}
+                    value={controls.vSpreadEnd}
+                    disabled={isRunning}
+                    onChange={(value) => setControls((prev) => ({ ...prev, vSpreadEnd: value }))}
                   />
                   <RangeField
                     label="Z-score limit"
