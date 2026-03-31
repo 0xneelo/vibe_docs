@@ -38,8 +38,10 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/library" element={<LibraryPage />} />
-              <Route path="/local-funding" element={<FundingSimulatorPage />} />
-              <Route path="/simulations/funding" element={<Navigate to="/local-funding" replace />} />
+              <Route path="/simulations/funding-local" element={<FundingSimulatorPage mode="local" />} />
+              <Route path="/simulations/funding-api" element={<FundingSimulatorPage mode="api" />} />
+              <Route path="/local-funding" element={<Navigate to="/simulations/funding-local" replace />} />
+              <Route path="/simulations/funding" element={<Navigate to="/simulations/funding-local" replace />} />
               <Route path="/simulations/z-score" element={<ZScoreSimulatorPage />} />
               <Route path="/funding-model" element={<Navigate to="/simulations/funding" replace />} />
               <Route path="/collections/:collectionSlug" element={<CollectionPage />} />

@@ -17,7 +17,8 @@ export function SiteHeader() {
     { label: "Twitter", href: "https://twitter.com/vibe_trading" },
   ];
   const simulations = [
-    { title: "Funding Simulator", href: "/local-funding", description: "Funding dynamics and solver PnL" },
+    { title: "Funding Simulator (Local)", href: "/simulations/funding-local", description: "Local TypeScript model (no backend)" },
+    { title: "Funding Simulator (API)", href: "/simulations/funding-api", description: "Flask-backed model via API endpoint" },
     { title: "Z-Score Cone Traversal", href: "/simulations/z-score", description: "3D convergence field model" },
   ];
   const isHome = location.pathname === "/";
@@ -96,7 +97,7 @@ export function SiteHeader() {
             ) : null}
           </div>
           <div className="group relative">
-            <Link to="/local-funding" className={navButtonClass(isSimulations)}>
+            <Link to="/simulations/funding-local" className={navButtonClass(isSimulations)}>
               Simulations
             </Link>
 
@@ -167,7 +168,7 @@ export function SiteHeader() {
                 Chapters
               </Link>
               <Link
-                to="/local-funding"
+                to="/simulations/funding-local"
                 className={cn(
                   "flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition",
                   isSimulations

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 
 type ScenarioKey = "normal" | "gradual_stress" | "sudden_spike" | "sustained_emergency" | "solver_losses";
 type Regime = "normal" | "stress" | "emergency";
+type FundingSimulatorMode = "local" | "api";
 
 interface SimPoint {
   day: number;
@@ -80,6 +81,7 @@ const REGIME_TO_NUM: Record<Regime, number> = {
   stress: 2,
   emergency: 3,
 };
+const API_BASE = (import.meta.env.VITE_FUNDING_MODEL_API as string | undefined)?.replace(/\/$/, "") ?? "http://localhost:5001";
 
 const LOCAL_MODEL = {
   a: 1,
@@ -373,7 +375,7 @@ function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }
 
-export function FundingSimulatorPage() {
+export function FundingSimulatorPage({ mode = "local" }: { mode?: FundingSimulatorMode }) {
   const [scenario, setScenario] = useState<ScenarioKey>("sustained_emergency");
   const [scenarioOpen, setScenarioOpen] = useState(false);
   const scenarioDropdownRef = useRef<HTMLDivElement | null>(null);
@@ -461,14 +463,20 @@ export function FundingSimulatorPage() {
 
   async function loadDefaults() {
     try {
-      const merged = { ...DEFAULT_PARAMS };
+      let merged = { ...DEFAULT_PARAMS };
+      if (mode === "api") {
+        const res = await fetch(`${API_BASE}/api/params`);
+        if (!res.ok) {
+          throw new Error(`Failed to load defaults (${res.status})`);
+        }
+        const data = (await res.json()) as Partial<ModelParams>;
+        merged = { ...DEFAULT_PARAMS, ...data };
+      }
       setParams(merged);
       await runSimulation({ ...merged, durationDays, scenario });
       setApiError(null);
     } catch {
-      setApiError(
-        `Could not initialize the local funding simulation.`,
-      );
+      setApiError(mode === "api" ? `Could not reach the funding model API.` : `Could not initialize the local funding simulation.`);
     }
   }
 
@@ -478,14 +486,37 @@ export function FundingSimulatorPage() {
     const nextScenario = overrides?.scenario ?? scenario;
     setLoading(true);
     try {
-      await Promise.resolve();
-      const localHistory = simulateFundingHistory(nextParams, nextScenario, nextDays, 42);
-      setHistory(localHistory);
+      if (mode === "api") {
+        const res = await fetch(`${API_BASE}/api/simulate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            duration_days: nextDays,
+            scenario: nextScenario,
+            params: {
+              F_base: nextParams.F_base,
+              F_max: nextParams.F_max,
+              U_optimal: nextParams.U_optimal,
+              U_critical: nextParams.U_critical,
+              T_grace: nextParams.T_grace,
+              k: nextParams.k,
+              max_solver_loss: nextParams.max_solver_loss,
+            },
+          }),
+        });
+        if (!res.ok) {
+          throw new Error(`Simulation failed (${res.status})`);
+        }
+        const payload = (await res.json()) as { success: boolean; data: SimPoint[] };
+        setHistory(payload.data ?? []);
+      } else {
+        await Promise.resolve();
+        const localHistory = simulateFundingHistory(nextParams, nextScenario, nextDays, 42);
+        setHistory(localHistory);
+      }
       setApiError(null);
     } catch {
-      setApiError(
-        `Couldn't run the local funding simulation.`,
-      );
+      setApiError(mode === "api" ? `Couldn't run simulation. Could not reach API at ${API_BASE}.` : `Couldn't run the local funding simulation.`);
     } finally {
       setLoading(false);
     }
@@ -517,7 +548,7 @@ export function FundingSimulatorPage() {
               <header className="card-surface-main funding-enter p-6">
                 <h1 className="text-3xl font-semibold tracking-[-0.04em] text-foreground sm:text-4xl">Funding Rate Model Simulator</h1>
                 <p className="mt-2 max-w-4xl text-base leading-7 text-foreground/70">
-                  Choose a scenario, run the model, and inspect funding, utilization, and ADL risk over time.
+                  Choose a scenario, run the {mode === "api" ? "API-backed" : "local TypeScript"} model, and inspect funding, utilization, and ADL risk over time.
                 </p>
               </header>
 
