@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, type CSSProperties } from "react";
+import { Link } from "react-router-dom";
 
 const videoSource =
   "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260308_114720_3dabeb9e-2c39-4907-b747-bc3544e2d5b7.mp4";
@@ -96,22 +97,33 @@ export function SocialProofSection() {
   }, []);
 
   return (
-    <section id="market-velocity" className="pointer-events-none relative -mt-32 w-full overflow-hidden sm:-mt-36 lg:-mt-44">
+    <section id="market-velocity" className="pointer-events-none relative -mt-32 w-full overflow-visible sm:-mt-36 lg:-mt-44">
       <video
         ref={videoRef}
         autoPlay
         muted
         playsInline
         preload="metadata"
-        className="absolute -top-32 bottom-0 left-0 right-0 h-[calc(100%+8rem)] w-full object-cover sm:-top-36 sm:h-[calc(100%+9rem)] lg:-top-44 lg:h-[calc(100%+11rem)]"
-        style={{ opacity: 0 }}
+        className="absolute -top-44 left-0 right-0 w-full object-cover sm:-top-48 lg:-top-56"
+        style={{
+          opacity: 0,
+          bottom: "-70vh",
+          height: "calc(100% + 70vh + 11rem)",
+        }}
       >
         <source src={videoSource} type="video/mp4" />
       </video>
 
-      <div className="absolute -top-32 bottom-0 left-0 right-0 bg-gradient-to-b from-background via-transparent to-background sm:-top-36 lg:-top-44" />
+      <div
+        className="absolute -top-44 left-0 right-0 sm:-top-48 lg:-top-56"
+        style={{
+          bottom: "-70vh",
+          background:
+            "linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 32%, hsl(var(--background) / 0.32) 72%, hsl(var(--background) / 0.92) 100%)",
+        }}
+      />
 
-      <div className="pointer-events-none relative z-10 flex translate-y-[6%] flex-col items-center px-4 pb-20 pt-16 sm:pb-24 sm:pt-24">
+      <div className="pointer-events-none relative z-10 flex translate-y-[6%] flex-col items-center px-4 pb-10 pt-16 sm:pb-14 sm:pt-24">
         <div className="h-24 sm:h-32" />
 
         <div className="pointer-events-auto w-full max-w-7xl rounded-[30px] border border-white/10 bg-black/35 p-4 shadow-glow backdrop-blur-md sm:p-6">
@@ -123,6 +135,24 @@ export function SocialProofSection() {
             <p className="text-sm leading-6 text-foreground/70">
               With Vibe continuous listing velocity across micro-cap assets is not a dream anymore.
             </p>
+            <p className="max-w-3xl text-sm leading-6 text-foreground/66">
+              Explore our two simulator environments: the Funding Simulator for regime and PnL dynamics, and the Z-Score Cone
+              Traversal Simulator for market-structure convergence behavior.
+            </p>
+            <div className="mt-2 flex flex-wrap gap-2.5">
+              <Link
+                to="/simulations/funding"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/16 bg-white/[0.05] px-3.5 py-2 text-sm text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.1]"
+              >
+                Open Funding Simulator
+              </Link>
+              <Link
+                to="/simulations/z-score"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/16 bg-white/[0.05] px-3.5 py-2 text-sm text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.1]"
+              >
+                Open Z-Score Simulator
+              </Link>
+            </div>
           </div>
 
           <div
@@ -132,9 +162,9 @@ export function SocialProofSection() {
               maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
             }}
           >
-            <TickerRow coins={rowOne} duration="46s" hoverDuration="62s" direction="normal" />
-            <TickerRow coins={rowTwo} duration="32s" hoverDuration="44s" direction="reverse" />
-            <TickerRow coins={rowThree} duration="22s" hoverDuration="30s" direction="normal" />
+            <TickerRow coins={rowOne} duration="46s" direction="normal" />
+            <TickerRow coins={rowTwo} duration="32s" direction="reverse" />
+            <TickerRow coins={rowThree} duration="22s" direction="normal" />
           </div>
         </div>
       </div>
@@ -150,10 +180,6 @@ export function SocialProofSection() {
             will-change: transform;
           }
 
-          .velocity-row:hover .velocity-track {
-            animation-duration: var(--hover-duration);
-          }
-
           @keyframes velocityTicker {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -167,17 +193,14 @@ export function SocialProofSection() {
 function TickerRow({
   coins,
   duration,
-  hoverDuration,
   direction,
 }: {
   coins: TrendingCoin[];
   duration: string;
-  hoverDuration: string;
   direction: "normal" | "reverse";
 }) {
   const rowStyle = {
     "--duration": duration,
-    "--hover-duration": hoverDuration,
     "--direction": direction,
   } as CSSProperties;
 

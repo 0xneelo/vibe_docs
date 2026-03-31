@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gravitational Pull Simulation</title>
+  <script src="https://cdn.plot.ly/plotly-2.4.1.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #e2e8f0;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      margin: 0 0 12px 0;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+    }
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .control-group label {
+      font-size: 0.9rem;
+      min-width: 140px;
+      color: #cbd5f5;
+    }
+    input[type="range"] {
+      width: 160px;
+      height: 6px;
+      -webkit-appearance: none;
+      background: #1e293b;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #3b82f6;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #60a5fa;
+    }
+    .slider-value {
+      font-variant-numeric: tabular-nums;
+      min-width: 56px;
+      font-weight: 600;
+      color: #93c5fd;
+    }
+    button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-weight: 500;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+    button:disabled {
+      background: #475569;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    button.reset-btn {
+      background: #475569;
+    }
+    button.reset-btn:hover:not(:disabled) {
+      background: #64748b;
+    }
+    #plot {
+      width: 100%;
+      height: 560px;
+      background: #12121a;
+      border-radius: 8px;
+      border: 1px solid #1f2937;
+    }
+    .hint {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 8px;
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #cbd5f5;
+      margin-top: 8px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #f97316, #facc15);
+      box-shadow: 14px 0 0 #22c55e, 28px 0 0 #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gravitational Pull Simulation</h1>
+    <p class="subtitle">Markets as dots: move inward (global margining) and upward (systemic leverage).</p>
+    <div class="controls">
+      <div class="control-group">
+        <label for="gravity">Gravitational pull strength</label>
+        <input type="range" id="gravity" min="0" max="2" step="0.01" value="1">
+        <span class="slider-value" id="gravityVal">1.00x</span>
+      </div>
+      <div class="control-group">
+        <label for="ballCount">Number of balls</label>
+        <input type="number" id="ballCount" min="10" max="500" step="10" value="80" style="width:70px;padding:6px 8px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:0.9rem;">
+      </div>
+      <button id="runBtn">Run simulation</button>
+      <button id="resetBtn" class="reset-btn">Reset</button>
+    </div>
+    <p class="hint">0x = purely random (balls stay scattered). 2x = strong pull (all converge to center-top at end).</p>
+    <div id="plot"></div>
+    <div class="legend">
+      <span class="legend-dot"></span>
+      <span>Z scale: blue → purple → orange → yellow. At Z=100%: <span style="color:#22c55e">green</span> = outer, <span style="color:#ef4444">red</span> = inward</span>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let nBalls = 80;
+      const N_STEPS = 200;
+      const X_RANGE = 2;
+      const Y_RANGE = 2;
+      const Z_MAX = 1;
+      const PULL_STRENGTH = 0.08;
+      const NOISE_STRENGTH = 0.02;
+      const CENTER = { x: 0, y: 0, z: Z_MAX };
+      const TOP_EPS = 0.98;
+      const INNER_RADIUS = 1.0;
+
+      let balls = [];
+      let animationId = null;
+      let isRunning = false;
+
+      function randomEdgePosition() {
+        const face = Math.floor(Math.random() * 4);
+        switch (face) {
+          case 0: return { x: -X_RANGE, y: (Math.random() - 0.5) * 2 * Y_RANGE, z: 0 };
+          case 1: return { x: X_RANGE, y: (Math.random() - 0.5) * 2 * Y_RANGE, z: 0 };
+          case 2: return { x: (Math.random() - 0.5) * 2 * X_RANGE, y: -Y_RANGE, z: 0 };
+          default: return { x: (Math.random() - 0.5) * 2 * X_RANGE, y: Y_RANGE, z: 0 };
+        }
+      }
+
+      function randomUniformPosition() {
+        return {
+          x: (Math.random() - 0.5) * 2 * X_RANGE,
+          y: (Math.random() - 0.5) * 2 * Y_RANGE,
+          z: Math.random() * Z_MAX,
+        };
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      function getTargetPosition(b, gravityMult) {
+        const g = Math.max(0, Math.min(2, gravityMult));
+        if (g <= 1) {
+          return {
+            x: lerp(b.edge.x, b.home.x, g),
+            y: lerp(b.edge.y, b.home.y, g),
+            z: lerp(b.edge.z, b.home.z, g),
+          };
+        } else {
+          const t = g - 1;
+          return {
+            x: lerp(b.home.x, CENTER.x, t),
+            y: lerp(b.home.y, CENTER.y, t),
+            z: lerp(b.home.z, CENTER.z, t),
+          };
+        }
+      }
+
+      function initBalls() {
+        nBalls = parseInt(document.getElementById('ballCount').value) || 80;
+        balls = [];
+        for (let i = 0; i < nBalls; i++) {
+          const edge = randomEdgePosition();
+          const home = randomUniformPosition();
+          balls.push({
+            x: edge.x,
+            y: edge.y,
+            z: edge.z,
+            edge: edge,
+            home: home,
+            age: 0,
+            reachedCenter: false,
+          });
+        }
+      }
+
+      function stepSimulation(gravityMult) {
+        for (let i = 0; i < balls.length; i++) {
+          const b = balls[i];
+          const target = getTargetPosition(b, gravityMult);
+          const noise = {
+            x: (Math.random() - 0.5) * 2 * NOISE_STRENGTH,
+            y: (Math.random() - 0.5) * 2 * NOISE_STRENGTH,
+            z: (Math.random() - 0.5) * 2 * NOISE_STRENGTH,
+          };
+          const pullX = (target.x - b.x) * PULL_STRENGTH;
+          const pullY = (target.y - b.y) * PULL_STRENGTH;
+          const pullZ = (target.z - b.z) * PULL_STRENGTH;
+          b.x += pullX + noise.x;
+          b.y += pullY + noise.y;
+          b.z += pullZ + noise.z;
+          b.x = Math.max(-X_RANGE, Math.min(X_RANGE, b.x));
+          b.y = Math.max(-Y_RANGE, Math.min(Y_RANGE, b.y));
+          b.z = Math.max(0, Math.min(Z_MAX, b.z));
+          const radius = Math.hypot(b.x, b.y);
+          b.inwardAtTop = b.z >= TOP_EPS * Z_MAX && radius < INNER_RADIUS;
+          if (b.inwardAtTop) {
+            b.reachedCenter = true;
+          }
+          b.age += 1;
+        }
+      }
+
+      function getTraces() {
+        const baseX = [];
+        const baseY = [];
+        const baseZ = [];
+        const topMiddleX = [];
+        const topMiddleY = [];
+        const topMiddleZ = [];
+        const topOuterX = [];
+        const topOuterY = [];
+        const topOuterZ = [];
+
+        for (const b of balls) {
+          const isTop = b.z >= TOP_EPS * Z_MAX;
+          const radius = Math.hypot(b.x, b.y);
+          const isOuter = radius >= INNER_RADIUS;
+          if (isTop) {
+            if (isOuter) {
+              topOuterX.push(b.x);
+              topOuterY.push(b.y);
+              topOuterZ.push(b.z);
+            } else {
+              topMiddleX.push(b.x);
+              topMiddleY.push(b.y);
+              topMiddleZ.push(b.z);
+            }
+          } else {
+            baseX.push(b.x);
+            baseY.push(b.y);
+            baseZ.push(b.z);
+          }
+        }
+
+        const traces = [
+          {
+            x: baseX,
+            y: baseY,
+            z: baseZ,
+            mode: 'markers',
+            type: 'scatter3d',
+            marker: {
+              size: 6,
+              color: baseZ,
+              cmin: 0,
+              cmax: Z_MAX,
+              colorscale: [
+                [0.0, '#3b82f6'],
+                [0.33, '#8b5cf6'],
+                [0.66, '#f97316'],
+                [1.0, '#facc15']
+              ],
+              colorbar: { title: 'Systemic leverage (%)', len: 0.8 },
+              line: { width: 0 },
+            },
+            showlegend: false,
+          },
+          {
+            x: topMiddleX,
+            y: topMiddleY,
+            z: topMiddleZ,
+            mode: 'markers',
+            type: 'scatter3d',
+            marker: {
+              size: 6,
+              color: '#ef4444',
+              line: { width: 0 },
+            },
+            showlegend: false,
+          },
+          {
+            x: topOuterX,
+            y: topOuterY,
+            z: topOuterZ,
+            mode: 'markers',
+            type: 'scatter3d',
+            marker: {
+              size: 6,
+              color: '#22c55e',
+              line: { width: 0 },
+            },
+            showlegend: false,
+          },
+        ];
+
+        return traces;
+      }
+
+      const layout = {
+        margin: { l: 0, r: 0, t: 50, b: 0 },
+        paper_bgcolor: '#12121a',
+        plot_bgcolor: '#12121a',
+        scene: {
+          xaxis: { title: 'Project field X (M projects)', backgroundcolor: '#1e293b', gridcolor: '#334155', range: [-X_RANGE, X_RANGE] },
+          yaxis: { title: 'Project field Y (isolated → cross)', backgroundcolor: '#1e293b', gridcolor: '#334155', range: [-Y_RANGE, Y_RANGE] },
+          zaxis: { title: 'Systemic leverage (%)', backgroundcolor: '#1e293b', gridcolor: '#334155', range: [0, Z_MAX] },
+          aspectmode: 'cube',
+          camera: { eye: { x: 1.6, y: 1.6, z: 1.2 } },
+        },
+        title: { text: 'Markets as dots: move inward + upward', font: { color: '#e2e8f0', size: 16 } },
+      };
+
+      const config = { responsive: true };
+
+      initBalls();
+      Plotly.newPlot('plot', getTraces(), layout, config);
+
+      document.getElementById('gravity').addEventListener('input', function() {
+        const v = parseFloat(this.value);
+        document.getElementById('gravityVal').textContent = v.toFixed(2) + 'x';
+      });
+
+      document.getElementById('runBtn').addEventListener('click', function() {
+        if (isRunning) return;
+        const gravity = parseFloat(document.getElementById('gravity').value);
+        initBalls();
+        Plotly.react('plot', getTraces(), layout, config);
+        document.getElementById('runBtn').disabled = true;
+        document.getElementById('gravity').disabled = true;
+        document.getElementById('ballCount').disabled = true;
+        isRunning = true;
+
+        let step = 0;
+        const FRAME_MS = 40;
+        function animate() {
+          if (step >= N_STEPS) {
+            isRunning = false;
+            document.getElementById('runBtn').disabled = false;
+            document.getElementById('gravity').disabled = false;
+            document.getElementById('ballCount').disabled = false;
+            return;
+          }
+          stepSimulation(gravity);
+          Plotly.react('plot', getTraces(), layout, config);
+          step++;
+          animationId = setTimeout(animate, FRAME_MS);
+        }
+        animate();
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', function() {
+        if (animationId) {
+          clearTimeout(animationId);
+          animationId = null;
+        }
+        isRunning = false;
+        document.getElementById('runBtn').disabled = false;
+        document.getElementById('gravity').disabled = false;
+        document.getElementById('ballCount').disabled = false;
+        initBalls();
+        Plotly.react('plot', getTraces(), layout, config);
+      });
+    })();
+  </script>
+</body>
+</html>

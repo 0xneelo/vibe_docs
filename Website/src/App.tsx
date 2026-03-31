@@ -10,6 +10,12 @@ const CollectionPage = lazy(() =>
   import("@/pages/CollectionPage").then((module) => ({ default: module.CollectionPage })),
 );
 const DocPage = lazy(() => import("@/pages/DocPage").then((module) => ({ default: module.DocPage })));
+const FundingSimulatorPage = lazy(() =>
+  import("@/pages/FundingSimulatorPage").then((module) => ({ default: module.FundingSimulatorPage })),
+);
+const ZScoreSimulatorPage = lazy(() =>
+  import("@/pages/zScoreModelPage").then((module) => ({ default: module.ZScoreSimulatorPage })),
+);
 
 function ScrollToTop() {
   const location = useLocation();
@@ -32,6 +38,9 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/library" element={<LibraryPage />} />
+              <Route path="/simulations/funding" element={<FundingSimulatorPage />} />
+              <Route path="/simulations/z-score" element={<ZScoreSimulatorPage />} />
+              <Route path="/funding-model" element={<Navigate to="/simulations/funding" replace />} />
               <Route path="/collections/:collectionSlug" element={<CollectionPage />} />
               <Route path="/docs/:collectionSlug/*" element={<DocPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

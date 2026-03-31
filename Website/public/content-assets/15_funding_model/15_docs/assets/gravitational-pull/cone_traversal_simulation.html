@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cone Traversal Simulation</title>
+  <script src="https://cdn.plot.ly/plotly-2.4.1.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #e2e8f0;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      margin: 0 0 12px 0;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+    }
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .control-group label {
+      font-size: 0.9rem;
+      min-width: 140px;
+      color: #cbd5f5;
+    }
+    input[type="range"] {
+      width: 160px;
+      height: 6px;
+      -webkit-appearance: none;
+      background: #1e293b;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #3b82f6;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background: #60a5fa;
+    }
+    .slider-value {
+      font-variant-numeric: tabular-nums;
+      min-width: 56px;
+      font-weight: 600;
+      color: #93c5fd;
+    }
+    .gravity-input {
+      width: 70px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .gravity-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    .camera-hint {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    .camera-hint kbd {
+      display: inline-block;
+      padding: 2px 6px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: #94a3b8;
+    }
+    button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-weight: 500;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+    button:disabled {
+      background: #475569;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    button.reset-btn {
+      background: #475569;
+    }
+    button.reset-btn:hover:not(:disabled) {
+      background: #64748b;
+    }
+    button.pause-btn {
+      background: #f59e0b;
+    }
+    button.pause-btn:hover:not(:disabled) {
+      background: #d97706;
+    }
+    button.pause-btn.paused {
+      background: #22c55e;
+    }
+    button.pause-btn.paused:hover:not(:disabled) {
+      background: #16a34a;
+    }
+    .plot-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+    }
+    #plot {
+      width: 100%;
+      height: 560px;
+      background: #12121a;
+      border-radius: 8px;
+      border: 1px solid #1f2937;
+    }
+    .plot-container {
+      position: relative;
+      display: flex;
+      gap: 12px;
+    }
+    .colorbar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 40px 8px 20px 8px;
+    }
+    .colorbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .colorbar-title {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      text-align: center;
+      max-width: 80px;
+    }
+    .colorbar-gradient {
+      width: 18px;
+      height: 200px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+    .colorbar-labels {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 200px;
+      margin-left: 6px;
+      font-size: 0.65rem;
+      color: #94a3b8;
+    }
+    .colorbar-row {
+      display: flex;
+      align-items: stretch;
+    }
+    .xy-colorbar-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .xy-colorbar-title {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+    .xy-colorbar-gradient {
+      width: 300px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      background: linear-gradient(90deg, #ff0000, #ff8800, #cccc00, #66cc00, #00cc00, #66cc00, #cccc00, #ff8800, #ff0000);
+    }
+    .xy-colorbar-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      font-size: 0.65rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    .hint {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 8px;
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #cbd5f5;
+      margin-top: 8px;
+    }
+    .main-layout {
+      display: flex;
+      gap: 20px;
+    }
+    .main-content {
+      flex: 1;
+    }
+    .sidebar-legend {
+      width: 280px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.85rem;
+      height: fit-content;
+      position: sticky;
+      top: 16px;
+    }
+    .sidebar-legend h3 {
+      font-size: 1rem;
+      margin: 0 0 12px 0;
+      color: #e2e8f0;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+    .legend-item {
+      margin-bottom: 14px;
+    }
+    .legend-item:last-child {
+      margin-bottom: 0;
+    }
+    .legend-item-title {
+      font-weight: 600;
+      color: #93c5fd;
+      margin-bottom: 4px;
+    }
+    .legend-item-desc {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .legend-item-scale {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    .legend-item-scale span {
+      padding: 2px 6px;
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    .sidebar-left {
+      width: 260px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.85rem;
+      height: fit-content;
+      position: sticky;
+      top: 16px;
+    }
+    .sidebar-left h3 {
+      font-size: 1rem;
+      margin: 0 0 12px 0;
+      color: #e2e8f0;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+    .axis-explain {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1f2937;
+    }
+    .axis-explain:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .axis-title {
+      font-weight: 600;
+      color: #f59e0b;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+    .axis-desc {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .axis-endpoints {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.75rem;
+    }
+    .axis-endpoint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .axis-endpoint-label {
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      min-width: 50px;
+      text-align: center;
+    }
+    .axis-endpoint-desc {
+      color: #cbd5e1;
+    }
+    .zone-legend {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+    }
+    .zone-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: help;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .zone-item:hover {
+      background: #1e293b;
+    }
+    .zone-dot {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 18px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: white;
+    }
+    .zone-label {
+      color: #94a3b8;
+    }
+    .zone-item:hover .zone-label {
+      color: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cone Traversal Simulation</h1>
+    <p class="subtitle">Markets as dots: traverse upward in a cone shape toward fully netted + globally marginalized.</p>
+    <div class="controls">
+      <div class="control-group">
+        <label for="gravity">Gravitational pull strength</label>
+        <input type="range" id="gravity" min="0" max="2" step="0.01" value="1">
+        <input type="number" id="gravityInput" class="gravity-input" min="0" max="2" step="0.01" value="1">
+      </div>
+      <div class="control-group">
+        <label for="ballCount">Number of balls</label>
+        <input type="number" id="ballCount" min="10" max="500" step="10" value="300" style="width:70px;padding:6px 8px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;font-size:0.9rem;">
+      </div>
+      <div class="control-group">
+        <label for="hSpread">H-spread (X/Y)</label>
+        <input type="range" id="hSpread" min="0" max="2" step="0.01" value="0">
+        <input type="number" id="hSpreadInput" class="gravity-input" min="0" max="2" step="0.01" value="0">
+      </div>
+      <div class="control-group">
+        <label for="vSpread">V-spread (Z)</label>
+        <input type="range" id="vSpread" min="0" max="2" step="0.01" value="0">
+        <input type="number" id="vSpreadInput" class="gravity-input" min="0" max="2" step="0.01" value="0">
+      </div>
+      <div class="control-group">
+        <label for="zScoreLimit">Z-score limit (height)</label>
+        <input type="range" id="zScoreLimit" min="0" max="2" step="0.01" value="2">
+        <input type="number" id="zScoreLimitInput" class="gravity-input" min="0" max="2" step="0.01" value="2.00">
+      </div>
+      <div class="control-group">
+        <label for="outlierPct">Outlier %</label>
+        <input type="range" id="outlierPct" min="0" max="60" step="1" value="23">
+        <input type="number" id="outlierPctInput" class="gravity-input" min="0" max="60" step="1" value="23" style="width:55px;">
+      </div>
+      <button id="runBtn">Run simulation</button>
+      <button id="pauseBtn" class="pause-btn" disabled>Pause</button>
+      <button id="resetBtn" class="reset-btn">Reset</button>
+    </div>
+    <p class="camera-hint">Camera: <kbd>W</kbd>/<kbd>↑</kbd> up, <kbd>S</kbd>/<kbd>↓</kbd> down, <kbd>A</kbd>/<kbd>←</kbd> left, <kbd>D</kbd>/<kbd>→</kbd> right, <kbd>Q</kbd> zoom in, <kbd>E</kbd> zoom out</p>
+    
+    <div class="main-layout">
+      <!-- LEFT Sidebar - Graph Explanation -->
+      <div class="sidebar-left">
+        <h3>Graph Axes Explained</h3>
+        
+        <div class="axis-explain">
+          <div class="axis-title">Z-Axis (Height) — Systemic Leverage</div>
+          <div class="axis-desc">
+            How much systemic risk/leverage exists. Higher = more interconnected positions requiring coordination.
+          </div>
+          <div class="axis-endpoints">
+            <div class="axis-endpoint">
+              <span class="axis-endpoint-label" style="background:#8b00ff;">0%</span>
+              <span class="axis-endpoint-desc">Isolated, no leverage</span>
+            </div>
+            <div class="axis-endpoint">
+              <span class="axis-endpoint-label" style="background:#00cc00;">100%</span>
+              <span class="axis-endpoint-desc">Full systemic leverage</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="axis-explain">
+          <div class="axis-title">X/Y Axes — Netting & Margining</div>
+          <div class="axis-desc">
+            Position on the horizontal plane indicates netting status and margin model.
+          </div>
+          <div class="axis-endpoints">
+            <div class="axis-endpoint">
+              <span class="axis-endpoint-label" style="background:#00cc00;">Center</span>
+              <span class="axis-endpoint-desc">Fully Netted</span>
+            </div>
+            <div class="axis-endpoint">
+              <span class="axis-endpoint-label" style="background:#ef4444;">Edges</span>
+              <span class="axis-endpoint-desc">Gross/Bilateral</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="axis-explain">
+          <div class="axis-title" style="color:#22c55e;">🎯 Ideal State (Apex)</div>
+          <div class="axis-desc">
+            <strong>Center + Top (0,0,100%)</strong><br>
+            = Fully Netted + Globally Marginalized<br><br>
+            All positions netted across counterparties with unified margin pool.
+          </div>
+        </div>
+        
+        <div class="axis-explain">
+          <div class="axis-title" style="color:#ef4444;">⚠️ Starting State</div>
+          <div class="axis-desc">
+            <strong>Edges + Bottom</strong><br>
+            = Bilateral + Siloed Margin<br><br>
+            Fragmented positions with separate margin per counterparty.
+          </div>
+        </div>
+      </div>
+      
+      <div class="main-content">
+        <!-- XY Distance colorbar (horizontal, at top) -->
+        <div class="xy-colorbar-container">
+          <div class="xy-colorbar-title">Distance from center (X,Y) at Z≈100%</div>
+          <div class="xy-colorbar-gradient"></div>
+          <div class="xy-colorbar-labels">
+            <span style="color:#ff0000;">-2 (outer)</span>
+            <span style="color:#00cc00;">0 (center)</span>
+            <span style="color:#ff0000;">+2 (outer)</span>
+          </div>
+        </div>
+        
+        <div class="plot-container">
+          <div class="plot-wrapper">
+            <div id="plot"></div>
+          </div>
+          <!-- Z Height colorbar (vertical, on right) -->
+          <div class="colorbar-container">
+            <div class="colorbar">
+              <div class="colorbar-title">Z Height (Systemic Leverage)</div>
+              <div class="colorbar-row">
+                <div class="colorbar-gradient" style="background: linear-gradient(to bottom, #00cc00, #00cccc, #0066ff, #8b00ff);"></div>
+                <div class="colorbar-labels">
+                  <span>100%</span>
+                  <span>75%</span>
+                  <span>50%</span>
+                  <span>25%</span>
+                  <span>0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Zone legend with hover tooltips -->
+        <div class="zone-legend">
+          <div class="zone-item" title="Target state: All positions consolidated with unified margin pool. Maximum capital efficiency.">
+            <span class="zone-dot" style="background:#22c55e;">A</span>
+            <span class="zone-label">Apex: Fully Netted + Global Margin</span>
+          </div>
+          <div class="zone-item" title="Starting state: Positions fragmented across counterparties with separate margin requirements.">
+            <span class="zone-dot" style="background:#8b00ff;">B</span>
+            <span class="zone-label">Base: Starting positions (z=0)</span>
+          </div>
+          <div class="zone-item" title="Risk zone: High systemic leverage but still bilateral. Vulnerable to cascading failures.">
+            <span class="zone-dot" style="background:#ef4444;">C</span>
+            <span class="zone-label">Edge-top: High leverage, bilateral</span>
+          </div>
+          <div class="zone-item" title="Transition: Some positions consolidated, moving toward full integration. Intermediate efficiency.">
+            <span class="zone-dot" style="background:#3b82f6;">D</span>
+            <span class="zone-label">Mid-transition: Partial netting</span>
+          </div>
+        </div>
+        
+        <div class="legend" style="margin-top:12px;">
+          <span style="display:inline-block;width:120px;height:12px;border-radius:6px;background:linear-gradient(90deg, #8b00ff, #0066ff, #00cccc, #00cc00);vertical-align:middle;"></span>
+          <span style="margin-left:8px;">Z height: violet (0%) → blue → cyan → green (100%)</span>
+        </div>
+        <div class="legend" style="margin-top:4px;">
+          <span style="display:inline-block;width:120px;height:12px;border-radius:6px;background:linear-gradient(90deg, #00cc00, #cccc00, #ff8800, #ff0000);vertical-align:middle;"></span>
+          <span style="margin-left:8px;">At Z≈100%: <span style="color:#22c55e">green</span> (center x0,y0) → <span style="color:#ef4444">red</span> (outer edges)</span>
+        </div>
+      </div>
+      
+      <!-- Sidebar Legend -->
+      <div class="sidebar-legend">
+        <h3>Parameter Guide</h3>
+        
+        <div class="legend-item">
+          <div class="legend-item-title">Gravity (0-2)</div>
+          <div class="legend-item-desc">
+            Controls what % of balls can move upward AND pulls them inward toward center.
+          </div>
+          <div class="legend-item-scale">
+            <span>0 = 0% up</span>
+            <span>1 = 50% up</span>
+            <span>2 = 100% up</span>
+          </div>
+        </div>
+        
+        <div class="legend-item">
+          <div class="legend-item-title">Z-score Limit (0-2)</div>
+          <div class="legend-item-desc">
+            Maximum height that activated balls can reach.
+          </div>
+          <div class="legend-item-scale">
+            <span>0 = 0%</span>
+            <span>1 = 50%</span>
+            <span>2 = 100%</span>
+          </div>
+        </div>
+        
+        <div class="legend-item">
+          <div class="legend-item-title">H-spread (0-2)</div>
+          <div class="legend-item-desc">
+            Horizontal distribution. Spreads balls evenly across the X/Y plane.
+          </div>
+          <div class="legend-item-scale">
+            <span>0 = clustered</span>
+            <span>2 = even spread</span>
+          </div>
+        </div>
+        
+        <div class="legend-item">
+          <div class="legend-item-title">V-spread (0-2)</div>
+          <div class="legend-item-desc">
+            Vertical distribution. Spreads balls evenly along the Z axis.
+          </div>
+          <div class="legend-item-scale">
+            <span>0 = all at top</span>
+            <span>2 = even spread</span>
+          </div>
+        </div>
+        
+        <div class="legend-item">
+          <div class="legend-item-title">Outlier % (0-60)</div>
+          <div class="legend-item-desc">
+            Percentage of balls with special behaviors (rebels, wanderers, stragglers, etc).
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      let nBalls = 300;
+      const N_STEPS = 250;
+      const X_RANGE = 2;
+      const Y_RANGE = 2;
+      const Z_MAX = 1;
+      const PULL_STRENGTH = 0.06;
+      const NOISE_STRENGTH = 0.015;
+      const APEX = { x: 0, y: 0, z: Z_MAX };
+      const TOP_EPS = 0.92;
+      const APEX_RADIUS = 0.3;
+      
+      // Outlier behavior types
+      const BEHAVIOR = {
+        NORMAL: 0,      // Follows cone trajectory
+        REBEL: 1,       // Ignores gravity, stays scattered
+        STRAGGLER: 2,   // Moves very slowly, lags behind
+        WANDERER: 3,    // Random walk, ignores targets partially
+        EARLY_RISER: 4, // Shoots up early, reaches apex before others
+        EDGE_HUGGER: 5  // Stays at outer edges even at high gravity
+      };
+
+      let balls = [];
+      let animationId = null;
+      let isRunning = false;
+      let isPaused = false;
+      let currentStep = 0;
+      let currentGravity = 1;
+      let currentHSpread = 0;
+      let currentVSpread = 0;
+      let currentZScoreLimit = 2;
+      let currentOutlierPct = 23; // Track current outlier percentage
+
+      // Random position on the base plane (z=0) - scattered across full X/Y range
+      function randomBasePosition() {
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.sqrt(Math.random()) * Math.max(X_RANGE, Y_RANGE);
+        return {
+          x: Math.cos(angle) * radius * (X_RANGE / Math.max(X_RANGE, Y_RANGE)),
+          y: Math.sin(angle) * radius * (Y_RANGE / Math.max(X_RANGE, Y_RANGE)),
+          z: 0
+        };
+      }
+      
+      // Completely random position anywhere in the volume
+      function randomVolumePosition() {
+        return {
+          x: (Math.random() - 0.5) * 2 * X_RANGE,
+          y: (Math.random() - 0.5) * 2 * Y_RANGE,
+          z: Math.random() * Z_MAX
+        };
+      }
+
+      // Get the cone radius at a given z level
+      // At z=0, radius = full range; at z=Z_MAX, radius = 0
+      function getConeRadius(z) {
+        const t = z / Z_MAX;
+        return (1 - t) * Math.max(X_RANGE, Y_RANGE);
+      }
+
+      // Generate a target position on the cone surface at given z level
+      function getConePosition(angle, z, radiusScale) {
+        const coneRadius = getConeRadius(z) * radiusScale;
+        return {
+          x: Math.cos(angle) * coneRadius * (X_RANGE / Math.max(X_RANGE, Y_RANGE)),
+          y: Math.sin(angle) * coneRadius * (Y_RANGE / Math.max(X_RANGE, Y_RANGE)),
+          z: z
+        };
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      // Get target position based on gravity, spreads, and z-score limit multipliers
+      // Gravity: selects % of balls going up (0=0%, 1=50%, 2=100%) AND pulls inward to center (0,0)
+      // H-spread: spreads balls evenly on X/Y plane
+      // V-spread: spreads balls evenly along Z axis
+      // Z-score limit: max height balls can reach (0=0%, 1=50%, 2=100%)
+      function getTargetPosition(b, gravityMult, hSpreadMult, vSpreadMult, zScoreLimitMult) {
+        const g = Math.max(0, Math.min(2, gravityMult));
+        const hs = Math.max(0, Math.min(2, hSpreadMult));
+        const vs = Math.max(0, Math.min(2, vSpreadMult));
+        const zLimit = Math.max(0, Math.min(2, zScoreLimitMult || 2));
+        
+        // Handle special behaviors
+        switch(b.behavior) {
+          case BEHAVIOR.REBEL:
+            // Rebels stay at their random position, barely affected by gravity
+            return {
+              x: lerp(b.base.x, b.rebelTarget.x, g * 0.15),
+              y: lerp(b.base.y, b.rebelTarget.y, g * 0.15),
+              z: lerp(b.base.z, b.rebelTarget.z, g * 0.2)
+            };
+            
+          case BEHAVIOR.WANDERER:
+            // Wanderers have a drifting target that changes over time
+            return {
+              x: b.wanderTarget.x,
+              y: b.wanderTarget.y,
+              z: b.wanderTarget.z
+            };
+            
+          case BEHAVIOR.EDGE_HUGGER:
+            // Edge huggers stay at outer radius even at high gravity
+            const edgeAngle = b.angle + (g > 1 ? 0 : 0);
+            const edgeRadius = Math.max(X_RANGE, Y_RANGE) * (1 - g * 0.15);
+            const edgeZ = Math.min(g * 0.4, Z_MAX * 0.5); // Max out at 50% height
+            return {
+              x: Math.cos(edgeAngle) * edgeRadius * (X_RANGE / Math.max(X_RANGE, Y_RANGE)),
+              y: Math.sin(edgeAngle) * edgeRadius * (Y_RANGE / Math.max(X_RANGE, Y_RANGE)),
+              z: edgeZ
+            };
+            
+          case BEHAVIOR.EARLY_RISER:
+            // Early risers shoot to apex faster
+            const earlyG = Math.min(2, g * 1.8);
+            if (earlyG <= 1) {
+              const earlyZ = earlyG * Z_MAX * 0.9;
+              const earlyRadius = (1 - earlyG * 0.8) * 0.3;
+              return {
+                x: Math.cos(b.angle) * earlyRadius,
+                y: Math.sin(b.angle) * earlyRadius,
+                z: earlyZ
+              };
+            } else {
+              return { x: APEX.x, y: APEX.y, z: APEX.z };
+            }
+            
+          case BEHAVIOR.STRAGGLER:
+            // Stragglers follow normal path but much slower
+            const lagG = g * b.lagFactor;
+            return getNormalTargetWithForces(b, lagG, hs, vs, zLimit);
+            
+          default:
+            // Normal behavior
+            return getNormalTargetWithForces(b, g, hs, vs, zLimit);
+        }
+      }
+      
+      // Normal cone traversal target with all force modifiers
+      // Gravity (0-2): controls what % of balls CAN go up + pulls inward
+      //   - At 0: 0% go up, at 1: 50% go up, at 2: 100% go up
+      // H-spread (0-2): spreads balls evenly on X/Y plane
+      // V-spread (0-2): spreads balls evenly along Z axis
+      // Z-score limit (0-2): controls max height balls can reach
+      function getNormalTargetWithForces(b, g, hs, vs, zLimit) {
+        const maxRadius = Math.max(X_RANGE, Y_RANGE);
+        
+        // Fractions (0 to 1)
+        const gravityFraction = g / 2;
+        const hSpreadFraction = hs / 2;
+        const vSpreadFraction = vs / 2;
+        const zLimitFraction = zLimit / 2;
+        
+        // Z-axis calculation:
+        // Gravity determines what fraction of balls can go up
+        // Each ball has zThreshold (0-1), if gravityFraction >= zThreshold, ball can go up
+        const canGoUp = gravityFraction >= b.zThreshold;
+        
+        let targetZ;
+        if (!canGoUp) {
+          // Ball hasn't reached its activation threshold - stays at z=0
+          targetZ = 0;
+        } else {
+          // Ball can go up - z-score limit determines max height
+          const maxZ = Z_MAX * zLimitFraction;
+          
+          // V-spread: interpolate between all-at-max (clustered) and uniform Z distribution
+          // At vs=0: all activated balls go to maxZ (clustered at top)
+          // At vs=2: balls spread evenly from 0 to maxZ
+          const clusteredZ = maxZ;
+          const spreadZ = b.uniformZ * maxZ; // uniformZ is 0-1, so this gives 0 to maxZ
+          targetZ = lerp(clusteredZ, spreadZ, vSpreadFraction);
+        }
+        
+        // X/Y position calculation:
+        // Gravity pulls inward (toward center 0,0)
+        // H-spread spreads balls evenly (toward their uniformPos)
+        
+        const baseRadius = Math.hypot(b.base.x, b.base.y);
+        
+        // Calculate gravity-influenced position (pulled toward center)
+        const gravityInwardStrength = gravityFraction;
+        const gravityRadius = lerp(baseRadius, 0, gravityInwardStrength);
+        const gravityX = Math.cos(b.angle) * gravityRadius * (X_RANGE / maxRadius);
+        const gravityY = Math.sin(b.angle) * gravityRadius * (Y_RANGE / maxRadius);
+        
+        // H-spread: interpolate between gravity position and uniform position
+        // At hs=0: use gravity position (clustered)
+        // At hs=2: use uniform position (evenly spread)
+        const targetX = lerp(gravityX, b.uniformPos.x, hSpreadFraction);
+        const targetY = lerp(gravityY, b.uniformPos.y, hSpreadFraction);
+        
+        return {
+          x: targetX,
+          y: targetY,
+          z: targetZ
+        };
+      }
+      
+      // Legacy functions for backward compatibility
+      function getNormalTargetWithDarkMatter(b, g, dm) {
+        return getNormalTargetWithForces(b, g, dm, 0);
+      }
+      
+      function getNormalTarget(b, g) {
+        return getNormalTargetWithForces(b, g, 0, 0);
+      }
+
+      function initBalls() {
+        nBalls = parseInt(document.getElementById('ballCount').value) || 300;
+        currentOutlierPct = parseInt(document.getElementById('outlierPct').value) || 0;
+        const outlierPct = currentOutlierPct;
+        balls = [];
+        
+        // Calculate individual outlier type percentages based on total outlier %
+        // Distribution ratios: rebel 22%, straggler 22%, wanderer 22%, early_riser 13%, edge_hugger 22%
+        const rebelThresh = outlierPct * 0.22;
+        const stragglerThresh = rebelThresh + outlierPct * 0.22;
+        const wandererThresh = stragglerThresh + outlierPct * 0.22;
+        const earlyRiserThresh = wandererThresh + outlierPct * 0.13;
+        const edgeHuggerThresh = earlyRiserThresh + outlierPct * 0.22;
+        
+        for (let i = 0; i < nBalls; i++) {
+          const base = randomBasePosition();
+          const angle = Math.atan2(base.y, base.x);
+          
+          // Determine behavior type with weighted randomness based on outlier percentage
+          let behavior = BEHAVIOR.NORMAL;
+          const behaviorRoll = Math.random() * 100;
+          if (behaviorRoll < rebelThresh) {
+            behavior = BEHAVIOR.REBEL;
+          } else if (behaviorRoll < stragglerThresh) {
+            behavior = BEHAVIOR.STRAGGLER;
+          } else if (behaviorRoll < wandererThresh) {
+            behavior = BEHAVIOR.WANDERER;
+          } else if (behaviorRoll < earlyRiserThresh) {
+            behavior = BEHAVIOR.EARLY_RISER;
+          } else if (behaviorRoll < edgeHuggerThresh) {
+            behavior = BEHAVIOR.EDGE_HUGGER;
+          }
+          // Remaining are normal
+          
+          // Target z level at 1x gravity
+          const targetZAtOneX = Math.pow(Math.random(), 0.7) * Z_MAX;
+          
+          // Entropy factor - only apply variation if outliers are enabled
+          let entropyFactor;
+          if (outlierPct === 0) {
+            // No outliers: uniform entropy factor for all balls
+            entropyFactor = 0.5;
+          } else {
+            // With outliers: variable entropy
+            const roll = Math.random();
+            if (roll < 0.50) {
+              // 50% inside cone
+              entropyFactor = 0.2 + Math.random() * 0.6;
+            } else if (roll < 0.75) {
+              // 25% on edge
+              entropyFactor = 0.8 + Math.random() * 0.3;
+            } else if (roll < 0.90) {
+              // 15% scattered outward
+              entropyFactor = 1.1 + Math.random() * 0.6;
+            } else {
+              // 10% extreme outliers - way outside
+              entropyFactor = 1.5 + Math.random() * 1.0;
+            }
+          }
+          
+          // Noise and pull multipliers - uniform when no outliers
+          let noiseMultiplier, pullMultiplier;
+          if (outlierPct === 0) {
+            noiseMultiplier = 1.0;
+            pullMultiplier = 1.0;
+          } else {
+            noiseMultiplier = 0.5 + Math.random() * 1.5;
+            pullMultiplier = 0.6 + Math.random() * 0.8;
+          }
+          
+          // Additional random properties for special behaviors
+          const ball = {
+            x: base.x,
+            y: base.y,
+            z: base.z,
+            base: base,
+            angle: angle,
+            targetZAtOneX: targetZAtOneX,
+            entropyFactor: entropyFactor,
+            behavior: behavior,
+            age: 0,
+            // Rebel-specific: random target they wander toward
+            rebelTarget: randomVolumePosition(),
+            // Straggler-specific: how much they lag (0.2 to 0.5 of normal speed)
+            lagFactor: 0.2 + Math.random() * 0.3,
+            // Wanderer-specific: current wandering target (updated during simulation)
+            wanderTarget: randomVolumePosition(),
+            wanderTimer: 0,
+            // Per-ball noise multiplier for more variation
+            noiseMultiplier: noiseMultiplier,
+            // Per-ball pull strength variation
+            pullMultiplier: pullMultiplier,
+            // Z-threshold: determines at what gravity fraction this ball starts going up (0-1)
+            // At gravity g, balls with zThreshold <= g/2 will go up
+            // This gives: g=0 → 0% up, g=0.2 → 10% up, g=1 → 50% up, g=2 → 100% up
+            zThreshold: Math.random(),
+            // Uniform position: evenly distributed position for H-spread effect
+            uniformPos: {
+              x: (Math.random() - 0.5) * 2 * X_RANGE,
+              y: (Math.random() - 0.5) * 2 * Y_RANGE
+            },
+            // Uniform Z: evenly distributed Z position for V-spread effect (0-1)
+            uniformZ: Math.random()
+          };
+          
+          balls.push(ball);
+        }
+      }
+
+      function stepSimulation(gravityMult, hSpreadMult, vSpreadMult, zScoreLimitMult) {
+        for (let i = 0; i < balls.length; i++) {
+          const b = balls[i];
+          
+          // Update wanderer targets periodically
+          if (b.behavior === BEHAVIOR.WANDERER) {
+            b.wanderTimer++;
+            if (b.wanderTimer > 30 + Math.random() * 40) {
+              // Drift target toward general direction but with randomness
+              const driftStrength = gravityMult * 0.3;
+              b.wanderTarget = {
+                x: b.wanderTarget.x * 0.7 + (Math.random() - 0.5) * X_RANGE * 0.6,
+                y: b.wanderTarget.y * 0.7 + (Math.random() - 0.5) * Y_RANGE * 0.6,
+                z: Math.max(0, Math.min(Z_MAX, b.wanderTarget.z + (Math.random() - 0.3) * 0.3 * driftStrength))
+              };
+              b.wanderTimer = 0;
+            }
+          }
+          
+          const target = getTargetPosition(b, gravityMult, hSpreadMult, vSpreadMult, zScoreLimitMult);
+          
+          // Add noise for organic movement - varies per ball
+          const noiseScale = NOISE_STRENGTH * b.noiseMultiplier;
+          const noise = {
+            x: (Math.random() - 0.5) * 2 * noiseScale,
+            y: (Math.random() - 0.5) * 2 * noiseScale,
+            z: (Math.random() - 0.5) * 2 * noiseScale * 0.5
+          };
+          
+          // Add occasional random "jumps" for extra chaos (1% chance per step) - only if outliers enabled
+          if (currentOutlierPct > 0 && Math.random() < 0.01) {
+            noise.x += (Math.random() - 0.5) * 0.3;
+            noise.y += (Math.random() - 0.5) * 0.3;
+            noise.z += (Math.random() - 0.5) * 0.15;
+          }
+          
+          // Pull strength varies per ball
+          const effectivePull = PULL_STRENGTH * b.pullMultiplier;
+          const pullX = (target.x - b.x) * effectivePull;
+          const pullY = (target.y - b.y) * effectivePull;
+          const pullZ = (target.z - b.z) * effectivePull;
+          
+          b.x += pullX + noise.x;
+          b.y += pullY + noise.y;
+          b.z += pullZ + noise.z;
+          
+          // Clamp to bounds
+          b.x = Math.max(-X_RANGE, Math.min(X_RANGE, b.x));
+          b.y = Math.max(-Y_RANGE, Math.min(Y_RANGE, b.y));
+          b.z = Math.max(0, Math.min(Z_MAX, b.z));
+          
+          b.age += 1;
+        }
+      }
+
+      // Convert HSL to RGB hex
+      function hslToHex(h, s, l) {
+        s /= 100;
+        l /= 100;
+        const a = s * Math.min(l, 1 - l);
+        const f = n => {
+          const k = (n + h / 30) % 12;
+          const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+          return Math.round(255 * color).toString(16).padStart(2, '0');
+        };
+        return `#${f(0)}${f(8)}${f(4)}`;
+      }
+      
+      // Get color based on z-height (violet → blue → cyan → green spectrum)
+      // Maps z from 0 to 1 onto hue from 270 (violet) to 120 (green)
+      function getHeightColor(z) {
+        const t = Math.max(0, Math.min(1, z / Z_MAX));
+        // Hue: 280 (violet/purple) → 240 (blue) → 180 (cyan) → 120 (green)
+        const hue = 280 - t * 160; // 280 at z=0, 120 at z=1
+        return hslToHex(hue, 80, 55);
+      }
+      
+      // Get color for z=100% plane based on distance from center
+      // Center (0,0) = green, outer edges = red
+      function getApexPlaneColor(x, y) {
+        const maxRadius = Math.hypot(X_RANGE, Y_RANGE);
+        const radius = Math.hypot(x, y);
+        const t = Math.min(1, radius / maxRadius); // 0 at center, 1 at edges
+        // Hue: 120 (green) at center → 60 (yellow) → 0 (red) at edges
+        const hue = 120 - t * 120;
+        return hslToHex(hue, 85, 50);
+      }
+
+      function getTraces() {
+        // Balls below the top plane - colored by height
+        const belowX = [];
+        const belowY = [];
+        const belowZ = [];
+        const belowColors = [];
+        
+        // Balls at the top plane (z ≈ 100%) - colored by distance from center
+        const topX = [];
+        const topY = [];
+        const topZ = [];
+        const topColors = [];
+
+        const TOP_THRESHOLD = 0.88; // Consider z >= 88% as "top plane"
+
+        for (const b of balls) {
+          const isAtTop = b.z >= TOP_THRESHOLD * Z_MAX;
+          
+          if (isAtTop) {
+            topX.push(b.x);
+            topY.push(b.y);
+            topZ.push(b.z);
+            topColors.push(getApexPlaneColor(b.x, b.y));
+          } else {
+            belowX.push(b.x);
+            belowY.push(b.y);
+            belowZ.push(b.z);
+            belowColors.push(getHeightColor(b.z));
+          }
+        }
+
+        const traces = [
+          {
+            x: belowX,
+            y: belowY,
+            z: belowZ,
+            mode: 'markers',
+            type: 'scatter3d',
+            marker: {
+              size: 5,
+              color: belowColors,
+              line: { width: 0 },
+              opacity: 0.9
+            },
+            showlegend: false,
+            name: 'Markets (by height)',
+            hovertemplate: 'X: %{x:.2f}<br>Y: %{y:.2f}<br>Z: %{z:.0%}<extra></extra>'
+          },
+          {
+            x: topX,
+            y: topY,
+            z: topZ,
+            mode: 'markers',
+            type: 'scatter3d',
+            marker: {
+              size: 6,
+              color: topColors,
+              line: { width: 0 },
+              opacity: 1
+            },
+            showlegend: false,
+            name: 'Top plane (by distance from center)',
+            hovertemplate: 'X: %{x:.2f}<br>Y: %{y:.2f}<br>Z: %{z:.0%}<br>(Top plane)<extra></extra>'
+          }
+        ];
+
+        return traces;
+      }
+
+      const layout = {
+        margin: { l: 0, r: 0, t: 50, b: 0 },
+        paper_bgcolor: '#12121a',
+        plot_bgcolor: '#12121a',
+        scene: {
+          xaxis: { 
+            title: 'Project field X (M projects)', 
+            backgroundcolor: '#1e293b', 
+            gridcolor: '#334155', 
+            range: [-X_RANGE, X_RANGE] 
+          },
+          yaxis: { 
+            title: 'Project field Y (isolated → cross)', 
+            backgroundcolor: '#1e293b', 
+            gridcolor: '#334155', 
+            range: [-Y_RANGE, Y_RANGE] 
+          },
+          zaxis: { 
+            title: 'Systemic leverage (%)', 
+            backgroundcolor: '#1e293b', 
+            gridcolor: '#334155', 
+            range: [0, Z_MAX],
+            tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+            ticktext: ['0%', '20%', '40%', '60%', '80%', '100%']
+          },
+          aspectmode: 'cube',
+          camera: { eye: { x: 1.8, y: 1.8, z: 1.0 } },
+          annotations: [{
+            x: 0,
+            y: 0,
+            z: Z_MAX,
+            text: 'Fully netted + globally marginalized',
+            showarrow: true,
+            arrowhead: 2,
+            arrowsize: 1,
+            arrowwidth: 2,
+            arrowcolor: '#ef4444',
+            font: { color: '#e2e8f0', size: 11 },
+            ax: 50,
+            ay: -40
+          }]
+        },
+        title: { 
+          text: 'Cone Traversal: Markets converge upward', 
+          font: { color: '#e2e8f0', size: 16 } 
+        },
+      };
+
+      const config = { responsive: true };
+
+      initBalls();
+      Plotly.newPlot('plot', getTraces(), layout, config);
+
+      // Sync slider and number input for gravity
+      const gravitySlider = document.getElementById('gravity');
+      const gravityInput = document.getElementById('gravityInput');
+      
+      function updateGravityValue(value) {
+        const v = Math.max(0, Math.min(2, parseFloat(value) || 0));
+        gravitySlider.value = v;
+        gravityInput.value = v;
+      }
+      
+      gravitySlider.addEventListener('input', function() {
+        gravityInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      gravitySlider.addEventListener('change', function() {
+        gravityInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      gravityInput.addEventListener('input', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        gravitySlider.value = v;
+      });
+      
+      gravityInput.addEventListener('blur', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        this.value = v.toFixed(2);
+      });
+
+      // Sync slider and number input for H-spread
+      const hSpreadSlider = document.getElementById('hSpread');
+      const hSpreadInput = document.getElementById('hSpreadInput');
+      
+      hSpreadInput.value = parseFloat(hSpreadSlider.value).toFixed(2);
+      
+      hSpreadSlider.addEventListener('input', function() {
+        hSpreadInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      hSpreadSlider.addEventListener('change', function() {
+        hSpreadInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      hSpreadInput.addEventListener('input', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        hSpreadSlider.value = v;
+      });
+      
+      hSpreadInput.addEventListener('blur', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        this.value = v.toFixed(2);
+      });
+      
+      // Sync slider and number input for V-spread
+      const vSpreadSlider = document.getElementById('vSpread');
+      const vSpreadInput = document.getElementById('vSpreadInput');
+      
+      vSpreadInput.value = parseFloat(vSpreadSlider.value).toFixed(2);
+      
+      vSpreadSlider.addEventListener('input', function() {
+        vSpreadInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      vSpreadSlider.addEventListener('change', function() {
+        vSpreadInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      vSpreadInput.addEventListener('input', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        vSpreadSlider.value = v;
+      });
+      
+      vSpreadInput.addEventListener('blur', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        this.value = v.toFixed(2);
+      });
+
+      // Sync slider and number input for z-score limit
+      const zScoreLimitSlider = document.getElementById('zScoreLimit');
+      const zScoreLimitInput = document.getElementById('zScoreLimitInput');
+      
+      // Initialize the display value
+      zScoreLimitInput.value = parseFloat(zScoreLimitSlider.value).toFixed(2);
+      
+      zScoreLimitSlider.addEventListener('input', function() {
+        zScoreLimitInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      zScoreLimitSlider.addEventListener('change', function() {
+        zScoreLimitInput.value = parseFloat(this.value).toFixed(2);
+      });
+      
+      zScoreLimitInput.addEventListener('input', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        zScoreLimitSlider.value = v;
+      });
+      
+      zScoreLimitInput.addEventListener('blur', function() {
+        const v = Math.max(0, Math.min(2, parseFloat(this.value) || 0));
+        this.value = v.toFixed(2);
+      });
+
+      // Sync slider and number input for outlier percentage
+      const outlierSlider = document.getElementById('outlierPct');
+      const outlierInput = document.getElementById('outlierPctInput');
+      
+      outlierSlider.addEventListener('input', function() {
+        outlierInput.value = parseInt(this.value);
+      });
+      
+      outlierInput.addEventListener('input', function() {
+        const v = Math.max(0, Math.min(60, parseInt(this.value) || 0));
+        outlierSlider.value = v;
+      });
+      
+      outlierInput.addEventListener('blur', function() {
+        const v = Math.max(0, Math.min(60, parseInt(this.value) || 0));
+        this.value = v;
+      });
+
+      // Camera control with WASD / Arrow keys
+      let cameraAngleH = Math.PI / 4; // Horizontal angle (around Z axis)
+      let cameraAngleV = Math.PI / 6; // Vertical angle (elevation)
+      let cameraDistance = 2.5;
+      const ANGLE_STEP = 0.08;
+      const ZOOM_STEP = 0.15;
+      
+      function updateCamera() {
+        const x = cameraDistance * Math.cos(cameraAngleV) * Math.cos(cameraAngleH);
+        const y = cameraDistance * Math.cos(cameraAngleV) * Math.sin(cameraAngleH);
+        const z = cameraDistance * Math.sin(cameraAngleV);
+        
+        Plotly.relayout('plot', {
+          'scene.camera.eye': { x: x, y: y, z: z }
+        });
+      }
+      
+      document.addEventListener('keydown', function(e) {
+        // Don't capture keys when typing in input fields
+        if (e.target.tagName === 'INPUT') return;
+        
+        let handled = false;
+        
+        switch(e.key.toLowerCase()) {
+          case 'w':
+          case 'arrowup':
+            cameraAngleV = Math.min(Math.PI / 2 - 0.1, cameraAngleV + ANGLE_STEP);
+            handled = true;
+            break;
+          case 's':
+          case 'arrowdown':
+            cameraAngleV = Math.max(-Math.PI / 2 + 0.1, cameraAngleV - ANGLE_STEP);
+            handled = true;
+            break;
+          case 'a':
+          case 'arrowleft':
+            cameraAngleH += ANGLE_STEP;
+            handled = true;
+            break;
+          case 'd':
+          case 'arrowright':
+            cameraAngleH -= ANGLE_STEP;
+            handled = true;
+            break;
+          case 'q':
+            cameraDistance = Math.max(1, cameraDistance - ZOOM_STEP);
+            handled = true;
+            break;
+          case 'e':
+            cameraDistance = Math.min(5, cameraDistance + ZOOM_STEP);
+            handled = true;
+            break;
+        }
+        
+        if (handled) {
+          e.preventDefault();
+          updateCamera();
+        }
+      });
+
+      function setControlsDisabled(disabled) {
+        document.getElementById('runBtn').disabled = disabled;
+        document.getElementById('gravity').disabled = disabled;
+        document.getElementById('gravityInput').disabled = disabled;
+        document.getElementById('hSpread').disabled = disabled;
+        document.getElementById('hSpreadInput').disabled = disabled;
+        document.getElementById('vSpread').disabled = disabled;
+        document.getElementById('vSpreadInput').disabled = disabled;
+        document.getElementById('zScoreLimit').disabled = disabled;
+        document.getElementById('zScoreLimitInput').disabled = disabled;
+        document.getElementById('ballCount').disabled = disabled;
+        document.getElementById('outlierPct').disabled = disabled;
+        document.getElementById('outlierPctInput').disabled = disabled;
+      }
+
+      function runAnimation() {
+        const FRAME_MS = 35;
+        function animate() {
+          if (isPaused) return;
+          if (currentStep >= N_STEPS) {
+            isRunning = false;
+            isPaused = false;
+            setControlsDisabled(false);
+            document.getElementById('pauseBtn').disabled = true;
+            document.getElementById('pauseBtn').textContent = 'Pause';
+            document.getElementById('pauseBtn').classList.remove('paused');
+            return;
+          }
+          stepSimulation(currentGravity, currentHSpread, currentVSpread, currentZScoreLimit);
+          Plotly.react('plot', getTraces(), layout, config);
+          currentStep++;
+          animationId = setTimeout(animate, FRAME_MS);
+        }
+        animate();
+      }
+
+      document.getElementById('runBtn').addEventListener('click', function() {
+        if (isRunning) return;
+        currentGravity = parseFloat(document.getElementById('gravity').value);
+        currentHSpread = parseFloat(document.getElementById('hSpread').value);
+        currentVSpread = parseFloat(document.getElementById('vSpread').value);
+        currentZScoreLimit = parseFloat(document.getElementById('zScoreLimit').value);
+        initBalls();
+        Plotly.react('plot', getTraces(), layout, config);
+        setControlsDisabled(true);
+        document.getElementById('pauseBtn').disabled = false;
+        isRunning = true;
+        isPaused = false;
+        currentStep = 0;
+        runAnimation();
+      });
+
+      document.getElementById('pauseBtn').addEventListener('click', function() {
+        if (!isRunning) return;
+        
+        if (isPaused) {
+          // Resume
+          isPaused = false;
+          this.textContent = 'Pause';
+          this.classList.remove('paused');
+          runAnimation();
+        } else {
+          // Pause
+          isPaused = true;
+          if (animationId) {
+            clearTimeout(animationId);
+            animationId = null;
+          }
+          this.textContent = 'Resume';
+          this.classList.add('paused');
+        }
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', function() {
+        if (animationId) {
+          clearTimeout(animationId);
+          animationId = null;
+        }
+        isRunning = false;
+        isPaused = false;
+        currentStep = 0;
+        setControlsDisabled(false);
+        document.getElementById('pauseBtn').disabled = true;
+        document.getElementById('pauseBtn').textContent = 'Pause';
+        document.getElementById('pauseBtn').classList.remove('paused');
+        initBalls();
+        Plotly.react('plot', getTraces(), layout, config);
+      });
+      
+    })();
+  </script>
+</body>
+</html>

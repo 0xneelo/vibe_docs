@@ -17,6 +17,7 @@
     "class-variance-authority": "latest",
     "clsx": "latest",
     "lucide-react": "latest",
+    "plotly.js-dist-min": "^3.4.0",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
