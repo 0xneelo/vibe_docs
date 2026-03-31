@@ -17,13 +17,14 @@ export function SiteHeader() {
     { label: "Twitter", href: "https://twitter.com/vibe_trading" },
   ];
   const simulations = [
-    { title: "Funding Simulator", href: "/simulations/funding", description: "Funding dynamics and solver PnL" },
+    { title: "Funding Simulator", href: "/local-funding", description: "Funding dynamics and solver PnL" },
     { title: "Z-Score Cone Traversal", href: "/simulations/z-score", description: "3D convergence field model" },
   ];
   const isHome = location.pathname === "/";
   const isLibrary = location.pathname.startsWith("/library");
   const isCollections = location.pathname.startsWith("/collections");
-  const isSimulations = location.pathname.startsWith("/simulations") || location.pathname.startsWith("/funding-model");
+  const isSimulations =
+    location.pathname.startsWith("/simulations") || location.pathname.startsWith("/funding-model") || location.pathname.startsWith("/local-funding");
   const isReaderRoute = true;
   const showCollectionsDropdown = location.pathname === "/library";
   const showSimulationsDropdown = true;
@@ -95,7 +96,7 @@ export function SiteHeader() {
             ) : null}
           </div>
           <div className="group relative">
-            <Link to="/simulations/funding" className={navButtonClass(isSimulations)}>
+            <Link to="/local-funding" className={navButtonClass(isSimulations)}>
               Simulations
             </Link>
 
@@ -166,7 +167,7 @@ export function SiteHeader() {
                 Chapters
               </Link>
               <Link
-                to="/simulations/funding"
+                to="/local-funding"
                 className={cn(
                   "flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition",
                   isSimulations
