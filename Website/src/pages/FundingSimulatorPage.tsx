@@ -194,7 +194,7 @@ export function FundingSimulatorPage() {
       setApiError(null);
     } catch {
       setApiError(
-        `Could not reach the funding model API at ${API_BASE}. If this page is hosted (e.g. GitHub Pages), deploy the backend and set VITE_FUNDING_MODEL_API; localhost only works on your own machine.`,
+        `Could not reach the funding model API.`,
       );
     }
   }
@@ -230,7 +230,7 @@ export function FundingSimulatorPage() {
       setApiError(null);
     } catch {
       setApiError(
-        `Couldn't run the simulation because the funding API is unavailable at ${API_BASE}. For hosted use, point VITE_FUNDING_MODEL_API to a deployed backend.`,
+        `Couldn't run the simulation because the funding API is unavailable at ${API_BASE}.`,
       );
     } finally {
       setLoading(false);
