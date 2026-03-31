@@ -48,8 +48,6 @@ interface RegimeEvent {
   funding: number;
 }
 
-const API_BASE = (import.meta.env.VITE_FUNDING_MODEL_API as string | undefined)?.replace(/\/$/, "") ?? "http://localhost:5001";
-
 const DEFAULT_PARAMS: ModelParams = {
   F_base: 0.3,
   F_max: 3,
@@ -82,6 +80,286 @@ const REGIME_TO_NUM: Record<Regime, number> = {
   stress: 2,
   emergency: 3,
 };
+
+const LOCAL_MODEL = {
+  a: 1,
+  p: 2,
+  b: 0.08,
+  q: 1.5,
+  l0: 0.0003,
+  l1: 0.002,
+  m_max: 5,
+  ema_fast_window: 8,
+  ema_slow_window: 72,
+  ema_util_window: 24,
+  max_daily_change: 0.3,
+  initial_equity: 2_000_000,
+  initial_price: 1,
+  initial_utilization: 0.5,
+  default_unhedged_delta: 0.03,
+  funding_capture_ratio: 0.45,
+  fee_apr: 0.24,
+  spread_apr: 0.14,
+  liquidation_apr_max: 0.2,
+  other_revenue_apr: 0.03,
+  operating_cost_apr: 0.06,
+};
+
+function createSeededRandom(seed: number) {
+  let t = seed >>> 0;
+  let spare: number | null = null;
+  const uniform = () => {
+    t += 0x6d2b79f5;
+    let r = Math.imul(t ^ (t >>> 15), 1 | t);
+    r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+  const gauss = (mean = 0, stdDev = 1) => {
+    if (spare !== null) {
+      const value = spare;
+      spare = null;
+      return mean + stdDev * value;
+    }
+    const u1 = Math.max(uniform(), 1e-12);
+    const u2 = uniform();
+    const mag = Math.sqrt(-2 * Math.log(u1));
+    const z0 = mag * Math.cos(2 * Math.PI * u2);
+    const z1 = mag * Math.sin(2 * Math.PI * u2);
+    spare = z1;
+    return mean + stdDev * z0;
+  };
+  return { uniform, gauss };
+}
+
+function scenarioUtilization(hour: number, scenario: ScenarioKey, rng: ReturnType<typeof createSeededRandom>) {
+  switch (scenario) {
+    case "normal":
+      return clamp(0.55 + 0.08 * Math.sin((hour / 24) * 2 * Math.PI) + rng.gauss(0, 0.015), 0.35, 0.75);
+    case "gradual_stress": {
+      const progress = Math.min(1, hour / (30 * 24));
+      const base = 0.5 + 0.47 * progress;
+      return clamp(base + rng.gauss(0, base > 0.9 ? 0.01 : 0.02), 0.4, 0.99);
+    }
+    case "sudden_spike":
+      if (hour < 24 * 5) return 0.6 + rng.gauss(0, 0.02);
+      if (hour < 24 * 7) return 0.96 + rng.gauss(0, 0.01);
+      if (hour < 24 * 20) {
+        const progress = (hour - 24 * 7) / (24 * 13);
+        return 0.96 - 0.2 * progress + rng.gauss(0, 0.02);
+      }
+      return 0.7 + rng.gauss(0, 0.03);
+    case "solver_losses":
+      if (hour < 24 * 3) return 0.62 + (hour / (24 * 3)) * 0.34;
+      return 0.96 + rng.gauss(0, 0.008);
+    case "sustained_emergency":
+    default:
+      if (hour < 24 * 3) return 0.6 + (hour / (24 * 3)) * 0.36;
+      return 0.96 + rng.gauss(0, 0.005);
+  }
+}
+
+function defaultPrice(previousPrice: number, rng: ReturnType<typeof createSeededRandom>) {
+  return Math.max(0.0001, previousPrice * (1 + rng.gauss(0, 0.004)));
+}
+
+function calculateNormalizedStress(utilization: number, params: ModelParams) {
+  if (utilization <= params.U_optimal) {
+    return 0;
+  }
+  return clamp((utilization - params.U_optimal) / Math.max(1e-9, 1 - params.U_optimal), 0, 1);
+}
+
+function calculateStressFunding(utilization: number, params: ModelParams) {
+  const s = calculateNormalizedStress(utilization, params);
+  return Math.min(params.F_max, params.F_base + LOCAL_MODEL.a * Math.pow(s, LOCAL_MODEL.p));
+}
+
+function calculateEmergencyFunding(tEff: number, params: ModelParams) {
+  const ramp = LOCAL_MODEL.b * Math.pow(Math.max(tEff, 0), LOCAL_MODEL.q);
+  return Math.min(params.F_max, params.F_base + ramp);
+}
+
+function calculateAccelerationMultiplier(lossIntensity: number, params: ModelParams) {
+  const normalized = (lossIntensity - LOCAL_MODEL.l0) / Math.max(1e-9, LOCAL_MODEL.l1 - LOCAL_MODEL.l0);
+  const clamped = clamp(normalized, 0, 1);
+  return Math.min(LOCAL_MODEL.m_max, 1 + params.k * clamped);
+}
+
+function downsampleHistory(history: SimPoint[], maxPoints = 1000) {
+  if (history.length <= maxPoints) {
+    return history;
+  }
+  const step = Math.max(1, Math.floor(history.length / maxPoints));
+  return history.filter((_, index) => index % step === 0);
+}
+
+function simulateFundingHistory(params: ModelParams, scenario: ScenarioKey, durationDays: number, seed = 42): SimPoint[] {
+  const rng = createSeededRandom(seed);
+  const durationHours = clamp(Math.round(durationDays * 24), 24, 365 * 24);
+
+  let hour = 0;
+  let fundingRate = params.F_base;
+  let regime: Regime = "normal";
+  let hoursAboveCritical = 0;
+  let emergencyStartHour: number | null = null;
+  let tEff = 0;
+  let emergencyLocked = false;
+  let emaUtilFast = LOCAL_MODEL.initial_utilization;
+  let emaUtilSlow = LOCAL_MODEL.initial_utilization;
+  let emaLossFast = 0;
+  let emaLossSlow = 0;
+  let prevEquity = LOCAL_MODEL.initial_equity;
+
+  let utilization = LOCAL_MODEL.initial_utilization;
+  let tokenPrice = LOCAL_MODEL.initial_price;
+  let equity = LOCAL_MODEL.initial_equity;
+
+  const emaUpdate = (current: number, value: number, window: number) => {
+    const alpha = 2 / (window + 1);
+    return alpha * value + (1 - alpha) * current;
+  };
+
+  const determineRegime = (smoothedUtil: number): Regime => {
+    const graceHours = Math.round(params.T_grace * 24);
+    const exitThreshold = Math.max(params.U_optimal, params.U_critical - 0.05);
+
+    if (smoothedUtil >= params.U_critical) {
+      hoursAboveCritical += 1;
+    } else {
+      const decay = smoothedUtil < params.U_critical - 0.02 ? 1 : 0;
+      hoursAboveCritical = Math.max(0, hoursAboveCritical - decay);
+    }
+
+    if (emergencyLocked) {
+      if (smoothedUtil < exitThreshold) {
+        emergencyLocked = false;
+        return "stress";
+      }
+      return "emergency";
+    }
+
+    if (smoothedUtil < params.U_optimal) return "normal";
+    if (smoothedUtil < params.U_critical) return "stress";
+    if (hoursAboveCritical >= graceHours) {
+      emergencyLocked = true;
+      return "emergency";
+    }
+    return "stress";
+  };
+
+  const snapshots: SimPoint[] = [];
+  const enforceNonNegativePnl = scenario !== "solver_losses";
+
+  for (let h = 0; h < durationHours; h += 1) {
+    utilization = clamp(scenarioUtilization(h, scenario, rng), 0, 1);
+    const nextPrice = defaultPrice(tokenPrice, rng);
+    const priceReturn = (nextPrice - tokenPrice) / Math.max(tokenPrice, 1e-9);
+
+    const utilFactor = Math.max(utilization, 0.2);
+    const stressFactor = Math.max(0, (utilization - params.U_optimal) / Math.max(1e-9, 1 - params.U_optimal));
+
+    const fundingIncome = (equity * Math.max(fundingRate, params.F_base) * LOCAL_MODEL.funding_capture_ratio * utilFactor) / (365 * 24);
+    const feeIncome = (equity * LOCAL_MODEL.fee_apr * utilFactor) / (365 * 24);
+    const spreadUplift = 1 + 2.5 * stressFactor;
+    const spreadIncome = (equity * LOCAL_MODEL.spread_apr * utilFactor * spreadUplift) / (365 * 24);
+    const liquidationIncome = (equity * LOCAL_MODEL.liquidation_apr_max * stressFactor) / (365 * 24);
+    const otherIncome = (equity * LOCAL_MODEL.other_revenue_apr) / (365 * 24);
+
+    const operatingCost = (equity * LOCAL_MODEL.operating_cost_apr) / (365 * 24);
+    const inventoryDrag = Math.abs(LOCAL_MODEL.default_unhedged_delta) * LOCAL_MODEL.initial_equity * Math.abs(priceReturn) * 0.1;
+    const hourlyNet = fundingIncome + feeIncome + spreadIncome + liquidationIncome + otherIncome - operatingCost - inventoryDrag;
+
+    let shockDrag = 0;
+    if (scenario === "solver_losses") {
+      if (h < 24 * 4) {
+        shockDrag = LOCAL_MODEL.initial_equity * 0.00085;
+      } else if (h < 24 * 10) {
+        const decay = 1 - (h - 24 * 4) / (24 * 6);
+        shockDrag = LOCAL_MODEL.initial_equity * 0.00035 * Math.max(0, decay);
+      }
+    }
+
+    let nextEquity = Math.max(0, equity + hourlyNet - Math.max(0, shockDrag));
+    if (enforceNonNegativePnl) {
+      nextEquity = Math.max(nextEquity, LOCAL_MODEL.initial_equity);
+    }
+
+    tokenPrice = Math.max(0.0001, nextPrice);
+    equity = nextEquity;
+
+    const deltaEquity = equity - prevEquity;
+    const rawLossIntensity = Math.max(0, -deltaEquity) / Math.max(equity, 1e-9);
+    emaLossFast = emaUpdate(emaLossFast, rawLossIntensity, LOCAL_MODEL.ema_fast_window);
+    emaLossSlow = emaUpdate(emaLossSlow, rawLossIntensity, LOCAL_MODEL.ema_slow_window);
+    const lossIntensity = Math.max(emaLossFast, emaLossSlow);
+
+    emaUtilFast = emaUpdate(emaUtilFast, utilization, LOCAL_MODEL.ema_util_window);
+    emaUtilSlow = emaUpdate(emaUtilSlow, utilization, LOCAL_MODEL.ema_slow_window);
+    const smoothedUtil = emaUtilFast;
+
+    const previousRegime = regime;
+    regime = determineRegime(smoothedUtil);
+
+    if (regime === "normal") {
+      fundingRate = params.F_base;
+      tEff = 0;
+      emergencyStartHour = null;
+    } else if (regime === "stress") {
+      const targetFunding = calculateStressFunding(smoothedUtil, params);
+      if (previousRegime === "emergency" && tEff > 0) {
+        tEff = Math.max(0, tEff - 0.002);
+      }
+      fundingRate = targetFunding;
+    } else {
+      if (emergencyStartHour === null) {
+        emergencyStartHour = hour;
+        const stressFunding = calculateStressFunding(smoothedUtil, params);
+        const aboveBase = Math.max(0, stressFunding - params.F_base);
+        if (aboveBase > 0 && LOCAL_MODEL.b > 0) {
+          tEff = Math.pow(aboveBase / LOCAL_MODEL.b, 1 / LOCAL_MODEL.q);
+        }
+      }
+      const multiplier = calculateAccelerationMultiplier(lossIntensity, params);
+      tEff += multiplier * (1 / 24);
+      const targetFunding = calculateEmergencyFunding(tEff, params);
+      const maxHourlyChange = LOCAL_MODEL.max_daily_change / 24;
+      const delta = clamp(targetFunding - fundingRate, -maxHourlyChange, maxHourlyChange);
+      fundingRate += delta;
+    }
+
+    prevEquity = equity;
+    hour += 1;
+
+    const pnl = equity - LOCAL_MODEL.initial_equity;
+    const loss = Math.max(0, LOCAL_MODEL.initial_equity - equity);
+    const adlProximity = Math.min(100, (loss / Math.max(params.max_solver_loss, 1e-9)) * 100);
+
+    snapshots.push({
+      hour,
+      day: hour / 24,
+      utilization,
+      utilization_smoothed: smoothedUtil,
+      funding_rate: fundingRate,
+      funding_rate_8h: (fundingRate / (3 * 365)) * 100,
+      regime,
+      loss_intensity: lossIntensity,
+      loss_intensity_pct: lossIntensity * 100,
+      multiplier: calculateAccelerationMultiplier(lossIntensity, params),
+      t_eff: tEff,
+      equity,
+      initial_equity: LOCAL_MODEL.initial_equity,
+      pnl,
+      pnl_pct: (pnl / LOCAL_MODEL.initial_equity) * 100,
+      loss,
+      max_solver_loss: params.max_solver_loss,
+      adl_proximity: adlProximity,
+      adl_triggered: loss >= params.max_solver_loss,
+      hours_above_critical: hoursAboveCritical,
+    });
+  }
+
+  return downsampleHistory(snapshots);
+}
 
 function formatUsd(value: number) {
   return `$${Math.round(value).toLocaleString()}`;
@@ -183,18 +461,13 @@ export function FundingSimulatorPage() {
 
   async function loadDefaults() {
     try {
-      const res = await fetch(`${API_BASE}/api/params`);
-      if (!res.ok) {
-        throw new Error(`Failed to load defaults (${res.status})`);
-      }
-      const data = (await res.json()) as Partial<ModelParams>;
-      const merged = { ...DEFAULT_PARAMS, ...data };
+      const merged = { ...DEFAULT_PARAMS };
       setParams(merged);
       await runSimulation({ ...merged, durationDays, scenario });
       setApiError(null);
     } catch {
       setApiError(
-        `Could not reach the funding model API.`,
+        `Could not initialize the local funding simulation.`,
       );
     }
   }
@@ -205,32 +478,13 @@ export function FundingSimulatorPage() {
     const nextScenario = overrides?.scenario ?? scenario;
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/simulate`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          duration_days: nextDays,
-          scenario: nextScenario,
-          params: {
-            F_base: nextParams.F_base,
-            F_max: nextParams.F_max,
-            U_optimal: nextParams.U_optimal,
-            U_critical: nextParams.U_critical,
-            T_grace: nextParams.T_grace,
-            k: nextParams.k,
-            max_solver_loss: nextParams.max_solver_loss,
-          },
-        }),
-      });
-      if (!res.ok) {
-        throw new Error(`Simulation failed (${res.status})`);
-      }
-      const payload = (await res.json()) as { success: boolean; data: SimPoint[] };
-      setHistory(payload.data ?? []);
+      await Promise.resolve();
+      const localHistory = simulateFundingHistory(nextParams, nextScenario, nextDays, 42);
+      setHistory(localHistory);
       setApiError(null);
     } catch {
       setApiError(
-        `Couldn't run the simulation because the funding API is unavailable at ${API_BASE}.`,
+        `Couldn't run the local funding simulation.`,
       );
     } finally {
       setLoading(false);
