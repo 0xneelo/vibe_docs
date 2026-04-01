@@ -16,6 +16,7 @@
     "@radix-ui/react-slot": "latest",
     "class-variance-authority": "latest",
     "clsx": "latest",
+    "katex": "^0.16.44",
     "lucide-react": "latest",
     "plotly.js-dist-min": "^3.4.0",
     "react": "latest",
