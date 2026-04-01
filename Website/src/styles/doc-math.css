@@ -1,0 +1,152 @@
+/* Keep long formulas inside cards without breaking layout. */
+.doc-content .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.15rem 0;
+  margin: 1rem 0;
+}
+
+.doc-content .katex-display::-webkit-scrollbar {
+  height: 6px;
+}
+
+.doc-content .katex-display::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.22);
+}
+
+.doc-content .katex-display > .katex {
+  min-width: fit-content;
+}
+
+.doc-content .katex {
+  max-width: 100%;
+}
+
+.doc-math-display-wrap {
+  --doc-math-card-bg: #212121;
+  --doc-math-overlay-bg: #212121;
+  --doc-math-btn-width: 25px;
+  --doc-math-btn-height: 25px;
+  --doc-math-btn-font-size: 12px;
+  --doc-math-btn-border-width: 0;
+  --doc-math-btn-radius: 0.3em;
+  --doc-math-btn-mask-top: -6px;
+  --doc-math-btn-mask-bottom-top: 80%;
+  --doc-math-btn-mask-height: 40%;
+  --doc-math-btn-mask-left: 3%;
+  --doc-math-btn-mask-width: 95%;
+  --doc-math-button-space: calc(var(--doc-math-btn-width) + 1.2rem);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.25rem 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 0.8rem;
+  background: var(--doc-math-card-bg);
+  padding: 0.55rem var(--doc-math-button-space) 0.55rem 0.7rem;
+  overflow: hidden;
+}
+
+.doc-math-display-wrap .katex-display {
+  margin: 0;
+  border-radius: 0.6rem;
+  background: transparent;
+  padding: 0.3rem 0.1rem 0.3rem 0.4rem;
+  text-align: center;
+  max-width: calc(100% - var(--doc-math-button-space));
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .doc-math-display-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0.55rem 0.7rem;
+    row-gap: 0.5rem;
+  }
+}
+
+.doc-math-modal-open {
+  overflow: hidden;
+}
+
+.doc-math-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgb(2 4 10 / 0.72);
+  padding: 1.25rem;
+  backdrop-filter: blur(6px);
+}
+
+.doc-math-modal.is-open {
+  display: flex;
+}
+
+.doc-math-modal__panel {
+  width: min(1080px, 100%);
+  max-height: min(88vh, 920px);
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: rgb(10 14 30 / 0.96);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.55);
+}
+
+.doc-math-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  padding: 0.9rem 1rem;
+}
+
+.doc-math-modal__title {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground) / 0.72);
+}
+
+.doc-math-modal__close {
+  border-radius: 0.6rem;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  background: rgb(255 255 255 / 0.04);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  color: hsl(var(--foreground) / 0.84);
+  transition: background-color 150ms ease;
+}
+
+.doc-math-modal__close:hover {
+  background: rgb(255 255 255 / 0.09);
+}
+
+.doc-math-modal__body {
+  max-height: calc(min(88vh, 920px) - 56px);
+  overflow: auto;
+  padding: 1rem;
+}
+
+.doc-math-modal__body .katex-display {
+  overflow-x: auto;
+  margin: 0.4rem 0;
+  padding: 0.5rem 0.25rem;
+}

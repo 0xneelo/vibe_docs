@@ -1,12 +1,14 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
 import { useDocs } from "@/lib/docs";
+import { renderMath } from "@/lib/renderMath";
 
 export function CollectionPage() {
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const { collectionSlug = "" } = useParams();
   const { collections, collectionBySlug, pagesByCollection, loading, error } = useDocs();
 
@@ -88,6 +90,13 @@ export function CollectionPage() {
     return doc.body.innerHTML;
   }, [collection.key, collection.overviewHtml]);
 
+  useEffect(() => {
+    if (!contentRef.current) {
+      return;
+    }
+    renderMath(contentRef.current);
+  }, [cleanedOverviewHtml]);
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="relative z-10">
@@ -107,17 +116,10 @@ export function CollectionPage() {
               <h1 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
                 {collection.overviewTitle || collection.title}
               </h1>
-              <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-                <span className="rounded-full border border-white/14 bg-white/[0.05] px-3 py-1 text-foreground/72">Chapter</span>
-                <span className="rounded-full border border-white/14 bg-white/[0.05] px-3 py-1 text-foreground/72">{pages.length} sections</span>
-              </div>
             </header>
 
             <article className="card-surface-main content-auto p-6 sm:p-8">
-              <p className="mb-5 max-w-[68ch] text-[1rem] leading-8 text-foreground/68">
-                {collection.summary || "Chapter overview and entry point into the whitepaper sections."}
-              </p>
-              <div className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedOverviewHtml }} />
+              <div ref={contentRef} className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedOverviewHtml }} />
             </article>
 
             <section className="card-surface-main overflow-hidden">

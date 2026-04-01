@@ -1,0 +1,89 @@
+.doc-math-expand-actions {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  z-index: 3;
+}
+
+.doc-math-expand-btn {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Enforce icon-only mode on quiet funding page */
+.doc-page--quiet .doc-math-display-wrap.doc-math-display-wrap--icon {
+  --doc-math-button-space: 2.35rem !important;
+  padding-top: 0.95rem !important;
+}
+
+.doc-page--quiet .doc-math-expand-actions.doc-math-expand-actions--icon {
+  position: absolute !important;
+  top: 0.55rem !important;
+  right: 0.55rem !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .doc-math-expand-actions {
+    top: 0.4rem;
+    right: 0.4rem;
+  }
+
+  .doc-math-display-wrap.doc-math-display-wrap--icon {
+    --doc-math-button-space: 2.05rem;
+    padding-top: 0.78rem;
+  }
+}
+
+/* Hard guard: never allow formula content under icon */
+.doc-math-display-wrap.doc-math-display-wrap--icon .katex-display {
+  max-width: 100% !important;
+  padding-right: 2.45rem !important;
+  box-sizing: border-box !important;
+}
+
+.doc-page--quiet .doc-math-display-wrap.doc-math-display-wrap--icon .katex-display {
+  max-width: 100% !important;
+  padding-right: 2.6rem !important;
+}
+
+@media (max-width: 768px) {
+  .doc-math-display-wrap.doc-math-display-wrap--icon .katex-display,
+  .doc-page--quiet .doc-math-display-wrap.doc-math-display-wrap--icon .katex-display {
+    padding-right: 2.1rem !important;
+  }
+}
+
+/* Fixed inner insets: keep formula text away from card edges */
+.doc-math-display-wrap.doc-math-display-wrap--icon .katex-display,
+.doc-page--quiet .doc-math-display-wrap.doc-math-display-wrap--icon .katex-display {
+  max-width: 100% !important;
+  padding-top: calc(1.08rem + 2px) !important;
+  padding-left: 0.78rem !important;
+  padding-right: 3.25rem !important;
+  padding-bottom: 0.35rem !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  .doc-math-display-wrap.doc-math-display-wrap--icon .katex-display,
+  .doc-page--quiet .doc-math-display-wrap.doc-math-display-wrap--icon .katex-display {
+    padding-top: 1.5rem !important;
+    padding-left: 0.62rem !important;
+    padding-right: 0.62rem !important;
+    padding-bottom: 0.3rem !important;
+  }
+}

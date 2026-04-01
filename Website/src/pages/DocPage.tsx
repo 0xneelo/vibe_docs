@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import { SiteHeader } from "@/components/SiteHeader";
@@ -6,8 +6,10 @@ import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
 import { DocPager } from "@/components/docs/DocPager";
 import { PageToc } from "@/components/docs/PageToc";
 import { useDocs } from "@/lib/docs";
+import { renderMath } from "@/lib/renderMath";
 
 export function DocPage() {
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const { collectionSlug = "", "*": pageSlug = "" } = useParams();
   const {
     collections,
@@ -46,11 +48,18 @@ export function DocPage() {
     return doc.body.innerHTML;
   }, [page.html]);
 
+  useEffect(() => {
+    if (!contentRef.current) {
+      return;
+    }
+    renderMath(contentRef.current);
+  }, [cleanedPageHtml]);
+
   return (
-    <div className="min-h-screen">
+    <div className="doc-page--quiet min-h-screen">
       <SiteHeader />
 
-      <main className="mx-auto grid w-full max-w-[1680px] gap-6 px-4 py-8 lg:grid-cols-[300px_minmax(0,1fr)_260px] lg:px-8">
+      <main className="mx-auto grid w-full max-w-[1680px] min-w-0 overflow-x-clip gap-6 px-4 py-8 lg:grid-cols-[300px_minmax(0,1fr)_260px] lg:px-8">
         <div className="hidden lg:block">
           <CollectionSidebar
             collections={collections}
@@ -59,7 +68,7 @@ export function DocPage() {
           />
         </div>
 
-        <section className="space-y-6">
+        <section className="min-w-0 space-y-6">
           <div className="card-surface-main p-8">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45">
               {collection.title}
@@ -70,16 +79,10 @@ export function DocPage() {
             <p className="mt-4 max-w-[68ch] text-[1rem] leading-8 text-foreground/68">
               {page.summary || collection.summary}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-xs text-foreground/45">
-              <span className="rounded-full border border-white/10 px-3 py-1">{page.relativePath}</span>
-              <span className="rounded-full border border-white/10 px-3 py-1">
-                {page.headings.length} headings indexed
-              </span>
-            </div>
           </div>
 
-          <article className="card-surface-main content-auto p-6 sm:p-8">
-            <div className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedPageHtml }} />
+          <article className="card-surface-main content-auto min-w-0 overflow-x-clip p-6 sm:p-8">
+            <div ref={contentRef} className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedPageHtml }} />
           </article>
 
           <DocPager previousPage={previousPage} nextPage={nextPage} />

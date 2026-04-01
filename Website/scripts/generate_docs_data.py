@@ -26,6 +26,9 @@ HEADING_RE = re.compile(r"<h([1-6])>(.*?)</h\1>", re.IGNORECASE | re.DOTALL)
 STRIP_TAGS_RE = re.compile(r"<[^>]+>")
 LINK_RE = re.compile(r"(!?)\[([^\]]+)\]\(([^)]+)\)")
 NUMERIC_RE = re.compile(r"\d+|[A-Za-z]+")
+DISPLAY_MATH_RE = re.compile(r"\$\$(.*?)\$\$", re.DOTALL)
+BRACKET_MATH_RE = re.compile(r"\\\[(.*?)\\\]", re.DOTALL)
+INLINE_MATH_RE = re.compile(r"(?<!\\)\$(?!\$)([^$\n]+?)(?<!\\)\$")
 
 
 @dataclass(slots=True)
@@ -272,11 +275,23 @@ def rewrite_markdown_links(text: str, source_path: Path, source_lookup: dict[Pat
 
 def render_html(source_text: str, source_path: Path, source_lookup: dict[Path, tuple[str, object]]) -> tuple[str, list[dict]]:
     prepared = rewrite_markdown_links(source_text, source_path, source_lookup)
+    placeholders: list[str] = []
+
+    def stash_math(match: re.Match[str]) -> str:
+        placeholders.append(match.group(0))
+        return f"MATHPLACEHOLDERTOKEN{len(placeholders)-1}X"
+
+    protected = DISPLAY_MATH_RE.sub(stash_math, prepared)
+    protected = BRACKET_MATH_RE.sub(stash_math, protected)
+    protected = INLINE_MATH_RE.sub(stash_math, protected)
+
     html_body = markdown.markdown(
-        prepared,
+        protected,
         extensions=["extra", "sane_lists", "smarty"],
         output_format="html5",
     )
+    for index, raw_math in enumerate(placeholders):
+        html_body = html_body.replace(f"MATHPLACEHOLDERTOKEN{index}X", raw_math)
     return add_heading_ids(html_body)
 
 
