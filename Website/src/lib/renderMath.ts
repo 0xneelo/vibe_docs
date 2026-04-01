@@ -1,3 +1,4 @@
+import katex from "katex";
 import renderMathInElement from "katex/contrib/auto-render";
 import { attachMathExpandButtons } from "@/lib/attachMathExpandButtons";
 
@@ -72,6 +73,70 @@ function openFormulaModal(sourceDisplay: HTMLElement) {
   document.body.classList.add("doc-math-modal-open");
 }
 
+function looksLikeMathCode(text: string) {
+  if (!text || text.length > 700) {
+    return false;
+  }
+  if (/(^|\n)\s*(const|let|var|function|class|import|export)\b/.test(text)) {
+    return false;
+  }
+  return /[ΣΠμστγβδα√∈≤≥∞]|:=|_m|\\sum|\\frac|\\sqrt|\\max|\\min|[=]/.test(text);
+}
+
+function normalizeMathText(source: string) {
+  return source
+    .replaceAll("Π", "\\Pi")
+    .replaceAll("Σ", "\\sum")
+    .replaceAll("μ", "\\mu")
+    .replaceAll("σ", "\\sigma")
+    .replaceAll("τ", "\\tau")
+    .replaceAll("γ", "\\gamma")
+    .replaceAll("β", "\\beta")
+    .replaceAll("δ", "\\delta")
+    .replaceAll("α", "\\alpha")
+    .replaceAll("√", "\\sqrt")
+    .replaceAll("∈", "\\in")
+    .replaceAll("≤", "\\le")
+    .replaceAll("≥", "\\ge")
+    .replaceAll("∞", "\\infty")
+    .replaceAll("−", "-")
+    .replaceAll("·", "\\cdot ")
+    .replaceAll("×", "\\times ")
+    .replaceAll("²", "^2")
+    // Keep currency values valid inside KaTeX math mode.
+    .replace(/\$(?=\d)/g, "\\$")
+    // Use proper approx operator when prose has "(approx)".
+    .replace(/\(approx\)/gi, "\\approx");
+}
+
+function renderEquationCodeBlocks(container: HTMLElement) {
+  const codeBlocks = Array.from(container.querySelectorAll<HTMLElement>("pre > code"));
+  for (const code of codeBlocks) {
+    const pre = code.parentElement;
+    if (!pre) {
+      continue;
+    }
+    const raw = code.textContent?.trim() ?? "";
+    if (!looksLikeMathCode(raw)) {
+      continue;
+    }
+
+    const normalized = normalizeMathText(raw);
+    const html = katex.renderToString(normalized, {
+      displayMode: true,
+      throwOnError: false,
+      strict: "ignore",
+    });
+    const host = document.createElement("div");
+    host.innerHTML = html;
+    const rendered = host.firstElementChild as HTMLElement | null;
+    if (!rendered || !rendered.classList.contains("katex-display")) {
+      continue;
+    }
+    pre.replaceWith(rendered);
+  }
+}
+
 export function renderMath(container: HTMLElement) {
   renderMathInElement(container, {
     delimiters: [
@@ -84,5 +149,6 @@ export function renderMath(container: HTMLElement) {
     strict: "ignore",
   });
 
+  renderEquationCodeBlocks(container);
   attachMathExpandButtons(container, openFormulaModal);
 }
