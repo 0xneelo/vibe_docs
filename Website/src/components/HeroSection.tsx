@@ -30,11 +30,11 @@ export function HeroSection() {
               letterSpacing: "-0.024em",
             }}
           >
-            Vibe Trading
+            Vibe Paper
           </h1>
 
           <p className="mt-3 max-w-lg mx-auto text-center text-base leading-7 text-hero-sub opacity-85 sm:mt-4 sm:text-lg sm:leading-8">
-            Scaling permissionless perpetual listings from
+            Scaling perpetual future market listings from
             <span className="font-semibold text-white"> hundreds </span>
             to <span className="font-semibold text-white"> tens of millions </span>
             of markets per year.
@@ -42,7 +42,7 @@ export function HeroSection() {
 
           <div className="mb-2 mt-6 sm:mb-3 sm:mt-8">
             <LandingPageButton
-              label="Whitepaper"
+              label="Read the Vibe Paper"
               className="w-[240px] max-w-full sm:w-[320px]"
               onClick={() => navigate("/library")}
             />
