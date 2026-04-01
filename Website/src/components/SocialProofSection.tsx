@@ -135,24 +135,9 @@ export function SocialProofSection() {
             <p className="text-sm leading-6 text-foreground/70">
               With Vibe continuous listing velocity across micro-cap assets is not a dream anymore.
             </p>
-            <p className="max-w-3xl text-sm leading-6 text-foreground/66">
-              Explore our two simulator environments: the Funding Simulator for regime and PnL dynamics, and the Z-Score Cone
-              Traversal Simulator for market-structure convergence behavior.
-            </p>
-            <div className="mt-2 flex flex-wrap gap-2.5">
-              <Link
-                to="/simulations/funding"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/16 bg-white/[0.05] px-3.5 py-2 text-sm text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.1]"
-              >
-                Open Funding Simulator
-              </Link>
-              <Link
-                to="/simulations/z-score"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/16 bg-white/[0.05] px-3.5 py-2 text-sm text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.1]"
-              >
-                Open Z-Score Simulator
-              </Link>
-            </div>
+
+         
+            
           </div>
 
           <div

@@ -3,20 +3,22 @@ import { Link } from "react-router-dom";
 
 const simulatorLinks = [
   {
-    label: "Funding Simulator",
-    description: "Run regime dynamics, controls, and PnL timeline",
-    to: "/simulations/funding",
-  },
-  {
-    label: "Z-Score Simulator",
-    description: "Explore cone traversal and convergence behavior",
-    to: "/simulations/z-score",
-  },
-  {
     label: "Funding Model Chapter",
     description: "Read assumptions, formulas, and section breakdown",
     to: "/collections/15-funding-model",
   },
+
+  {
+    label: "Abstract",
+    description: "We specify a solver-managed perp market system where the primary objective is to maximize global returns and minimize localized risk",
+    to: "/docs/15-funding-model/15-docs/00-abstract",
+  },
+  {
+    label: "Bell Curve Flattening",
+    description: "As we expect some markets to have big trader wins and some to have big trader losses we can flatten the distribution by transferring PnL from the right tail, to the left tail (losing markets).",
+    to: "/docs/15-funding-model/15-docs/06-bell-curve-flattening",
+  },
+
 ];
 
 export function FundingModelTeaserSection() {
@@ -33,37 +35,34 @@ export function FundingModelTeaserSection() {
                 Funding Rate Model: full derivation, defense layers, and charted scenarios.
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-foreground/74 sm:text-[15px]">
-                Technical walkthrough of the three-regime funding system, utilization modes, LP profit surface,
-                insurance and ADL safeguards, plus worked examples.
+              Explore our two simulator environments: the Funding Simulator for regime and PnL dynamics, and the Z-Score Cone
+              Traversal Simulator for market-structure convergence behavior.
               </p>
+             
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   to="/simulations/funding"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/[0.08] px-4 py-2.5 text-sm font-medium text-foreground transition hover:bg-white/[0.12]"
                 >
-                  Open simulator
+                  Open Funding Simulator
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
+
                 <Link
-                  to="/collections/15-funding-model"
+                  to="/simulations/z-score"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/14 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.08]"
                 >
-                  Open chapter
+                  Open Z-Score Simulator
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
-                <Link
-                  to="/docs/15-funding-model/15-docs/00-index"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/14 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.08]"
-                >
-                  Read index
-                  <Sigma className="h-4 w-4" />
-                </Link>
+
+             
               </div>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-black/30 p-4 sm:p-5">
               <p className="text-[11px] font-semibold uppercase tracking-[0.11em] text-foreground/60">
-                Interactive Simulators
+                Read up on our high level derivation and liquidity logic:
               </p>
               <div className="mt-3 grid gap-2.5">
                 {simulatorLinks.map((item) => (
