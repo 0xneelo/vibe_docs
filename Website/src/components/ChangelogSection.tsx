@@ -1,27 +1,12 @@
 import { ArrowUpRight, Newspaper } from "lucide-react";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { ChangelogList } from "@/components/ChangelogList";
 import { changelogEntriesResolved } from "@/data/changelog";
-
-function formatChangelogDate(iso: string): string {
-  const [y, m, d] = iso.split("-").map(Number);
-  if (!y || !m || !d) return iso;
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
 
 export function ChangelogSection() {
   const location = useLocation();
-  const sorted = useMemo(
-    () => [...changelogEntriesResolved].sort((a, b) => b.date.localeCompare(a.date)),
-    [],
-  );
-  const visible = sorted.slice(0, 8);
 
   useEffect(() => {
     if (location.pathname !== "/" || location.hash !== "#whats-new") {
@@ -65,59 +50,29 @@ export function ChangelogSection() {
               <code className="rounded bg-white/[0.08] px-1 py-0.5 text-[12px] text-foreground/80">
                 scripts/changelog_git_paths.json
               </code>
-              ), then <code className="rounded bg-white/[0.08] px-1 py-0.5 text-[12px] text-foreground/80">dateManual</code>{" "}
-              if git has no commit for that path yet.
+              ), then{" "}
+              <code className="rounded bg-white/[0.08] px-1 py-0.5 text-[12px] text-foreground/80">dateManual</code> if
+              git has no commit for that path yet. A cookie stores your last visit so we can highlight what&apos;s new.
             </p>
-            <Link
-              to="/library"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground/88 underline decoration-white/25 underline-offset-4 transition hover:decoration-white/50"
-            >
-              Full library
-              <ArrowUpRight className="h-3.5 w-3.5 opacity-80" />
-            </Link>
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+              <Link
+                to="/changelog"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/88 underline decoration-white/25 underline-offset-4 transition hover:decoration-white/50"
+              >
+                Full changelog
+                <ArrowUpRight className="h-3.5 w-3.5 opacity-80" />
+              </Link>
+              <Link
+                to="/library"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/70 underline decoration-white/20 underline-offset-4 transition hover:decoration-white/45"
+              >
+                Library
+                <ArrowUpRight className="h-3.5 w-3.5 opacity-70" />
+              </Link>
+            </div>
           </div>
 
-          <ul className="min-w-0 flex-1 space-y-0 divide-y divide-white/10">
-            {visible.map((entry) => (
-              <li key={entry.id} className="py-3.5 first:pt-0 sm:py-4">
-                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-4">
-                  <time
-                    dateTime={entry.date}
-                    className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-foreground/50"
-                  >
-                    {formatChangelogDate(entry.date)}
-                  </time>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-semibold tracking-[-0.02em] text-foreground">{entry.title}</p>
-                    <p className="mt-1 text-sm leading-6 text-foreground/65">{entry.description}</p>
-                    {entry.href ? (
-                      <p className="mt-2">
-                        {entry.href.startsWith("http") ? (
-                          <a
-                            href={entry.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-sm font-medium text-foreground/90 transition hover:text-foreground"
-                          >
-                            {entry.linkLabel ?? "Details"}
-                            <ArrowUpRight className="h-3.5 w-3.5 opacity-75" />
-                          </a>
-                        ) : (
-                          <Link
-                            to={entry.href}
-                            className="inline-flex items-center gap-1 text-sm font-medium text-foreground/90 transition hover:text-foreground"
-                          >
-                            {entry.linkLabel ?? "Details"}
-                            <ArrowUpRight className="h-3.5 w-3.5 opacity-75" />
-                          </Link>
-                        )}
-                      </p>
-                    ) : null}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <ChangelogList entries={changelogEntriesResolved} limit={12} variant="compact" />
         </div>
       </div>
     </section>
