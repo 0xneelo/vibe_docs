@@ -2,6 +2,8 @@
 
 ## 5.1 Position in the Lifecycle
 
+**Section 4Z** clarifies that “permissionless perpetuals” are not only about **opening** markets; they require a path to **tradeable liquidity** (generalized bootstrap until order books can take over). The model below assumes that full stack.
+
 A protocol that enables **permissionless perpetual markets** for tokens that already trade on DEXs but do not qualify for major perp venues would occupy the missing middle of the token lifecycle. It would sit between early-stage fair launch ecosystems and late-stage order book or CEX derivatives venues.
 
 ---

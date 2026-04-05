@@ -24,7 +24,11 @@ We analyzed major listing controllers:
 
 We identified the critical gap between DEX graduation (~$70K) and perp availability (~$100M–$500M). This gap disconnects fair launch ecosystems from institutional infrastructure and creates systemic inefficiencies.
 
-### 7.1.5 The Hypothetical Missing Layer
+### 7.1.5 Listing Plus Liquidity (Section 4Z)
+
+We sharpened the thesis: **listing** language names visible gates, but economic power sits in **tradeable** markets. **Permissionless market creation** without **zero-cost (mechanized) liquidity generation**—the Uniswap pattern applied to derivatives—risks empty books. The category problem is a **generalized** perpetual liquidity layer that bootstraps until order-book venues take over.
+
+### 7.1.6 The Hypothetical Missing Layer
 
 We treated permissionless perpetuals as the missing layer between DEX graduation and late-stage derivatives venues. In that framing, a hypothetical protocol that fills the gap would complete the progression from transfer to swap to creation to derivatives, while connecting early-stage trading to later-stage market infrastructure.
 
@@ -34,7 +38,7 @@ We treated permissionless perpetuals as the missing layer between DEX graduation
 
 ### 7.2.1 Listings Create Monopoly
 
-Listing control creates monopoly through user capture, fee capture, network effects, and gatekeeping power. Protocols that dominate a lifecycle stage (PumpFun, Uniswap, Binance) capture outsized value.
+Listing control creates monopoly through user capture, fee capture, network effects, and gatekeeping power. Protocols that dominate a lifecycle stage (PumpFun, Uniswap, Binance) capture outsized value. Where derivatives are concerned, **liquidity and listings compound**: depth attracts flow and new markets; without generalized bootstrap, listing alone does not (Section 4Z).
 
 ### 7.2.2 The Gap Is Structural
 

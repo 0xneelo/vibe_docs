@@ -47,6 +47,7 @@ The problems are inherent to the **economic model**, not the implementation. Per
 
 ## Related Documents
 
+- **16_listing_additional** — Field notes on dYdX MegaVault, Hyperliquid listing discipline, GMX tails, Percolator forks (e.g. Perk.fund); complements this dissertation with venue-level context
 - **02_perps_categories_zscore** — Bootstrap Trilemma, framework for perp protocol categorization
 - **04_proof_of_value** — Vibe LP economics, capital efficiency, risk alignment
 - **16_vibe_full_derivation** — Dynamic pricing, defense hierarchy, bell-curve flattening

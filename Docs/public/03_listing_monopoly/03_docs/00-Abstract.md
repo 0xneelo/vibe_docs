@@ -36,6 +36,7 @@ Token Lifecycle, Market Listings, Cryptocurrency Monopoly, DeFi Infrastructure, 
 | 2 | Framework | Token lifecycle stages and monopoly dynamics |
 | 3 | Landscape | Who controls what: major protocol analysis |
 | 4 | The Lifecycle Gap | The valley between DEX and perp availability |
+| 4Z | Listing, Liquidity, Bootstrap | Why power lies in listing *and* scalable liquidity, not symbol creation alone |
 | 5 | Hypothetical Permissionless Perps | A project-agnostic model for filling the gap |
 | 6 | Strategic Implications | Industry effects and partnership strategy |
 | 7 | Conclusion | Summary and path to complete lifecycle control |

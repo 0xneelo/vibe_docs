@@ -129,4 +129,4 @@ The lifecycle gap—from DEX graduation to perp availability—represents a fund
 
 ---
 
-*Next Section: A Hypothetical Permissionless Perps Protocol →*
+*Next: [Listing, liquidity, and generalized bootstrap](./04z-Listing-And-Liquidity-Thesis.md) → then [Hypothetical Permissionless Perps](./05-Permissionless-Perps-Hypothesis.md)*

@@ -1,0 +1,12 @@
+{
+  "_comment": "Maps changelog entry ids to repo paths. Last commit date touching any path becomes the displayed date (git log -1 --format=%cs). Run via prebuild.py.",
+  "funding-model": [
+    "Docs/public/15_funding_model",
+    "Website/src/pages/FundingModelPage.tsx",
+    "Website/src/pages/FundingSimulatorPage.tsx",
+    "Website/src/pages/zScoreModelPage.tsx"
+  ],
+  "listing-additional": ["Docs/public/16_listing_additional"],
+  "listing-monopoly-4z": ["Docs/public/03_listing_monopoly/03_docs/04z-Listing-And-Liquidity-Thesis.md"],
+  "site-collection-landing": ["Website/src/pages/CollectionPage.tsx"]
+}
