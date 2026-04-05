@@ -67,7 +67,7 @@ class Collection:
 
     @property
     def href(self) -> str:
-        return f"/collections/{self.slug}"
+        return f"/chapters/{self.slug}"
 
 
 def slugify(value: str) -> str:

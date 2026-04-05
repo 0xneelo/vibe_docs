@@ -4,6 +4,7 @@ export function GlobalBackground() {
   const { pathname } = useLocation();
   const quietGradient =
     pathname.startsWith("/simulations") ||
+    pathname.startsWith("/chapters") ||
     pathname.startsWith("/collections") ||
     pathname.startsWith("/docs");
 

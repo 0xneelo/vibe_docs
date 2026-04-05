@@ -1,9 +1,15 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BookMarked, FileStack } from "lucide-react";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import { usePreviousVisitDay } from "@/context/LastVisitContext";
 import type { ChangelogEntryResolved } from "@/data/changelog";
+import {
+  CHANGELOG_IMPACT_LABELS,
+  CHANGELOG_TAG_LABELS,
+  type ChangelogImpact,
+} from "@/data/changelogMeta";
+import { cn } from "@/lib/utils";
 
 export function formatChangelogDate(isoDay: string): string {
   const [y, m, d] = isoDay.split("-").map(Number);
@@ -23,14 +29,35 @@ function isEntryNewSinceVisit(entryDate: string, previousVisitDay: string | null
   return entryDate > previousVisitDay;
 }
 
+function impactPillClass(impact: ChangelogImpact): string {
+  switch (impact) {
+    case "major":
+      return "border-rose-400/35 bg-rose-500/12 text-rose-100/95";
+    case "medium":
+      return "border-amber-400/35 bg-amber-500/10 text-amber-100/90";
+    case "minor":
+      return "border-white/18 bg-white/[0.06] text-foreground/75";
+    default:
+      return "border-white/15 bg-white/[0.04] text-foreground/70";
+  }
+}
+
 type ChangelogListProps = {
   entries: ChangelogEntryResolved[];
   /** If set, only show this many rows (after sort). */
   limit?: number;
   variant?: "compact" | "full";
+  /** Show impact, tags, file count, scope (default: true for full, false for compact). */
+  showMeta?: boolean;
 };
 
-export function ChangelogList({ entries, limit, variant = "compact" }: ChangelogListProps) {
+export function ChangelogList({
+  entries,
+  limit,
+  variant = "compact",
+  showMeta: showMetaProp,
+}: ChangelogListProps) {
+  const showMeta = showMetaProp ?? variant === "full";
   const previousVisitDay = usePreviousVisitDay();
 
   const { sorted, markerIndex, newCount, allNewSinceVisit } = useMemo(() => {
@@ -118,6 +145,17 @@ export function ChangelogList({ entries, limit, variant = "compact" }: Changelog
                     >
                       {entry.title}
                     </p>
+                    {showMeta ? (
+                      <span
+                        className={cn(
+                          "rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em]",
+                          variant === "full" ? "px-2.5 py-0.5 text-[11px]" : "",
+                          impactPillClass(entry.impact),
+                        )}
+                      >
+                        {CHANGELOG_IMPACT_LABELS[entry.impact]}
+                      </span>
+                    ) : null}
                     {isNew ? <span className={pillNew}>Since your last visit</span> : null}
                     {showMarker ? (
                       <span className={pillMarker} title="Newest item you had already seen on your last visit">
@@ -125,6 +163,44 @@ export function ChangelogList({ entries, limit, variant = "compact" }: Changelog
                       </span>
                     ) : null}
                   </div>
+                  {showMeta ? (
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      {entry.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={cn(
+                            "rounded-full border border-white/12 bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium text-foreground/72",
+                            variant === "full" && "text-[11px]",
+                          )}
+                        >
+                          {CHANGELOG_TAG_LABELS[tag as keyof typeof CHANGELOG_TAG_LABELS] ?? tag}
+                        </span>
+                      ))}
+                      {entry.filesChanged != null ? (
+                        <span
+                          className={cn(
+                            "inline-flex items-center gap-1 rounded-full border border-white/10 bg-black/20 px-2 py-0.5 text-[10px] text-foreground/60",
+                            variant === "full" && "text-[11px]",
+                          )}
+                          title="Approximate files touched in the underlying change"
+                        >
+                          <FileStack className="h-3 w-3 opacity-70" aria-hidden />
+                          ~{entry.filesChanged} files
+                        </span>
+                      ) : null}
+                      {entry.newChapter ? (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-100/90">
+                          <BookMarked className="h-3 w-3" aria-hidden />
+                          New chapter
+                        </span>
+                      ) : null}
+                      {entry.newSection ? (
+                        <span className="rounded-full border border-cyan-400/28 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-medium text-cyan-100/90">
+                          New section
+                        </span>
+                      ) : null}
+                    </div>
+                  ) : null}
                   <p
                     className={
                       variant === "full"

@@ -5,7 +5,7 @@ const simulatorLinks = [
   {
     label: "Funding Model Chapter",
     description: "Read assumptions, formulas, and section breakdown",
-    to: "/collections/15-funding-model",
+    to: "/chapters/15-funding-model",
   },
 
   {

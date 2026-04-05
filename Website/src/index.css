@@ -530,11 +530,12 @@
     background-image: linear-gradient(223deg, #e8e8e9 0%, #3a7bbf 104.15%);
   }
 
-  .reader-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
-  }
-
+  /*
+   * Do not set scrollbar-width / scrollbar-color here: Chrome 121+ applies them over
+   * ::-webkit-scrollbar and on Windows may still paint arrow buttons. WebKit rules
+   * below handle Chromium/Safari; Firefox-only styling is in an @supports block
+   * after @layer components.
+   */
   .reader-scrollbar::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -543,6 +544,17 @@
   .reader-scrollbar::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.12);
     border-radius: 9999px;
+  }
+
+  .reader-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Hide WebKit scrollbar arrow buttons (top/bottom triangles on some OS/browser combos). */
+  .reader-scrollbar::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .content-auto {
@@ -908,6 +920,12 @@
 
   .collections-scrollbar::-webkit-scrollbar-track {
     background: #0000;
+  }
+
+  .collections-scrollbar::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .collections-scrollbar::-webkit-scrollbar-thumb {
@@ -1353,4 +1371,47 @@
     border-color: rgb(255 255 255 / 0.1);
   }
 
+}
+
+/*
+ * Unlayered (wins over @layer utilities): WebKit/Blink may still paint scrollbar
+ * arrow buttons unless each variant is zeroed—especially :single-button on Windows.
+ */
+.reader-scrollbar::-webkit-scrollbar-button:vertical:decrement,
+.reader-scrollbar::-webkit-scrollbar-button:vertical:increment,
+.reader-scrollbar::-webkit-scrollbar-button:horizontal:decrement,
+.reader-scrollbar::-webkit-scrollbar-button:horizontal:increment {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.reader-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement,
+.reader-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment,
+.reader-scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement,
+.reader-scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment {
+  display: none;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0;
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.collections-scrollbar::-webkit-scrollbar-button:vertical:decrement,
+.collections-scrollbar::-webkit-scrollbar-button:vertical:increment,
+.collections-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement,
+.collections-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+  display: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Firefox only: standard scrollbar props (avoid combining with WebKit—see note above). */
+@supports (-moz-appearance: none) {
+  .reader-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+  }
 }

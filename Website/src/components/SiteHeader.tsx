@@ -25,7 +25,10 @@ export function SiteHeader() {
   const isHome = location.pathname === "/";
   const isChangelog = location.pathname === "/changelog";
   const isLibrary = location.pathname.startsWith("/library");
-  const isCollections = location.pathname.startsWith("/collections");
+  const isChaptersNav =
+    isLibrary ||
+    location.pathname.startsWith("/chapters") ||
+    location.pathname.startsWith("/collections");
   const isSimulations =
     location.pathname.startsWith("/simulations") || location.pathname.startsWith("/funding-model") || location.pathname.startsWith("/local-funding");
   const isReaderRoute = true;
@@ -78,7 +81,7 @@ export function SiteHeader() {
             Changelog
           </Link>
           <div className="group relative">
-            <Link to="/library" className={navButtonClass(isCollections)}>
+            <Link to="/library" className={navButtonClass(isChaptersNav)}>
               Chapters
             </Link>
 
@@ -178,7 +181,7 @@ export function SiteHeader() {
                 to="/library"
                 className={cn(
                   "flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition",
-                  isCollections
+                  isChaptersNav
                     ? "border-white/35 bg-white/[0.14] text-foreground"
                     : "border-white/12 bg-white/[0.03] text-foreground/85 hover:bg-white/[0.08]",
                 )}
