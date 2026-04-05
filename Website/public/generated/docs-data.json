@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-04-05T20:58:39.132990+00:00",
+  "generatedAt": "2026-04-05T21:37:19.894211+00:00",
   "collections": [
     {
       "key": "01_perp_classes_zscore",
       "slug": "01-perp-classes-zscore",
       "title": "01 \u2014 Perps Categories & Bootstrap Trilemma",
       "summary": "Framework for categorizing perpetual protocols. Covers the Bootstrap Trilemma, Z-Score maturation, and Vibe's hybrid architecture.",
-      "href": "/collections/01-perp-classes-zscore",
+      "href": "/chapters/01-perp-classes-zscore",
       "overviewTitle": "01 \u2014 Perps Categories & Bootstrap Trilemma",
       "overviewHtml": "<h1 id=\"01-perps-categories-bootstrap-trilemma\">01 \u2014 Perps Categories &amp; Bootstrap Trilemma</h1>\n<p>Framework for categorizing perpetual protocols. Covers the Bootstrap Trilemma, Z-Score maturation, and Vibe&rsquo;s hybrid architecture.</p>\n<p>\u2192 See <a href=\"./02_docs/README.md\">01_docs/README.md</a> for full paper</p>",
       "overviewHeadings": [
@@ -37,7 +37,7 @@
       "slug": "02-proof-of-value",
       "title": "02 \u2014 Proof of Value",
       "summary": "Market cap as verification layer for truth. Information + trade convergence, the missing \"NO\" button, permissionless shorting at launch, and the Strait Gate. Based on transcript d...",
-      "href": "/collections/02-proof-of-value",
+      "href": "/chapters/02-proof-of-value",
       "overviewTitle": "02 \u2014 Proof of Value",
       "overviewHtml": "<h1 id=\"02-proof-of-value\">02 \u2014 Proof of Value</h1>\n<p>Market cap as verification layer for truth. Information + trade convergence, the missing &ldquo;NO&rdquo; button, permissionless shorting at launch, and the Strait Gate. Based on transcript dialogue.</p>\n<p>\u2192 See <a href=\"./04_docs/README.md\">02_docs/README.md</a> for full dissertation</p>",
       "overviewHeadings": [
@@ -67,7 +67,7 @@
       "slug": "03-listing-monopoly",
       "title": "03 \u2014 Listing Monopoly",
       "summary": "Control the token lifecycle \u2192 control crypto. Framework for understanding listing power across Binance, PumpFun, Uniswap, Hyperliquid, and the hypothetical permissionless perpetua...",
-      "href": "/collections/03-listing-monopoly",
+      "href": "/chapters/03-listing-monopoly",
       "overviewTitle": "03 \u2014 Listing Monopoly",
       "overviewHtml": "<h1 id=\"03-listing-monopoly\">03 \u2014 Listing Monopoly</h1>\n<p>Control the token lifecycle \u2192 control crypto. Framework for understanding listing power across Binance, PumpFun, Uniswap, Hyperliquid, and the hypothetical permissionless perpetual layer that could fill the gap.</p>\n<p>\u2192 See <a href=\"/docs/03-listing-monopoly/03-docs/overview\">03_docs/README.md</a> for full paper</p>",
       "overviewHeadings": [
@@ -97,7 +97,7 @@
       "slug": "04-ode-to-the-orderbook",
       "title": "04 \u2014 Ode to OrderBooks",
       "summary": "How Vibe improves order book DEXs and helps create a more open financial system. Order books remain the mature execution layer; Vibe supplies the bootstrap, discovery, and permiss...",
-      "href": "/collections/04-ode-to-the-orderbook",
+      "href": "/chapters/04-ode-to-the-orderbook",
       "overviewTitle": "04 \u2014 Ode to OrderBooks",
       "overviewHtml": "<h1 id=\"04-ode-to-orderbooks\">04 \u2014 Ode to OrderBooks</h1>\n<p>How Vibe improves order book DEXs and helps create a more open financial system. Order books remain the mature execution layer; Vibe supplies the bootstrap, discovery, and permissionless listing layer beneath them.</p>\n<p>-&gt; See <a href=\"/docs/04-ode-to-the-orderbook/05-docs/overview\">05_docs/README.md</a> for the full dissertation</p>",
       "overviewHeadings": [
@@ -127,7 +127,7 @@
       "slug": "05-ode-to-the-orderbook-part2",
       "title": "05 - Ode to OrderBooks, Part II",
       "summary": "A Hyperliquid-facing continuation of the order book thesis. Focused on why vibes-based listings must end, why order books need a permissionless bootstrap layer, and how Vibe can h...",
-      "href": "/collections/05-ode-to-the-orderbook-part2",
+      "href": "/chapters/05-ode-to-the-orderbook-part2",
       "overviewTitle": "05 - Ode to OrderBooks, Part II",
       "overviewHtml": "<h1 id=\"05-ode-to-orderbooks-part-ii\">05 - Ode to OrderBooks, Part II</h1>\n<p>A Hyperliquid-facing continuation of the order book thesis. Focused on why vibes-based listings must end, why order books need a permissionless bootstrap layer, and how Vibe can help create the house of all finance.</p>\n<p>-&gt; See <a href=\"/docs/05-ode-to-the-orderbook-part2/06-docs/overview\">06_docs/README.md</a> for the full dissertation</p>",
       "overviewHeadings": [
@@ -156,7 +156,7 @@
       "slug": "06-usdc-token-perps",
       "title": "06 - USDC vs Token-Margined Perpetuals",
       "summary": "Comparison of Imperial (USDC-backed delta-neutral AMM) and Vibecaps (token-backed solver model) for low-cap perpetuals. Focused on risk, capital efficiency, and why token-vault ar...",
-      "href": "/collections/06-usdc-token-perps",
+      "href": "/chapters/06-usdc-token-perps",
       "overviewTitle": "06 - USDC vs Token-Margined Perpetuals",
       "overviewHtml": "<h1 id=\"06-usdc-vs-token-margined-perpetuals\">06 - USDC vs Token-Margined Perpetuals</h1>\n<p>Comparison of Imperial (USDC-backed delta-neutral AMM) and Vibecaps (token-backed solver model) for low-cap perpetuals. Focused on risk, capital efficiency, and why token-vault architectures outperform external USDC LP designs.</p>\n<p>-&gt; See <a href=\"./01_docs/README.md\">07_docs/README.md</a> for the full paper</p>",
       "overviewHeadings": [
@@ -182,7 +182,7 @@
       "slug": "07-token-margined-issues-perculator",
       "title": "07 - Token-Margined Issues (Percolator)",
       "summary": "Why inverted/token-margined perpetuals are structurally problematic. Seven failure modes, Percolator case study, and why USDC-margined hybrid is superior.",
-      "href": "/collections/07-token-margined-issues-perculator",
+      "href": "/chapters/07-token-margined-issues-perculator",
       "overviewTitle": "07 - Token-Margined Issues (Percolator)",
       "overviewHtml": "<h1 id=\"07-token-margined-issues-percolator\">07 - Token-Margined Issues (Percolator)</h1>\n<p>Why inverted/token-margined perpetuals are structurally problematic. Seven failure modes, Percolator case study, and why USDC-margined hybrid is superior.</p>\n<p>-&gt; See <a href=\"/docs/07-token-margined-issues-perculator/08-docs/overview\">08_docs/README.md</a> for full dissertation</p>",
       "overviewHeadings": [
@@ -215,7 +215,7 @@
       "slug": "08-due-diligence-questionnaire",
       "title": "08 - Due Diligence Questionnaire",
       "summary": "DDQ, risk walkthrough, bearer of losses, solver as residual counterparty, and worst-case scenarios. Economic outcomes for LPs and traders.",
-      "href": "/collections/08-due-diligence-questionnaire",
+      "href": "/chapters/08-due-diligence-questionnaire",
       "overviewTitle": "08 - Due Diligence Questionnaire",
       "overviewHtml": "<h1 id=\"08-due-diligence-questionnaire\">08 - Due Diligence Questionnaire</h1>\n<p>DDQ, risk walkthrough, bearer of losses, solver as residual counterparty, and worst-case scenarios. Economic outcomes for LPs and traders.</p>\n<p>-&gt; See <a href=\"/docs/08-due-diligence-questionnaire/10-docs/overview\">10_docs/README.md</a> for the full materials</p>",
       "overviewHeadings": [
@@ -249,7 +249,7 @@
       "slug": "09-fix-industry-one-primitive",
       "title": "09 - Fix Industry One Primitive",
       "summary": "Dissertation on the missing primitive that can unify information, asset issuance, and market verification. Built from the section 12 transcript.",
-      "href": "/collections/09-fix-industry-one-primitive",
+      "href": "/chapters/09-fix-industry-one-primitive",
       "overviewTitle": "09 - Fix Industry One Primitive",
       "overviewHtml": "<h1 id=\"09-fix-industry-one-primitive\">09 - Fix Industry One Primitive</h1>\n<p>Dissertation on the missing primitive that can unify information, asset issuance, and market verification. Built from the section 12 transcript.</p>\n<p>-&gt; See <a href=\"/docs/09-fix-industry-one-primitive/12-docs/overview\">12_docs/README.md</a> for the full dissertation</p>",
       "overviewHeadings": [
@@ -278,7 +278,7 @@
       "slug": "10-vibe-pillars",
       "title": "10 - Vibe Pillars",
       "summary": "Draft workspace for a paper on the core structural pillars of Vibe.",
-      "href": "/collections/10-vibe-pillars",
+      "href": "/chapters/10-vibe-pillars",
       "overviewTitle": "10 - Vibe Pillars",
       "overviewHtml": "<h1 id=\"10-vibe-pillars\">10 - Vibe Pillars</h1>\n<p>Draft workspace for a paper on the core structural pillars of Vibe.</p>\n<p>This folder develops a simple thesis: permissionless perpetuals for the long tail only work if three hard problems are solved together:</p>\n<ul>\n<li>exploit resistance</li>\n<li>market bootstrap / guaranteed counterparty access</li>\n<li>sufficient LP yield through capital efficiency</li>\n</ul>\n<p>The main source material is the rough transcript in <code>13_transcripts/13_transcript.md</code>, expanded into a cleaner paper structure in <code>13_docs/</code>.</p>\n<p>-&gt; See <a href=\"/docs/10-vibe-pillars/13-docs/overview\">13_docs/README.md</a> for the draft overview</p>",
       "overviewHeadings": [
@@ -305,7 +305,7 @@
       "slug": "11-gametheory-of-listings",
       "title": "11 - Game Theory of Listings",
       "summary": "Draft workspace for a paper on how listing mechanisms shape crypto market structure.",
-      "href": "/collections/11-gametheory-of-listings",
+      "href": "/chapters/11-gametheory-of-listings",
       "overviewTitle": "11 - Game Theory of Listings",
       "overviewHtml": "<h1 id=\"11-game-theory-of-listings\">11 - Game Theory of Listings</h1>\n<p>Draft workspace for a paper on how listing mechanisms shape crypto market structure.</p>\n<p>The core thesis is that any listing venue with non-trivial cost, curation, or reputational exposure must optimize around <strong>perceived interest</strong>, not <strong>actual interest</strong>. That creates structural distortions across the industry: low-float high-FDV launches, metric gaming, over-curated listings, and a widening disconnect between where tokens are created and where they can access serious derivatives.</p>\n<p>This folder develops the case that zero-cost permissionless listing systems preserve evolutionary discovery better than curated or high-cost systems, and that Vibe&rsquo;s role is to bring perpetuals to the <code>zero perceived interest</code> arena where future unicorns are born.</p>\n<p>-&gt; See <a href=\"/docs/11-gametheory-of-listings/14-docs/overview\">14_docs/README.md</a> for the draft overview</p>",
       "overviewHeadings": [
@@ -333,7 +333,7 @@
       "slug": "12-case-study-symm-lp",
       "title": "12 - First Vibe Perp Vault Case study",
       "summary": "Structured case study on our first vault performance, unit economics, risk surfaces, and scaling considerations.",
-      "href": "/collections/12-case-study-symm-lp",
+      "href": "/chapters/12-case-study-symm-lp",
       "overviewTitle": "12 - First Vibe Perp Vault Case study",
       "overviewHtml": "<h1 id=\"12-first-vibe-perp-vault-case-study\">12 - First Vibe Perp Vault Case study</h1>\n<p>Structured case study on our first vault performance, unit economics, risk surfaces, and scaling considerations.</p>\n<p>Built from transcript inputs and data snapshots, this paper is presented as an operating case study rather than an audited performance report.</p>\n<p>-&gt; See <a href=\"/docs/12-case-study-symm-lp/16-docs/overview\">16_docs/README.md</a> for the full case study</p>",
       "overviewHeadings": [
@@ -361,7 +361,7 @@
       "slug": "13-framework-value-permissionless-perps",
       "title": "13 \u2014 Proof of Value Framework",
       "summary": "LP economics, 70% revenue share, 100\u00d7 capital efficiency, 160+ launch partners. Value creation for LPs, traders, projects, and ecosystem. Comparative advantage vs USDC-vault and t...",
-      "href": "/collections/13-framework-value-permissionless-perps",
+      "href": "/chapters/13-framework-value-permissionless-perps",
       "overviewTitle": "13 \u2014 Proof of Value Framework",
       "overviewHtml": "<h1 id=\"13-proof-of-value-framework\">13 \u2014 Proof of Value Framework</h1>\n<p>LP economics, 70% revenue share, ~100\u00d7 capital efficiency, 160+ launch partners. Value creation for LPs, traders, projects, and ecosystem. Comparative advantage vs USDC-vault and token-margined protocols.</p>\n<p>\u2192 See <a href=\"/docs/13-framework-value-permissionless-perps/17-docs/overview\">17_docs/README.md</a> for full paper</p>",
       "overviewHeadings": [
@@ -391,7 +391,7 @@
       "slug": "14-information-trade-convergence",
       "title": "14 - Information and Trade Convergence",
       "summary": "The Strait Gate: information and trade threads, market cap as truth, beyond Polymarket, the missing NO button, intent-based architecture, and the verification layer for the tokeni...",
-      "href": "/collections/14-information-trade-convergence",
+      "href": "/chapters/14-information-trade-convergence",
       "overviewTitle": "14 - Information and Trade Convergence",
       "overviewHtml": "<h1 id=\"14-information-and-trade-convergence\">14 - Information and Trade Convergence</h1>\n<p>The Strait Gate: information and trade threads, market cap as truth, beyond Polymarket, the missing NO button, intent-based architecture, and the verification layer for the tokenized economy.</p>\n<p>-&gt; See <a href=\"/docs/14-information-trade-convergence/18-docs/overview\">18_docs/README.md</a> for the full dissertation</p>",
       "overviewHeadings": [
@@ -421,7 +421,7 @@
       "slug": "15-funding-model",
       "title": "15 - Funding Rate Model",
       "summary": "A technical chapter for the funding-rate engine, including formal derivation, defensive controls, and scenario analysis.",
-      "href": "/collections/15-funding-model",
+      "href": "/chapters/15-funding-model",
       "overviewTitle": "15 - Funding Rate Model",
       "overviewHtml": "<h1 id=\"15-funding-rate-model\">15 - Funding Rate Model</h1>\n<p>A technical chapter for the funding-rate engine, including formal derivation, defensive controls, and scenario analysis.</p>\n<p>This chapter explains how funding, utilization stress, and emergency dynamics interact to protect solver capital while preserving market continuity. It also outlines the assumptions behind recovery behavior and risk controls across volatile conditions.</p>\n<h2 id=\"interactive-simulators\">Interactive Simulators</h2>\n<ul>\n<li><a href=\"/content-assets/15_funding_model/15_docs/assets/gravitational-pull/cone_traversal_simulation.html\">Cone Traversal Simulation</a></li>\n<li><a href=\"/content-assets/15_funding_model/15_docs/assets/gravitational-pull/market_field_3d_force_slider_plotly.html\">Market Field 3D Slider</a></li>\n<li><a href=\"/content-assets/15_funding_model/15_docs/assets/gravitational-pull/market_field_3d_force_slider_gated80_plotly.html\">Market Field 3D Slider (Gated 80)</a></li>\n</ul>",
       "overviewHeadings": [
@@ -458,7 +458,7 @@
       "slug": "16-listing-additional",
       "title": "16 \u2014 Listing Additional Notes",
       "summary": "Field-level comparison of how major venues approach permissionless or long-tail perpetuals: order-book rails (dYdX MegaVault, Hyperliquid\u2019s listing discipline), pool-style venues...",
-      "href": "/collections/16-listing-additional",
+      "href": "/chapters/16-listing-additional",
       "overviewTitle": "16 \u2014 Listing Additional Notes",
       "overviewHtml": "<h1 id=\"16-listing-additional-notes\">16 \u2014 Listing Additional Notes</h1>\n<p>Field-level comparison of how major venues approach <strong>permissionless or long-tail perpetuals</strong>: order-book rails (dYdX MegaVault, Hyperliquid\u2019s listing discipline), pool-style venues (GMX), and the <strong>Percolator-family</strong> wave (including Perk.fund). Complements the <a href=\"/docs/03-listing-monopoly/03-docs/overview\">listing monopoly thesis</a> and the <a href=\"/docs/07-token-margined-issues-perculator/08-docs/overview\">Percolator structural critique</a>.</p>\n<h2 id=\"permissionless-perps-in-practice-order-books-pools-and-the-percolator-wave\">Permissionless Perps in Practice: Order Books, Pools, and the Percolator Wave</h2>\n<p>These notes extend the <a href=\"/docs/03-listing-monopoly/03-docs/04z-listing-and-liquidity-thesis\">listing + liquidity thesis</a>: <strong>opening a market</strong> is cheap; <strong>making it tradeable</strong> is not. We compare how leading designs respond to <strong>bootstrap</strong> (cold-start liquidity) versus <strong>scale</strong> (deep, continuous two-sided flow), then examine newer <strong>Percolator-style</strong> and forked systems where <strong>settlement and imbalance</strong> create trader-UX failures that raw \u201copen interest\u201d does not capture.</p>\n<p><strong>Product surfaces change.</strong> Concrete parameters (minimum deposits, lockups, auction cadence) are summarized as <strong>observed or reported at drafting time</strong>; verify against live documentation before relying on them for decisions.</p>\n<p>\u2192 See <a href=\"/docs/16-listing-additional/16-docs/overview\">16_docs/README.md</a> for the same table with editor-local file links.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Scope, disclaimers, related reading</td>\n</tr>\n<tr>\n<td><strong>1. Order books</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/01-order-books-dydx-hyperliquid\">01-Order-Books-DYdX-Hyperliquid.md</a></td>\n<td>Bootstrap limits, MegaVault, Hyperliquid\u2019s rare listings</td>\n</tr>\n<tr>\n<td><strong>2. Collateralized pools</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/02-collateralized-pools-gmx\">02-Collateralized-Pools-GMX.md</a></td>\n<td>Finite market lists, TVL tails, backstop mismatch</td>\n</tr>\n<tr>\n<td><strong>3. Percolator wave</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/03-percolator-wave-perc-fund\">03-Percolator-Wave-Perc-Fund.md</a></td>\n<td>Forks, Perk.fund, USDC settlement, link to Percolator dissertation</td>\n</tr>\n<tr>\n<td><strong>4. Tech vs economics</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/04-async-tech-sync-economics\">04-Async-Tech-Sync-Economics.md</a></td>\n<td>When matching is async on-chain but P&amp;L still needs a counterparty</td>\n</tr>\n<tr>\n<td><strong>5. Trader UX</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/05-liquidity-as-trader-experience\">05-Liquidity-As-Trader-Experience.md</a></td>\n<td>\u201cLiquidity\u201d as payout reliability; exchange deviation multiplier</td>\n</tr>\n<tr>\n<td><strong>6. Summary</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/06-summary\">06-Summary.md</a></td>\n<td>Model map, why hybrid switching matters, related docs</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"related-collections\">Related Collections</h2>\n<ul>\n<li><strong><a href=\"/docs/03-listing-monopoly/03-docs/overview\">03_listing_monopoly</a></strong> \u2014 Lifecycle gap, listing + liquidity, generalized bootstrap</li>\n<li><strong><a href=\"/docs/07-token-margined-issues-perculator/08-docs/overview\">07_token_margined_issues_perculator</a></strong> \u2014 Percolator architecture, token-margined failure modes, Vibe vs Percolator</li>\n<li><strong><a href=\"/docs/04-ode-to-the-orderbook/05-docs/overview\">04_ode_to_the_orderbook</a></strong> \u2014 Why order books excel at majors and struggle at the long tail</li>\n</ul>\n<hr>\n<p><em>Listing monopoly \u2014 practical protocol landscape</em></p>",
       "overviewHeadings": [
@@ -11396,7 +11396,7 @@
       "href": "/docs/16-listing-additional/16-docs/overview",
       "title": "Permissionless Perps in Practice: Order Books, Pools, and the Percolator Wave",
       "summary": "The chapter landing on the site renders the collection overview (README.md at the chapter root). This file is the section index for editing with relative links into 16docs/.",
-      "html": "<h1 id=\"permissionless-perps-in-practice-order-books-pools-and-the-percolator-wave\">Permissionless Perps in Practice: Order Books, Pools, and the Percolator Wave</h1>\n<p>The <strong>chapter landing</strong> on the site renders the <a href=\"/collections/16-listing-additional\">collection overview</a> (<code>README.md</code> at the chapter root). This file is the <strong>section index</strong> for editing with relative links into <code>16_docs/</code>.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Scope, disclaimers, related reading</td>\n</tr>\n<tr>\n<td><strong>1. Order books</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/01-order-books-dydx-hyperliquid\">01-Order-Books-DYdX-Hyperliquid.md</a></td>\n<td>Bootstrap limits, MegaVault, Hyperliquid\u2019s rare listings</td>\n</tr>\n<tr>\n<td><strong>2. Collateralized pools</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/02-collateralized-pools-gmx\">02-Collateralized-Pools-GMX.md</a></td>\n<td>Finite market lists, TVL tails, backstop mismatch</td>\n</tr>\n<tr>\n<td><strong>3. Percolator wave</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/03-percolator-wave-perc-fund\">03-Percolator-Wave-Perc-Fund.md</a></td>\n<td>Forks, Perk.fund, USDC settlement, link to Percolator dissertation</td>\n</tr>\n<tr>\n<td><strong>4. Tech vs economics</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/04-async-tech-sync-economics\">04-Async-Tech-Sync-Economics.md</a></td>\n<td>When matching is async on-chain but P&amp;L still needs a counterparty</td>\n</tr>\n<tr>\n<td><strong>5. Trader UX</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/05-liquidity-as-trader-experience\">05-Liquidity-As-Trader-Experience.md</a></td>\n<td>\u201cLiquidity\u201d as payout reliability; exchange deviation multiplier</td>\n</tr>\n<tr>\n<td><strong>6. Summary</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/06-summary\">06-Summary.md</a></td>\n<td>Model map, why hybrid switching matters, related docs</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"related-collections\">Related Collections</h2>\n<ul>\n<li><strong><a href=\"/docs/03-listing-monopoly/03-docs/overview\">03_listing_monopoly</a></strong> \u2014 Lifecycle gap, listing + liquidity, generalized bootstrap</li>\n<li><strong><a href=\"/docs/07-token-margined-issues-perculator/08-docs/overview\">07_token_margined_issues_perculator</a></strong> \u2014 Percolator architecture, token-margined failure modes, Vibe vs Percolator</li>\n<li><strong><a href=\"/docs/04-ode-to-the-orderbook/05-docs/overview\">04_ode_to_the_orderbook</a></strong> \u2014 Why order books excel at majors and struggle at the long tail</li>\n</ul>\n<hr>\n<p><em>Listing monopoly \u2014 practical protocol landscape</em></p>",
+      "html": "<h1 id=\"permissionless-perps-in-practice-order-books-pools-and-the-percolator-wave\">Permissionless Perps in Practice: Order Books, Pools, and the Percolator Wave</h1>\n<p>The <strong>chapter landing</strong> on the site renders the <a href=\"/chapters/16-listing-additional\">collection overview</a> (<code>README.md</code> at the chapter root). This file is the <strong>section index</strong> for editing with relative links into <code>16_docs/</code>.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Scope, disclaimers, related reading</td>\n</tr>\n<tr>\n<td><strong>1. Order books</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/01-order-books-dydx-hyperliquid\">01-Order-Books-DYdX-Hyperliquid.md</a></td>\n<td>Bootstrap limits, MegaVault, Hyperliquid\u2019s rare listings</td>\n</tr>\n<tr>\n<td><strong>2. Collateralized pools</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/02-collateralized-pools-gmx\">02-Collateralized-Pools-GMX.md</a></td>\n<td>Finite market lists, TVL tails, backstop mismatch</td>\n</tr>\n<tr>\n<td><strong>3. Percolator wave</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/03-percolator-wave-perc-fund\">03-Percolator-Wave-Perc-Fund.md</a></td>\n<td>Forks, Perk.fund, USDC settlement, link to Percolator dissertation</td>\n</tr>\n<tr>\n<td><strong>4. Tech vs economics</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/04-async-tech-sync-economics\">04-Async-Tech-Sync-Economics.md</a></td>\n<td>When matching is async on-chain but P&amp;L still needs a counterparty</td>\n</tr>\n<tr>\n<td><strong>5. Trader UX</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/05-liquidity-as-trader-experience\">05-Liquidity-As-Trader-Experience.md</a></td>\n<td>\u201cLiquidity\u201d as payout reliability; exchange deviation multiplier</td>\n</tr>\n<tr>\n<td><strong>6. Summary</strong></td>\n<td><a href=\"/docs/16-listing-additional/16-docs/06-summary\">06-Summary.md</a></td>\n<td>Model map, why hybrid switching matters, related docs</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"related-collections\">Related Collections</h2>\n<ul>\n<li><strong><a href=\"/docs/03-listing-monopoly/03-docs/overview\">03_listing_monopoly</a></strong> \u2014 Lifecycle gap, listing + liquidity, generalized bootstrap</li>\n<li><strong><a href=\"/docs/07-token-margined-issues-perculator/08-docs/overview\">07_token_margined_issues_perculator</a></strong> \u2014 Percolator architecture, token-margined failure modes, Vibe vs Percolator</li>\n<li><strong><a href=\"/docs/04-ode-to-the-orderbook/05-docs/overview\">04_ode_to_the_orderbook</a></strong> \u2014 Why order books excel at majors and struggle at the long tail</li>\n</ul>\n<hr>\n<p><em>Listing monopoly \u2014 practical protocol landscape</em></p>",
       "headings": [
         {
           "level": 1,

@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from "react";
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 
 import { GlobalBackground } from "@/components/GlobalBackground";
 import { LastVisitProvider } from "@/context/LastVisitContext";
@@ -31,6 +31,15 @@ function ScrollToTop() {
   return null;
 }
 
+/** Old bookmarks and external links used `/collections/:slug`. */
+function CollectionsToChaptersRedirect() {
+  const { collectionSlug } = useParams();
+  if (!collectionSlug) {
+    return <Navigate to="/library" replace />;
+  }
+  return <Navigate to={`/chapters/${collectionSlug}`} replace />;
+}
+
 export default function App() {
   return (
     <DocsProvider>
@@ -50,7 +59,8 @@ export default function App() {
                 <Route path="/simulations/funding" element={<Navigate to="/simulations/funding-local" replace />} />
                 <Route path="/simulations/z-score" element={<ZScoreSimulatorPage />} />
                 <Route path="/funding-model" element={<Navigate to="/simulations/funding" replace />} />
-                <Route path="/collections/:collectionSlug" element={<CollectionPage />} />
+                <Route path="/chapters/:collectionSlug" element={<CollectionPage />} />
+                <Route path="/collections/:collectionSlug" element={<CollectionsToChaptersRedirect />} />
                 <Route path="/docs/:collectionSlug/*" element={<DocPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
