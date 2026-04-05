@@ -2,21 +2,13 @@ import { ChevronRight } from "lucide-react";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
+import { formatChangelogDate } from "@/components/ChangelogList";
+import { usePreviousVisitDay } from "@/context/LastVisitContext";
 import { changelogEntriesResolved } from "@/data/changelog";
-
-function formatBannerDate(iso: string): string {
-  const [y, m, d] = iso.split("-").map(Number);
-  if (!y || !m || !d) return iso;
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
 
 /** Slim bar under the navbar: newest changelog row by resolved date (git + manual). */
 export function SiteNotificationBar() {
+  const previousVisitDay = usePreviousVisitDay();
   const latest = useMemo(() => {
     if (changelogEntriesResolved.length === 0) return null;
     return [...changelogEntriesResolved].sort((a, b) => b.date.localeCompare(a.date))[0];
@@ -26,7 +18,7 @@ export function SiteNotificationBar() {
     return null;
   }
 
-  const whatsNewHref = "/#whats-new";
+  const isNewForVisitor = Boolean(previousVisitDay && latest.date > previousVisitDay);
 
   return (
     <div className="border-t border-white/[0.08] bg-gradient-to-r from-violet-500/[0.12] via-blue-500/[0.08] to-transparent">
@@ -37,12 +29,17 @@ export function SiteNotificationBar() {
             ·
           </span>
           <time className="text-foreground/55" dateTime={latest.date}>
-            {formatBannerDate(latest.date)}
+            {formatChangelogDate(latest.date)}
           </time>
           <span className="mx-1.5 text-foreground/40" aria-hidden>
             —
           </span>
           <span>{latest.title}</span>
+          {isNewForVisitor ? (
+            <span className="ml-2 rounded-full border border-amber-400/35 bg-amber-400/12 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-amber-100/90">
+              New since your last visit
+            </span>
+          ) : null}
         </p>
         <div className="flex shrink-0 items-center justify-center gap-3 sm:justify-end">
           {latest.href ? (
@@ -67,10 +64,10 @@ export function SiteNotificationBar() {
             )
           ) : null}
           <Link
-            to={whatsNewHref}
+            to="/changelog"
             className="inline-flex items-center gap-0.5 text-[13px] font-medium text-foreground/70 transition hover:text-foreground"
           >
-            All updates
+            Full changelog
             <ChevronRight className="h-3.5 w-3.5 opacity-70" />
           </Link>
         </div>

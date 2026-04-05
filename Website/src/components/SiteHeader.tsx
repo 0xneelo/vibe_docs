@@ -23,6 +23,7 @@ export function SiteHeader() {
     { title: "Z-Score Cone Traversal", href: "/simulations/z-score", description: "3D convergence field model" },
   ];
   const isHome = location.pathname === "/";
+  const isChangelog = location.pathname === "/changelog";
   const isLibrary = location.pathname.startsWith("/library");
   const isCollections = location.pathname.startsWith("/collections");
   const isSimulations =
@@ -72,6 +73,9 @@ export function SiteHeader() {
           </Link>
           <Link to="/library" className={navButtonClass(isLibrary)}>
             Library
+          </Link>
+          <Link to="/changelog" className={navButtonClass(isChangelog)}>
+            Changelog
           </Link>
           <div className="group relative">
             <Link to="/library" className={navButtonClass(isCollections)}>
@@ -158,6 +162,17 @@ export function SiteHeader() {
                 )}
               >
                 Library
+              </Link>
+              <Link
+                to="/changelog"
+                className={cn(
+                  "flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition",
+                  isChangelog
+                    ? "border-white/35 bg-white/[0.14] text-foreground"
+                    : "border-white/12 bg-white/[0.03] text-foreground/85 hover:bg-white/[0.08]",
+                )}
+              >
+                Changelog
               </Link>
               <Link
                 to="/library"
