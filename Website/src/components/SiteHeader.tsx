@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import logo from "@/assets/logo.png";
+import { SiteNotificationBar } from "@/components/SiteNotificationBar";
 import { cn } from "@/lib/utils";
 import { useDocs } from "@/lib/docs";
 
@@ -129,6 +130,8 @@ export function SiteHeader() {
           </button>
         ) : null}
       </div>
+
+      <SiteNotificationBar />
 
       {isReaderRoute && mobileMenuOpen ? (
         <div className="pointer-events-none absolute inset-x-0 top-full z-[60] flex justify-center px-4 pt-2 md:hidden">

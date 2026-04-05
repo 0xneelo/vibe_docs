@@ -36,10 +36,9 @@ export function CollectionPage() {
       firstHeading.remove();
     }
 
-    const firstParagraph = doc.body.querySelector("p");
-    if (firstParagraph) {
-      firstParagraph.remove();
-    }
+    // Keep the first body paragraph: it is usually the chapter blurb (not a duplicate of the
+    // hero title). Stripping it left many collections with an empty overview—root READMEs often
+    // have only h1 + one intro paragraph before "See NN_docs/README.md".
 
     const githubBase = "https://github.com/0xneelo/vibe_docs/blob/main/Docs/public";
     doc.body.querySelectorAll("a").forEach((anchor) => {
