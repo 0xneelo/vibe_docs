@@ -4,6 +4,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
+import { DocQuietShell, DocReadingGrid } from "@/components/docs/DocSiteLayout";
 import { useDocs } from "@/lib/docs";
 import { renderMath } from "@/lib/renderMath";
 
@@ -97,73 +98,69 @@ export function CollectionPage() {
   }, [cleanedOverviewHtml]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <div className="relative z-10">
-        <SiteHeader />
+    <DocQuietShell>
+      <SiteHeader />
 
-        <main className="mx-auto grid w-full max-w-[1680px] gap-6 px-4 py-8 lg:grid-cols-[300px_minmax(0,1fr)_260px] lg:px-8">
-          <div className="hidden lg:block">
-            <CollectionSidebar
-              collections={collections}
-              pagesByCollection={pagesByCollection}
-            />
-          </div>
+      <DocReadingGrid>
+        <div className="hidden lg:block">
+          <CollectionSidebar
+            collections={collections}
+            pagesByCollection={pagesByCollection}
+          />
+        </div>
 
-          <section className="space-y-6">
-            <header className="card-surface-main px-5 py-6 sm:px-7">
-              <p className="text-[11px] font-semibold tracking-[0.14em] text-foreground/56 uppercase">Chapter landing</p>
-              <h1 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
-                {collection.overviewTitle || collection.title}
-              </h1>
-            </header>
+        <section className="min-w-0 space-y-6">
+          <header className="card-surface-main px-5 py-6 sm:px-7 lg:px-8 lg:py-8">
+            <p className="text-[11px] font-semibold tracking-[0.14em] text-foreground/56 uppercase">Chapter landing</p>
+            <h1 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
+              {collection.overviewTitle || collection.title}
+            </h1>
+          </header>
 
-            <article className="card-surface-main content-auto p-6 sm:p-8">
-              <div ref={contentRef} className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedOverviewHtml }} />
-            </article>
+          <article className="card-surface-main content-auto min-w-0 overflow-x-clip p-6 sm:p-8">
+            <div ref={contentRef} className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedOverviewHtml }} />
+          </article>
 
-            <section className="card-surface-main overflow-hidden">
-              <div className="border-b border-white/8 px-5 py-4 sm:px-6">
-                <h2 className="text-lg font-semibold tracking-[-0.02em] text-foreground">Paper sections</h2>
-              </div>
-              <div>
-                {pages.map((page, index) => (
-                  <Link
-                    key={page.id}
-                    to={page.href}
-                    className="group grid items-start gap-4 border-b border-white/8 px-5 py-4 transition last:border-b-0 hover:bg-white/[0.06] sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:px-6"
-                  >
-                    <div className="hidden text-2xl leading-none font-semibold tracking-[-0.05em] text-foreground/22 transition group-hover:text-foreground/40 sm:block">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-lg font-semibold tracking-[-0.02em] text-foreground">{page.title}</div>
-                      <div className="mt-1.5 text-sm leading-6 text-foreground/58">{page.summary || page.relativePath}</div>
-                    </div>
-                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-foreground/40 transition group-hover:translate-x-0.5 group-hover:text-foreground" />
-                  </Link>
-                ))}
-              </div>
-            </section>
+          <section className="card-surface-main min-w-0 overflow-x-clip">
+            <div className="border-b border-white/8 px-5 py-4 sm:px-6">
+              <h2 className="text-lg font-semibold tracking-[-0.02em] text-foreground">Paper sections</h2>
+            </div>
+            <div>
+              {pages.map((page, index) => (
+                <Link
+                  key={page.id}
+                  to={page.href}
+                  className="group grid items-start gap-4 border-b border-white/8 px-5 py-4 transition last:border-b-0 hover:bg-white/[0.06] sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:px-6"
+                >
+                  <div className="hidden text-2xl leading-none font-semibold tracking-[-0.05em] text-foreground/22 transition group-hover:text-foreground/40 sm:block">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-lg font-semibold tracking-[-0.02em] text-foreground">{page.title}</div>
+                    <div className="mt-1.5 text-sm leading-6 text-foreground/58">{page.summary || page.relativePath}</div>
+                  </div>
+                  <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-foreground/40 transition group-hover:translate-x-0.5 group-hover:text-foreground" />
+                </Link>
+              ))}
+            </div>
           </section>
+        </section>
 
-          <div className="hidden lg:block" aria-hidden="true" />
-        </main>
-      </div>
-    </div>
+        <div className="hidden lg:block" aria-hidden="true" />
+      </DocReadingGrid>
+    </DocQuietShell>
   );
 }
 
 function CollectionState({ message }: { message: string }) {
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <div className="relative z-10">
-        <SiteHeader />
-        <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="card-surface-main p-6 text-sm text-foreground/60">
-            {message}
-          </div>
-        </main>
-      </div>
-    </div>
+    <DocQuietShell>
+      <SiteHeader />
+      <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="card-surface-main p-6 text-sm text-foreground/60">
+          {message}
+        </div>
+      </main>
+    </DocQuietShell>
   );
 }

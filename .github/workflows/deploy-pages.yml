@@ -22,6 +22,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify changelog dates file matches git history
+        run: |
+          python Website/scripts/generate_changelog_dates.py
+          git diff --exit-code -- Website/src/data/changelog-dates.generated.json
 
       - name: Setup Node
         uses: actions/setup-node@v4

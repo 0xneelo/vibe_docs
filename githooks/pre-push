@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Regenerate changelog dates from git; block push if committed JSON was stale.
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+if command -v python >/dev/null 2>&1; then
+  exec python Website/scripts/git_hook_pre_push.py
+elif command -v python3 >/dev/null 2>&1; then
+  exec python3 Website/scripts/git_hook_pre_push.py
+else
+  echo "pre-push: python not found; install Python or skip with git push --no-verify" >&2
+  exit 1
+fi

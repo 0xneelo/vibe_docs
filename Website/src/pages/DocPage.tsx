@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
+import { DocQuietShell, DocReadingGrid } from "@/components/docs/DocSiteLayout";
 import { DocPager } from "@/components/docs/DocPager";
 import { PageToc } from "@/components/docs/PageToc";
 import { useDocs } from "@/lib/docs";
@@ -56,10 +57,10 @@ export function DocPage() {
   }, [cleanedPageHtml]);
 
   return (
-    <div className="doc-page--quiet min-h-screen">
+    <DocQuietShell>
       <SiteHeader />
 
-      <main className="mx-auto grid w-full max-w-[1680px] min-w-0 overflow-x-clip gap-6 px-4 py-8 lg:grid-cols-[300px_minmax(0,1fr)_260px] lg:px-8">
+      <DocReadingGrid>
         <div className="hidden lg:block">
           <CollectionSidebar
             collections={collections}
@@ -69,7 +70,7 @@ export function DocPage() {
         </div>
 
         <section className="min-w-0 space-y-6">
-          <div className="card-surface-main p-8">
+          <div className="card-surface-main p-5 sm:p-7 lg:p-8">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45">
               {collection.title}
             </p>
@@ -91,20 +92,20 @@ export function DocPage() {
         <div className="hidden lg:block">
           <PageToc headings={page.headings} />
         </div>
-      </main>
-    </div>
+      </DocReadingGrid>
+    </DocQuietShell>
   );
 }
 
 function DocState({ message }: { message: string }) {
   return (
-    <div className="min-h-screen">
+    <DocQuietShell>
       <SiteHeader />
       <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="card-surface-main p-6 text-sm text-foreground/60">
           {message}
         </div>
       </main>
-    </div>
+    </DocQuietShell>
   );
 }
