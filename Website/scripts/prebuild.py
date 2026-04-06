@@ -17,6 +17,7 @@ def run(script_name: str) -> None:
 def main() -> int:
     run("generate_changelog_dates.py")
     run("generate_docs_data.py")
+    run("check_doc_links.py")
     return 0
 
 
