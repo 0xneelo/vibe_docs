@@ -51,8 +51,16 @@ jobs:
         run: npm ci
         working-directory: Website
 
-      - name: Prebuild (docs data, changelog dates, link check)
-        run: python scripts/prebuild.py
+      - name: Regenerate changelog dates
+        run: python scripts/generate_changelog_dates.py
+        working-directory: Website
+
+      - name: Generate docs JSON
+        run: python scripts/generate_docs_data.py
+        working-directory: Website
+
+      - name: Check doc links
+        run: python scripts/check_doc_links.py
         working-directory: Website
 
       - name: Build website (Vite)
