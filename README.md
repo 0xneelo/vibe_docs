@@ -24,6 +24,10 @@ Research papers, dissertations, and documentation for Vibe Trading—permissionl
 
 Transcripts, voice notes, and raw text transcriptions are excluded via `.gitignore` (audio files, transcript folders).
 
+## Development
+
+Enable the [pre-push changelog date check](githooks/README.md): from the repo root run `git config core.hooksPath githooks` once per clone.
+
 ---
 
 *Vibe Trading — Permissionless Perpetual Markets*
