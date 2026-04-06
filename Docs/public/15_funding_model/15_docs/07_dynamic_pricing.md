@@ -1,4 +1,4 @@
-# 05. Dynamic Pricing: Funding, Spread, and Borrow Rates
+# 07. Dynamic Pricing: Funding, Spread, and Borrow Rates
 
 ## Overview
 
@@ -317,4 +317,4 @@ All increase together in stress/emergency, creating compounding pressure to reba
 
 ---
 
-*Next: [06. Bell Curve Flattening](06_BELL_CURVE_FLATTENING.md)*
+*Next: [08. Bell curve flattening](08_bell_curve_flattening.md)*

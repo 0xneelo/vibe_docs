@@ -185,14 +185,14 @@ $$
 
 | Spec Section | Detailed Derivation File |
 |--------------|--------------------------|
-| A2-A4, A7 | [02_VARIABLE_DEFINITIONS.md](02_VARIABLE_DEFINITIONS.md), [04_LP_PROFIT.md](04_LP_PROFIT.md) |
-| B1-B2, B6-B8 | [03_UTILIZATION_MODES.md](03_UTILIZATION_MODES.md) |
-| B9-B10 | [09_FULL_OBJECTIVE.md](09_FULL_OBJECTIVE.md) |
-| C1-C5 | [05_DYNAMIC_PRICING.md](05_DYNAMIC_PRICING.md) |
-| C8-C12 | [06_BELL_CURVE_FLATTENING.md](06_BELL_CURVE_FLATTENING.md) |
-| D0-D9 | [07_INSURANCE_ADL.md](07_INSURANCE_ADL.md), [08_DEFENSE_HIERARCHY.md](08_DEFENSE_HIERARCHY.md) |
-| Full System | [09_FULL_OBJECTIVE.md](09_FULL_OBJECTIVE.md) |
-| Examples | [10_WORKED_EXAMPLES.md](10_WORKED_EXAMPLES.md) |
+| A2-A4, A7 | [04_variable_definitions.md](04_variable_definitions.md), [06_lp_profit.md](06_lp_profit.md) |
+| B1-B2, B6-B8 | [05_utilization_modes.md](05_utilization_modes.md) |
+| B9-B10 | [11_full_objective.md](11_full_objective.md) |
+| C1-C5 | [07_dynamic_pricing.md](07_dynamic_pricing.md) |
+| C8-C12 | [08_bell_curve_flattening.md](08_bell_curve_flattening.md) |
+| D0-D9 | [09_insurance_adl.md](09_insurance_adl.md), [10_defense_hierarchy.md](10_defense_hierarchy.md) |
+| Full System | [11_full_objective.md](11_full_objective.md) |
+| Examples | [12_worked_examples.md](12_worked_examples.md) |
 
 ---
 

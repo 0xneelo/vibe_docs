@@ -11,12 +11,12 @@ const simulatorLinks = [
   {
     label: "Abstract",
     description: "We specify a solver-managed perp market system where the primary objective is to maximize global returns and minimize localized risk",
-    to: "/docs/15-funding-model/15-docs/00-abstract",
+    to: "/docs/15-funding-model/15-docs/01-abstract",
   },
   {
     label: "Bell Curve Flattening",
     description: "As we expect some markets to have big trader wins and some to have big trader losses we can flatten the distribution by transferring PnL from the right tail, to the left tail (losing markets).",
-    to: "/docs/15-funding-model/15-docs/06-bell-curve-flattening",
+    to: "/docs/15-funding-model/15-docs/08-bell-curve-flattening",
   },
 
 ];

@@ -1,4 +1,4 @@
-# 09. Full Combined Objective: The Complete Optimization Problem
+# 11. Full Combined Objective: The Complete Optimization Problem
 
 ## The Master Equation
 
@@ -360,4 +360,4 @@ I_glob(t+1) = I_glob(t) − Σx_m_glob + global_inflows
 
 ---
 
-*Next: [10. Worked Examples](10_WORKED_EXAMPLES.md)*
+*Next: [12. Worked examples](12_worked_examples.md)*

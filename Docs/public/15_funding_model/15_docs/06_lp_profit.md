@@ -1,4 +1,4 @@
-# 04. LP Profit Decomposition
+# 06. LP Profit Decomposition
 
 ## Overview
 
@@ -281,4 +281,4 @@ This is **anti-cyclical** by construction.
 
 ---
 
-*Next: [05. Dynamic Pricing](05_DYNAMIC_PRICING.md)*
+*Next: [07. Dynamic pricing](07_dynamic_pricing.md)*
