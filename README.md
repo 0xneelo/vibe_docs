@@ -28,6 +28,13 @@ Transcripts, voice notes, and raw text transcriptions are excluded via `.gitigno
 
 Enable the [pre-push changelog date check](githooks/README.md): from the repo root run `git config core.hooksPath githooks` once per clone.
 
+### Website dev server on your phone (same Wi‑Fi)
+
+From the `Website` folder run `npm run dev`. Vite prints a **Network** URL (for example `http://192.168.x.x:5173/`). Open that on your phone.
+
+- **Windows:** If the page does not load, allow **Node.js** or **private network** access when the firewall prompt appears, or add an inbound rule for TCP port **5173** (and **4173** if you use `npm run preview`).
+- **PC IP:** In PowerShell, `Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notmatch 'Loopback' }` or run `ipconfig` and use your Wi‑Fi adapter’s IPv4 address.
+
 ---
 
 *Vibe Trading — Permissionless Perpetual Markets*

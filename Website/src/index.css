@@ -1201,6 +1201,7 @@
     box-sizing: border-box;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    overflow-wrap: break-word;
     font-size: 1rem;
     line-height: 1.85;
     color: hsl(var(--foreground) / 0.9);
@@ -1348,10 +1349,32 @@
     padding: 0;
   }
 
+  /* Wide tables: wrapped by wrapDocTables.ts in .doc-table-x-scroll */
+  .doc-content .doc-table-x-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(255 255 255 / 0.02);
+  }
+
+  .doc-content .doc-table-x-scroll > table {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+  }
+
   .doc-content table {
     width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
     border-radius: 1.5rem;
   }
 

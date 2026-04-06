@@ -7,6 +7,7 @@ import { DocQuietShell, DocReadingGrid } from "@/components/docs/DocSiteLayout";
 import { DocPager } from "@/components/docs/DocPager";
 import { PageToc } from "@/components/docs/PageToc";
 import { useDocs } from "@/lib/docs";
+import { wrapTablesInDocBody } from "@/lib/wrapDocTables";
 import { renderMath } from "@/lib/renderMath";
 
 export function DocPage() {
@@ -46,6 +47,7 @@ export function DocPage() {
     if (firstHeading) {
       firstHeading.remove();
     }
+    wrapTablesInDocBody(doc.body);
     return doc.body.innerHTML;
   }, [page.html]);
 
@@ -82,7 +84,7 @@ export function DocPage() {
             </p>
           </div>
 
-          <article className="card-surface-main content-auto min-w-0 overflow-x-clip p-6 sm:p-8">
+          <article className="card-surface-main min-w-0 overflow-x-auto p-6 sm:p-8">
             <div ref={contentRef} className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedPageHtml }} />
           </article>
 

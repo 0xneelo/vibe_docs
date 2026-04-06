@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
 import { DocQuietShell, DocReadingGrid } from "@/components/docs/DocSiteLayout";
 import { useDocs } from "@/lib/docs";
+import { wrapTablesInDocBody } from "@/lib/wrapDocTables";
 import { renderMath } from "@/lib/renderMath";
 
 export function CollectionPage() {
@@ -87,6 +88,8 @@ export function CollectionPage() {
       }
     }
 
+    wrapTablesInDocBody(doc.body);
+
     return doc.body.innerHTML;
   }, [collection.key, collection.overviewHtml]);
 
@@ -112,16 +115,16 @@ export function CollectionPage() {
         <section className="min-w-0 space-y-6">
           <header className="card-surface-main px-5 py-6 sm:px-7 lg:px-8 lg:py-8">
             <p className="text-[11px] font-semibold tracking-[0.14em] text-foreground/56 uppercase">Chapter landing</p>
-            <h1 className="mt-2 text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
+            <h1 className="mt-2 break-words text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-foreground">
               {collection.overviewTitle || collection.title}
             </h1>
           </header>
 
-          <article className="card-surface-main content-auto min-w-0 overflow-x-clip p-6 sm:p-8">
+          <article className="card-surface-main min-w-0 overflow-x-auto p-6 sm:p-8">
             <div ref={contentRef} className="doc-content" dangerouslySetInnerHTML={{ __html: cleanedOverviewHtml }} />
           </article>
 
-          <section className="card-surface-main min-w-0 overflow-x-clip">
+          <section className="card-surface-main min-w-0 overflow-x-auto">
             <div className="border-b border-white/8 px-5 py-4 sm:px-6">
               <h2 className="text-lg font-semibold tracking-[-0.02em] text-foreground">Paper sections</h2>
             </div>
@@ -130,14 +133,14 @@ export function CollectionPage() {
                 <Link
                   key={page.id}
                   to={page.href}
-                  className="group grid items-start gap-4 border-b border-white/8 px-5 py-4 transition last:border-b-0 hover:bg-white/[0.06] sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:px-6"
+                  className="group grid min-w-0 items-start gap-4 border-b border-white/8 px-5 py-4 transition last:border-b-0 hover:bg-white/[0.06] sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:px-6"
                 >
                   <div className="hidden text-2xl leading-none font-semibold tracking-[-0.05em] text-foreground/22 transition group-hover:text-foreground/40 sm:block">
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-lg font-semibold tracking-[-0.02em] text-foreground">{page.title}</div>
-                    <div className="mt-1.5 text-sm leading-6 text-foreground/58">{page.summary || page.relativePath}</div>
+                    <div className="break-words text-lg font-semibold tracking-[-0.02em] text-foreground">{page.title}</div>
+                    <div className="mt-1.5 break-words text-sm leading-6 text-foreground/58">{page.summary || page.relativePath}</div>
                   </div>
                   <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-foreground/40 transition group-hover:translate-x-0.5 group-hover:text-foreground" />
                 </Link>
