@@ -138,6 +138,23 @@ def check_external_get(url: str, timeout: float) -> tuple[bool, str]:
         return False, str(e)
 
 
+def file_exists_under_docs(path: Path) -> bool:
+    """True if path is an existing file, or matches a file on disk ignoring final-segment case (Linux CI vs Windows)."""
+    if path.is_file():
+        return True
+    parent = path.parent
+    name = path.name
+    if not parent.is_dir():
+        return False
+    try:
+        for child in parent.iterdir():
+            if child.is_file() and child.name.lower() == name.lower():
+                return True
+    except OSError:
+        return False
+    return False
+
+
 def validate_target(
     raw_target: str,
     md_path: Path,
@@ -180,7 +197,7 @@ def validate_target(
             asset_path.relative_to(DOCS_ROOT.resolve())
         except ValueError:
             return f"content-asset escapes docs root: {path_part}"
-        if asset_path.is_file():
+        if file_exists_under_docs(asset_path):
             return None
         return f"missing asset file: {path_part}"
 
@@ -200,7 +217,7 @@ def validate_target(
         resolved.relative_to(DOCS_ROOT.resolve())
     except ValueError:
         return f"relative link leaves Docs/public: {path_part}"
-    if resolved.is_file():
+    if file_exists_under_docs(resolved):
         return None
     return f"missing file: {path_part}"
 
