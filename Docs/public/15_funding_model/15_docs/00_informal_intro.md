@@ -22,7 +22,7 @@ The role of the mathematics in this folder is closer to:
 - Showing how **local risk**, **global coupling** (e.g. flattening, insurance), and **ADL** interact in one frame.
 - Giving a **language** for where the system is on spectrums such as **netting vs asynchrony**, **solver leverage vs conservatism**, and **trader UX vs LP economics**.
 
-In other words: the math helps say **what the tension is** and **what knobs exist**—not that turning those knobs to a fixed optimum ends the game.
+In other words: the math helps say **what the tension is** and **what knobs might exist**—not that turning those knobs to a fixed optimum ends the game.
 
 ---
 
