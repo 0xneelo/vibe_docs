@@ -1,4 +1,4 @@
-# 01. Core Concepts: Gradient Flow & Attractor-Repeller Dynamics
+# 03. Core Concepts: Gradient Flow & Attractor-Repeller Dynamics
 
 ## The Fundamental Analogy
 
@@ -197,4 +197,4 @@ This is the simplest "global attractor + local repellers" formula that captures:
 
 ---
 
-*Next: [02. Variable Definitions](02_VARIABLE_DEFINITIONS.md)*
+*Next: [04. Variable definitions](04_variable_definitions.md)*

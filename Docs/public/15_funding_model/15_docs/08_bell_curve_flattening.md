@@ -1,4 +1,4 @@
-# 06. Bell Curve Flattening: Cross-Market Risk Mutualization
+# 08. Bell Curve Flattening: Cross-Market Risk Mutualization
 
 ## The Core Idea
 
@@ -311,4 +311,4 @@ But now "losers" are explicitly "markets with uncovered exposure stress".
 
 ---
 
-*Next: [07. Insurance & ADL](07_INSURANCE_ADL.md)*
+*Next: [09. Insurance & ADL](09_insurance_adl.md)*

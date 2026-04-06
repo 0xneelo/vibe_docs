@@ -741,4 +741,4 @@ The industry's trajectory --- from BitMEX's inverse contracts to Binance's linea
 
 ---
 
-*This comparative analysis was prepared based on the Percolator open-source repositories (percolator, percolator-prog, percolator-match, percolator-cli, percolator-sov) and the Vibe Trading full mathematical derivation (00_ABSTRACT through 10_WORKED_EXAMPLES) as of February 2026.*
+*This comparative analysis was prepared based on the Percolator open-source repositories (percolator, percolator-prog, percolator-match, percolator-cli, percolator-sov) and the Vibe Trading full mathematical derivation (`01_abstract` through `12_worked_examples` in `15_docs/`) as of February 2026.*

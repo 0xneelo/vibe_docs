@@ -1,4 +1,4 @@
-# 07. Insurance & ADL Logic
+# 09. Insurance & ADL Logic
 
 ## Overview
 
@@ -390,4 +390,4 @@ ADL the $10,000 of unhedged exposure (or to safe level).
 
 ---
 
-*Next: [08. Defense Hierarchy](08_DEFENSE_HIERARCHY.md)*
+*Next: [10. Defense hierarchy](10_defense_hierarchy.md)*

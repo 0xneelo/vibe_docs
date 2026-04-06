@@ -1,4 +1,4 @@
-# 02. Variable Definitions
+# 04. Variable Definitions
 
 ## Per-Market State Variables
 
@@ -170,4 +170,4 @@ Aenigma is the worst-case multiplier of exposure before positions are assumed to
 
 ---
 
-*Next: [03. Utilization Modes](03_UTILIZATION_MODES.md)*
+*Next: [05. Utilization modes](05_utilization_modes.md)*

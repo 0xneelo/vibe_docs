@@ -1,4 +1,4 @@
-# 03. Utilization Modes: Token Inventory vs Insurance Fund
+# 05. Utilization Modes: Token Inventory vs Insurance Fund
 
 ## Overview
 
@@ -248,4 +248,4 @@ u_eff = max(u₁, u₂)          if E_usd > C_usd
 
 ---
 
-*Next: [04. LP Profit Decomposition](04_LP_PROFIT.md)*
+*Next: [06. LP profit decomposition](06_lp_profit.md)*

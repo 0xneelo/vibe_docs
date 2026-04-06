@@ -1,4 +1,4 @@
-# 08. Defense Hierarchy: The Complete Protection Stack
+# 10. Defense Hierarchy: The Complete Protection Stack
 
 ## Overview: Defense in Depth
 
@@ -396,4 +396,4 @@ Action:
 
 ---
 
-*Next: [09. Full Combined Objective](09_FULL_OBJECTIVE.md)*
+*Next: [11. Full combined objective](11_full_objective.md)*
