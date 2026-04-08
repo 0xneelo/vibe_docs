@@ -7,6 +7,7 @@ import { DocQuietShell, DocReadingGrid } from "@/components/docs/DocSiteLayout";
 import { DocPager } from "@/components/docs/DocPager";
 import { PageToc } from "@/components/docs/PageToc";
 import { useDocs } from "@/lib/docs";
+import { prefixMarkdownInternalLinks } from "@/lib/prefixMarkdownInternalLinks";
 import { wrapTablesInDocBody } from "@/lib/wrapDocTables";
 import { renderMath } from "@/lib/renderMath";
 
@@ -48,6 +49,7 @@ export function DocPage() {
       firstHeading.remove();
     }
     wrapTablesInDocBody(doc.body);
+    prefixMarkdownInternalLinks(doc.body);
     return doc.body.innerHTML;
   }, [page.html]);
 

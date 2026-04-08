@@ -29,4 +29,16 @@ This is not “GMX is bad”; it is **the same long-tail truth** as on CLOBs: **
 
 ---
 
+## 2.4 Comparison venues (field notes, non-exhaustive)
+
+The sections above are **GMX-style pool economics**. For **cross-reads** in this series, keep a loose **roster of markets / UIs** that show **different backstops** (vault LPs vs peer flow vs hybrid):
+
+| Family | Examples |
+| --- | --- |
+| **Vault-backed oracle perps** | GMX and similar **pooled-collateral** designs ([Section 2](./02-Collateralized-Pools-GMX.md) focus) |
+| **Percolator-style** (permissionless listing, flow-sensitive settlement, token-margined directions) | **Percolator** (architecture), **Perk.fund** — see [Section 3](./03-Percolator-Wave-Perc-Fund.md) |
+| **Similar economics, proprietary stack** | **derp.fun** — **not** a Percolator fork (field notes: **own implementation**), but **overlapping model**: **listing-first**, **flow-sensitive** payout paths, **contra-flow uncertainty**. Compare to **Percolator / Perk.fund** in [Section 3](./03-Percolator-Wave-Perc-Fund.md); trader experience in [Section 5](./05-Liquidity-As-Trader-Experience.md) |
+
+---
+
 *Next: [3. Percolator wave & Perk.fund](./03-Percolator-Wave-Perc-Fund.md)*

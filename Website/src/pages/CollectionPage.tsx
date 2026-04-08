@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { CollectionSidebar } from "@/components/docs/CollectionSidebar";
 import { DocQuietShell, DocReadingGrid } from "@/components/docs/DocSiteLayout";
 import { useDocs } from "@/lib/docs";
+import { prefixMarkdownInternalLinks, withViteBase } from "@/lib/prefixMarkdownInternalLinks";
 import { wrapTablesInDocBody } from "@/lib/wrapDocTables";
 import { renderMath } from "@/lib/renderMath";
 
@@ -81,14 +82,15 @@ export function CollectionPage() {
 
         const list = doc.createElement("ul");
         list.innerHTML = `
-          <li><a href="/simulations/funding">Funding Simulator</a></li>
-          <li><a href="/simulations/z-score">Z-Score Cone Traversal Simulator</a></li>
+          <li><a href="${withViteBase("simulations/funding")}">Funding Simulator</a></li>
+          <li><a href="${withViteBase("simulations/z-score")}">Z-Score Cone Traversal Simulator</a></li>
         `;
         intro.insertAdjacentElement("afterend", list);
       }
     }
 
     wrapTablesInDocBody(doc.body);
+    prefixMarkdownInternalLinks(doc.body);
 
     return doc.body.innerHTML;
   }, [collection.key, collection.overviewHtml]);
