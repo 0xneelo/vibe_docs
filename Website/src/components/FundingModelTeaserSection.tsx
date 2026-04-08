@@ -1,5 +1,6 @@
-import { ArrowUpRight, Sigma, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowUpRight, Sparkles } from "lucide-react";
+
+import { InternalAppLink } from "@/components/InternalAppLink";
 
 const simulatorLinks = [
   {
@@ -40,23 +41,21 @@ export function FundingModelTeaserSection() {
               </p>
              
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link
+                <InternalAppLink
                   to="/simulations/funding"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/[0.08] px-4 py-2.5 text-sm font-medium text-foreground transition hover:bg-white/[0.12]"
                 >
                   Open Funding Simulator
                   <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                </InternalAppLink>
 
-                <Link
+                <InternalAppLink
                   to="/simulations/z-score"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/14 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-foreground/90 transition hover:border-white/24 hover:bg-white/[0.08]"
                 >
                   Open Z-Score Simulator
                   <ArrowUpRight className="h-4 w-4" />
-                </Link>
-
-             
+                </InternalAppLink>
               </div>
             </div>
 
@@ -66,7 +65,7 @@ export function FundingModelTeaserSection() {
               </p>
               <div className="mt-3 grid gap-2.5">
                 {simulatorLinks.map((item) => (
-                  <Link
+                  <InternalAppLink
                     key={item.label}
                     to={item.to}
                     className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm text-foreground/85 transition hover:border-white/20 hover:bg-white/[0.09]"
@@ -76,7 +75,7 @@ export function FundingModelTeaserSection() {
                       <span className="mt-0.5 block text-xs text-foreground/58">{item.description}</span>
                     </span>
                     <ArrowUpRight className="h-4 w-4 opacity-65 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
-                  </Link>
+                  </InternalAppLink>
                 ))}
               </div>
               <p className="mt-3 text-xs leading-5 text-foreground/55">

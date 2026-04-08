@@ -5,6 +5,16 @@ import { GlobalBackground } from "@/components/GlobalBackground";
 import { LastVisitProvider } from "@/context/LastVisitContext";
 import { DocsProvider } from "@/lib/docs";
 
+/** RR basename should not use a trailing slash; Vite `BASE_URL` is usually `/vibe_docs/`. */
+function reactRouterBasename(): string {
+  const base = import.meta.env.BASE_URL ?? "/";
+  if (base === "/" || base === "./") {
+    return "/";
+  }
+  const trimmed = base.replace(/\/+$/, "");
+  return trimmed || "/";
+}
+
 const HomePage = lazy(() => import("@/pages/HomePage").then((module) => ({ default: module.HomePage })));
 const LibraryPage = lazy(() => import("@/pages/LibraryPage").then((module) => ({ default: module.LibraryPage })));
 const CollectionPage = lazy(() =>
@@ -43,7 +53,7 @@ function CollectionsToChaptersRedirect() {
 export default function App() {
   return (
     <DocsProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={reactRouterBasename()}>
         <LastVisitProvider>
           <GlobalBackground />
           <div className="relative z-10">

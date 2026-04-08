@@ -1,0 +1,54 @@
+.doc-math-expand-btn--original {
+  width: var(--doc-math-btn-width, 7.5em);
+  position: relative;
+  height: var(--doc-math-btn-height, 2em);
+  border: var(--doc-math-btn-border-width, 3px) ridge #149cea;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 1s;
+  border-radius: var(--doc-math-btn-radius, 0.3em);
+  font-size: var(--doc-math-btn-font-size, 12px);
+  font-weight: bold;
+}
+
+.doc-math-expand-btn--original::after {
+  content: "";
+  position: absolute;
+  top: var(--doc-math-btn-mask-top, -10px);
+  left: var(--doc-math-btn-mask-left, 3%);
+  width: var(--doc-math-btn-mask-width, 95%);
+  height: var(--doc-math-btn-mask-height, 40%);
+  background-color: var(--doc-math-mask-bg, #212121);
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.doc-math-expand-btn--original::before {
+  content: "";
+  transform-origin: center;
+  position: absolute;
+  top: var(--doc-math-btn-mask-bottom-top, 80%);
+  left: var(--doc-math-btn-mask-left, 3%);
+  width: var(--doc-math-btn-mask-width, 95%);
+  height: var(--doc-math-btn-mask-height, 40%);
+  background-color: var(--doc-math-mask-bg, #212121);
+  transition: 0.5s;
+}
+
+.doc-math-expand-btn--original:hover::before,
+.doc-math-expand-btn--original:hover::after {
+  transform: scale(0);
+}
+
+.doc-math-expand-btn--original:hover,
+.doc-math-expand-btn--original:focus-visible {
+  box-shadow: inset 0 0 25px #1479ea;
+}
+
+@media (max-width: 768px) {
+  .doc-math-expand-btn--original {
+    width: 100%;
+    max-width: 220px;
+  }
+}
