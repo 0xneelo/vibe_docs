@@ -6,8 +6,8 @@
 
 This repository’s full treatment—including architecture, failure modes, and comparison to **USDC-margined hybrid** designs—is in the dissertation:
 
-→ **[Why token-margined protocols are structurally problematic](../../07_token_margined_issues_perculator/08_docs/README.md)**  
-Key entries: [Percolator architecture](../../07_token_margined_issues_perculator/08_docs/02-Percolator-Architecture.md), [Vibe vs Percolator](../../07_token_margined_issues_perculator/08_docs/09-Vibe-vs-Percolator.md).
+-> **[Why token-margined protocols are structurally problematic](../../07_token_margined_issues_perculator/07_docs/README.md)**  
+Key entries: [Percolator architecture](../../07_token_margined_issues_perculator/07_docs/02-Percolator-Architecture.md), [Vibe vs Percolator](../../07_token_margined_issues_perculator/07_docs/09-Vibe-vs-Percolator.md).
 
 The sections below only **anchor** that work against **newer forks and UIs** seen in the wild.
 
@@ -37,7 +37,7 @@ Some forks emphasize **traders vs traders** with **minimal pooled LP infrastruct
 
 Using the **token itself as margin** is one proposed way to **align inventory with the narrative** and ease **long-bias** imbalance. The dissertation explains why that **does not** magically remove **reflexivity, negative convexity, and oracle–spot attack surface**:
 
-→ [Reflexivity & convexity](../../07_token_margined_issues_perculator/08_docs/03-Reflexivity-and-Convexity.md) · [Oracle & death spiral](../../07_token_margined_issues_perculator/08_docs/05-Oracle-Manipulation-Death-Spiral.md)
+-> [Reflexivity & convexity](../../07_token_margined_issues_perculator/07_docs/03-Reflexivity-and-Convexity.md) · [Oracle & death spiral](../../07_token_margined_issues_perculator/07_docs/05-Oracle-Manipulation-Death-Spiral.md)
 
 **Takeaway for this note:** token-margined **solves one bookkeeping angle** and **introduces others**. The **meta-problem** remains: **long-tail perps need a mechanism that switches** between **inventory modes**, **settlement rails**, and **matching regimes** as the book state changes—something a **single static AMM curve** or **pure CLOB** rarely provides alone.
 

@@ -1,6 +1,6 @@
 # 16 — Listing Additional Notes
 
-Field-level comparison of how major venues approach **permissionless or long-tail perpetuals**: order-book rails (dYdX MegaVault, Hyperliquid’s listing discipline), pool-style venues (GMX), and the **Percolator-family** wave (including Perk.fund). Complements the [listing monopoly thesis](../03_listing_monopoly/03_docs/README.md) and the [Percolator structural critique](../07_token_margined_issues_perculator/08_docs/README.md).
+Field-level comparison of how major venues approach **permissionless or long-tail perpetuals**: order-book rails (dYdX MegaVault, Hyperliquid’s listing discipline), pool-style venues (GMX), and the **Percolator-family** wave (including Perk.fund). Complements the [listing monopoly thesis](../03_listing_monopoly/03_docs/README.md) and the [Percolator structural critique](../07_token_margined_issues_perculator/07_docs/README.md).
 
 ## Permissionless Perps in Practice: Order Books, Pools, and the Percolator Wave
 
@@ -29,8 +29,8 @@ These notes extend the [listing + liquidity thesis](../03_listing_monopoly/03_do
 ## Related Collections
 
 - **[03_listing_monopoly](../03_listing_monopoly/03_docs/README.md)** — Lifecycle gap, listing + liquidity, generalized bootstrap
-- **[07_token_margined_issues_perculator](../07_token_margined_issues_perculator/08_docs/README.md)** — Percolator architecture, token-margined failure modes, Vibe vs Percolator
-- **[04_ode_to_the_orderbook](../04_ode_to_the_orderbook/05_docs/README.md)** — Why order books excel at majors and struggle at the long tail
+- **[07_token_margined_issues_perculator](../07_token_margined_issues_perculator/07_docs/README.md)** — Percolator architecture, token-margined failure modes, Vibe vs Percolator
+- **[04_ode_to_the_orderbook](../04_ode_to_the_orderbook/04_docs/README.md)** — Why order books excel at majors and struggle at the long tail
 
 ---
 

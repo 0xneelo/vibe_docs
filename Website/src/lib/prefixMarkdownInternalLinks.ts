@@ -44,6 +44,8 @@ export function prefixMarkdownInternalLinks(root: HTMLElement): void {
     const isAppInternal =
       path.startsWith("/docs/") ||
       path.startsWith("/chapters/") ||
+      path === "/chapters" ||
+      path === "/chapters/" ||
       path.startsWith("/simulations/") ||
       path.startsWith("/content-assets/") ||
       path === "/library" ||

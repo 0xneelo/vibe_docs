@@ -6,5 +6,5 @@ The core thesis is that any listing venue with non-trivial cost, curation, or re
 
 This folder develops the case that zero-cost permissionless listing systems preserve evolutionary discovery better than curated or high-cost systems, and that Vibe's role is to bring perpetuals to the `zero perceived interest` arena where future unicorns are born.
 
--> See [14_docs/README.md](./14_docs/README.md) for the draft overview
+-> See [11_docs/README.md](./11_docs/README.md) for the draft overview
 

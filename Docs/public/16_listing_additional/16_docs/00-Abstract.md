@@ -11,8 +11,8 @@ These notes are **an annex** to the [listing monopoly](../../03_listing_monopoly
 ## Related Work (in this repo)
 
 - [Listing, liquidity, and generalized bootstrap](../../03_listing_monopoly/03_docs/04z-Listing-And-Liquidity-Thesis.md) — why “listing monopoly” is shorthand for **listing + liquidity**
-- [Why token-margined protocols are structurally problematic](../../07_token_margined_issues_perculator/08_docs/README.md) — full Percolator / token-collateral dissertation
-- [Ode to the order book](../../04_ode_to_the_orderbook/05_docs/README.md) — majors vs long tail on CLOBs
+- [Why token-margined protocols are structurally problematic](../../07_token_margined_issues_perculator/07_docs/README.md) — full Percolator / token-collateral dissertation
+- [Ode to the order book](../../04_ode_to_the_orderbook/04_docs/README.md) — majors vs long tail on CLOBs
 
 ---
 

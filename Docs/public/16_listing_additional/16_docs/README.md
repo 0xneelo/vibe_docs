@@ -21,8 +21,8 @@ The **chapter landing** on the site renders the [collection overview](../README.
 ## Related Collections
 
 - **[03_listing_monopoly](../../03_listing_monopoly/03_docs/README.md)** — Lifecycle gap, listing + liquidity, generalized bootstrap
-- **[07_token_margined_issues_perculator](../../07_token_margined_issues_perculator/08_docs/README.md)** — Percolator architecture, token-margined failure modes, Vibe vs Percolator
-- **[04_ode_to_the_orderbook](../../04_ode_to_the_orderbook/05_docs/README.md)** — Why order books excel at majors and struggle at the long tail
+- **[07_token_margined_issues_perculator](../../07_token_margined_issues_perculator/07_docs/README.md)** — Percolator architecture, token-margined failure modes, Vibe vs Percolator
+- **[04_ode_to_the_orderbook](../../04_ode_to_the_orderbook/04_docs/README.md)** — Why order books excel at majors and struggle at the long tail
 
 ---
 

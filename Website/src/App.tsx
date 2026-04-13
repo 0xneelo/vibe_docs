@@ -45,7 +45,7 @@ function ScrollToTop() {
 function CollectionsToChaptersRedirect() {
   const { collectionSlug } = useParams();
   if (!collectionSlug) {
-    return <Navigate to="/library" replace />;
+    return <Navigate to="/chapters" replace />;
   }
   return <Navigate to={`/chapters/${collectionSlug}`} replace />;
 }
@@ -62,7 +62,8 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/changelog" element={<ChangelogPage />} />
-                <Route path="/library" element={<LibraryPage />} />
+                <Route path="/chapters" element={<LibraryPage />} />
+                <Route path="/library" element={<Navigate to="/chapters" replace />} />
                 <Route path="/simulations/funding-local" element={<FundingSimulatorPage mode="local" />} />
                 <Route path="/simulations/funding-api" element={<FundingSimulatorPage mode="api" />} />
                 <Route path="/local-funding" element={<Navigate to="/simulations/funding-local" replace />} />

@@ -19,7 +19,7 @@ export function LibraryPage() {
         <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
           <section className="mb-8">
             <p className="text-xs font-semibold tracking-[0.14em] text-foreground/55 uppercase">Research Index</p>
-            <h1 className="mt-2 text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-6xl">Library</h1>
+            <h1 className="mt-2 text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-6xl">Chapters</h1>
             <p className="mt-4 max-w-2xl text-base text-foreground/65">
               Every chapter in one place, ordered for fast scanning.
             </p>

@@ -41,9 +41,9 @@ export function HomeNavbar() {
         <button
           type="button"
           className="uiverse-nav-btn h-10 px-4 sm:h-12 sm:px-6"
-          onClick={() => navigate("/library")}
+          onClick={() => navigate("/chapters")}
         >
-          <span className="uiverse-nav-btn__label">Learn More</span>
+          <span className="uiverse-nav-btn__label">Chapters</span>
         </button>
       </nav>
 

@@ -25,7 +25,7 @@ export function CollectionPage() {
 
   const collection = collectionBySlug.get(collectionSlug);
   if (!collection) {
-    return <Navigate to="/library" replace />;
+    return <Navigate to="/chapters" replace />;
   }
 
   const pages = pagesByCollection.get(collection.slug) ?? [];

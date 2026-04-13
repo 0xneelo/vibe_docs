@@ -44,7 +44,7 @@ export function HeroSection() {
             <LandingPageButton
               label="Read the Vibe Paper"
               className="w-[240px] max-w-full sm:w-[320px]"
-              onClick={() => navigate("/library")}
+              onClick={() => navigate("/chapters")}
             />
           </div>
         </div>

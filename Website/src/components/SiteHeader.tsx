@@ -25,14 +25,15 @@ export function SiteHeader() {
   const isHome = location.pathname === "/";
   const isChangelog = location.pathname === "/changelog";
   const isLibrary = location.pathname.startsWith("/library");
+  const isChapters = location.pathname.startsWith("/chapters");
   const isChaptersNav =
     isLibrary ||
-    location.pathname.startsWith("/chapters") ||
+    isChapters ||
     location.pathname.startsWith("/collections");
   const isSimulations =
     location.pathname.startsWith("/simulations") || location.pathname.startsWith("/funding-model") || location.pathname.startsWith("/local-funding");
   const isReaderRoute = true;
-  const showCollectionsDropdown = location.pathname === "/library";
+  const showCollectionsDropdown = location.pathname === "/chapters" || location.pathname === "/library";
   const showSimulationsDropdown = true;
 
   const navButtonClass = (active: boolean) =>
@@ -74,14 +75,11 @@ export function SiteHeader() {
           <Link to="/" className={navButtonClass(isHome)}>
             Home
           </Link>
-          <Link to="/library" className={navButtonClass(isLibrary)}>
-            Library
-          </Link>
           <Link to="/changelog" className={navButtonClass(isChangelog)}>
             Changelog
           </Link>
           <div className="group relative">
-            <Link to="/library" className={navButtonClass(isChaptersNav)}>
+            <Link to="/chapters" className={navButtonClass(isChaptersNav)}>
               Chapters
             </Link>
 
@@ -156,15 +154,15 @@ export function SiteHeader() {
                 Home
               </Link>
               <Link
-                to="/library"
+                to="/chapters"
                 className={cn(
                   "flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition",
-                  isLibrary
+                  isChaptersNav
                     ? "border-white/35 bg-white/[0.14] text-foreground"
                     : "border-white/12 bg-white/[0.03] text-foreground/85 hover:bg-white/[0.08]",
                 )}
               >
-                Library
+                Chapters
               </Link>
               <Link
                 to="/changelog"
@@ -176,17 +174,6 @@ export function SiteHeader() {
                 )}
               >
                 Changelog
-              </Link>
-              <Link
-                to="/library"
-                className={cn(
-                  "flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition",
-                  isChaptersNav
-                    ? "border-white/35 bg-white/[0.14] text-foreground"
-                    : "border-white/12 bg-white/[0.03] text-foreground/85 hover:bg-white/[0.08]",
-                )}
-              >
-                Chapters
               </Link>
               <Link
                 to="/simulations/funding-local"
@@ -215,7 +202,7 @@ export function SiteHeader() {
                 </div>
               </div>
             </div>
-            {location.pathname === "/library" ? (
+            {isChapters || isLibrary ? (
               <div className="mt-2 max-h-40 overflow-y-auto rounded-xl border border-white/10 bg-white/[0.02] p-2 reader-scrollbar">
                 {collections.map((collection) => (
                   <Link

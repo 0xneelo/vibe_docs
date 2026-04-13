@@ -63,10 +63,10 @@ export function ChangelogSection() {
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-80" />
               </Link>
               <Link
-                to="/library"
+                to="/chapters"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/70 underline decoration-white/20 underline-offset-4 transition hover:decoration-white/45"
               >
-                Library
+                Chapters
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-70" />
               </Link>
             </div>

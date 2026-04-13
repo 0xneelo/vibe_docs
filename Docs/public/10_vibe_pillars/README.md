@@ -8,7 +8,7 @@ This folder develops a simple thesis: permissionless perpetuals for the long tai
 - market bootstrap / guaranteed counterparty access
 - sufficient LP yield through capital efficiency
 
-The main source material is the rough transcript in `13_transcripts/13_transcript.md`, expanded into a cleaner paper structure in `13_docs/`.
+The main source material is the rough transcript in `13_transcripts/13_transcript.md`, expanded into a cleaner paper structure in `10_docs/`.
 
--> See [13_docs/README.md](./13_docs/README.md) for the draft overview
+-> See [10_docs/README.md](./10_docs/README.md) for the draft overview
 

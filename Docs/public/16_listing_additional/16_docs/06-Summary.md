@@ -24,9 +24,9 @@ No row is “wrong”; each **optimizes a different segment**. The **unsolved** 
 ## 6.3 Related reading (in-repo)
 
 1. [Listing, liquidity, and generalized bootstrap](../../03_listing_monopoly/03_docs/04z-Listing-And-Liquidity-Thesis.md)  
-2. [Percolator dissertation — README](../../07_token_margined_issues_perculator/08_docs/README.md)  
-3. [Ode to the order book](../../04_ode_to_the_orderbook/05_docs/README.md)  
-4. [Framework: value in permissionless perps](../../13_framework_value_permissionless_perps/17_docs/README.md) *(if present in your checkout)*  
+2. [Percolator dissertation — README](../../07_token_margined_issues_perculator/07_docs/README.md)  
+3. [Ode to the order book](../../04_ode_to_the_orderbook/04_docs/README.md)  
+4. [Framework: value in permissionless perps](../../13_framework_value_permissionless_perps/13_docs/README.md) *(if present in your checkout)*  
 
 ---
 

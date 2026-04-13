@@ -7,6 +7,7 @@
     "Website/src/pages/zScoreModelPage.tsx"
   ],
   "listing-additional": ["Docs/public/16_listing_additional"],
+  "referral-program-architecture": ["Docs/public/17_referral_program"],
   "listing-monopoly-4z": ["Docs/public/03_listing_monopoly/03_docs/04z-Listing-And-Liquidity-Thesis.md"],
   "site-collection-landing": ["Website/src/pages/CollectionPage.tsx"]
 }

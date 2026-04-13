@@ -36,7 +36,7 @@ export function DocPage() {
   const collection = collectionBySlug.get(collectionSlug);
 
   if (!page || !collection) {
-    return <Navigate to="/library" replace />;
+    return <Navigate to="/chapters" replace />;
   }
 
   const previousPage = page.prevId ? pageById.get(page.prevId) : undefined;

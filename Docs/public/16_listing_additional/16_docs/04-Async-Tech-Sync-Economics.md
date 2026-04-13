@@ -24,7 +24,7 @@ This is the same **chicken-and-egg** as on CLOBs, **re-labeled** as **on-chain a
 
 The transcript’s direction—**switch** between **modes** as the market state changes (more shorts → **sell / hedge inventory**; more longs → **borrow or buy spot**; heavy two-way flow → **net internally**)—is **not** a single primitive. It is an **operator or solver layer** that **chooses among** CLOB-like netting, **vault inventory**, and **stable settlement** depending on **imbalance, volatility, and oracle quality**.
 
-That is **why** static categories (“**just use an order book**,” “**just use an AMM**,” “**just use token margin**”) each **fail** a different corner of the long tail. **Vibe’s** articulated direction (hybrid USDC + token paths, solver-mediated risk) is one concrete response; the full contrast to Percolator is documented [here](../../07_token_margined_issues_perculator/08_docs/09-Vibe-vs-Percolator.md).
+That is **why** static categories (“**just use an order book**,” “**just use an AMM**,” “**just use token margin**”) each **fail** a different corner of the long tail. **Vibe’s** articulated direction (hybrid USDC + token paths, solver-mediated risk) is one concrete response; the full contrast to Percolator is documented [here](../../07_token_margined_issues_perculator/07_docs/09-Vibe-vs-Percolator.md).
 
 ---
 

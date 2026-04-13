@@ -44,6 +44,19 @@ export type ChangelogEntryResolved = ChangelogEntry & { date: string };
 
 export const changelogEntries: ChangelogEntry[] = [
   {
+    id: "referral-program-architecture",
+    dateManual: "2026-04-13",
+    title: "Chapter 17: Referral Program Architecture",
+    description:
+      "New external-facing referral architecture chapter covering incentives, access phasing, LP/category referral rails, and the full points-to-packs-to-artifacts model.",
+    href: "/chapters/17-referral-program",
+    linkLabel: "Open chapter",
+    impact: "major",
+    tags: ["docs", "chapter"],
+    filesChanged: 18,
+    newChapter: true,
+  },
+  {
     id: "listing-additional",
     dateManual: "2026-04-05",
     title: "Chapter 16: Listing Additional Notes",
@@ -62,8 +75,8 @@ export const changelogEntries: ChangelogEntry[] = [
     title: "Chapter landing pages show full README intros",
     description:
       "Collection overviews no longer strip the first paragraph, so chapter blurbs and tables of contents render on /chapters again.",
-    href: "/library",
-    linkLabel: "Browse library",
+    href: "/chapters",
+    linkLabel: "Browse chapters",
     impact: "medium",
     tags: ["website"],
     filesChanged: 3,
@@ -136,8 +149,8 @@ export const changelogEntries: ChangelogEntry[] = [
     title: "Vibe paper drafts, figures, and folder restructure",
     description:
       "New draft material and assets under `Docs/public`, with a cleaner chapter folder layout for ongoing writing.",
-    href: "/library",
-    linkLabel: "Library",
+    href: "/chapters",
+    linkLabel: "Chapters",
     impact: "medium",
     tags: ["docs", "bootstrap"],
     filesChanged: 18,
@@ -174,8 +187,8 @@ export const changelogEntries: ChangelogEntry[] = [
     title: "Public docs repository bootstrap",
     description:
       "Initial open-source drop: Z-score perp taxonomy, proof of value, USDC vs token-margined perps, listing game theory, pillars, and the first wave of Vibe papers.",
-    href: "/library",
-    linkLabel: "Library",
+    href: "/chapters",
+    linkLabel: "Chapters",
     impact: "major",
     tags: ["docs", "bootstrap", "chapter"],
     filesChanged: 80,
