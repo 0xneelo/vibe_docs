@@ -13,11 +13,11 @@ This sequel sharpens the Hyperliquid-facing argument from Part I. The thesis is 
 | **Abstract** | [00-Abstract.md](./00-Abstract.md) | Executive summary |
 | **1. Introduction** | [01-Introduction.md](./01-Introduction.md) | Part II framing |
 | **2. The Problem with Listings** | [02-The-Problem-with-Listings.md](./02-The-Problem-with-Listings.md) | Why selective systems drift into gatekeeping |
-| **3. The End of Vibes-Based Listings** | [03-The-End-of-Vibes-Based-Listings.md](./03-The-End-of-Vibes-Based-Listings.md) | Actual vs perceived interest |
+| **3. The End of Narrative-Based Listings** | [03-The-End-of-Narrative-Based-Listings.md](./03-The-End-of-Narrative-Based-Listings.md) | Actual vs perceived interest |
 | **4. The Hyperliquid Gap** | [04-The-Hyperliquid-Gap.md](./04-The-Hyperliquid-Gap.md) | Why HIP-3 is progress but not enough |
 | **5. The Vibe Assembly Line** | [05-The-Vibe-Assembly-Line.md](./05-The-Vibe-Assembly-Line.md) | Launchpad -> DEX -> Vibe -> Order Book |
 | **6. Programmatic Graduation** | [06-Programmatic-Graduation.md](./06-Programmatic-Graduation.md) | Rules, thresholds, and automatic market promotion |
-| **7. Conclusion** | [08-Conclusion.md](./08-Conclusion.md) | Final thesis |
+| **7. Conclusion** | [07-Conclusion.md](./07-Conclusion.md) | Final thesis |
 
 ---
 

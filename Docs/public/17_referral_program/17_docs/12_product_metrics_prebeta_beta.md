@@ -86,6 +86,6 @@ Minimum external dashboard views:
 
 ## 8) Related chapters
 
-- [06_access_codes_three_phase_plan.md](06_access_codes_three_phase_plan.md)
-- [04_points_economy_and_leaderboards.md](04_points_economy_and_leaderboards.md)
-- [11_delivery_timeline_milestones.md](11_delivery_timeline_milestones.md)
+- [06-Access-Phasing.md](06-Access-Phasing.md)
+- [04-Points-and-Rewards.md](04-Points-and-Rewards.md)
+- [11-Conclusion.md](11-Conclusion.md)

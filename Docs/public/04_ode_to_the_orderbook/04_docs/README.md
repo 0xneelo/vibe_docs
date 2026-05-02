@@ -17,7 +17,7 @@ This dissertation argues that Vibe does not compete with order books. It complet
 | **4. The Assembly Line** | [04-The-Assembly-Line.md](./04-The-Assembly-Line.md) | Launchpad -> DEX -> Vibe -> SSHE / Hyperliquid |
 | **5. Hardening the Lifecycle** | [05-Hardening-the-Lifecycle.md](./05-Hardening-the-Lifecycle.md) | Shorting, truth, and survival |
 | **6. Ode to OrderBooks** | [06-Ode-to-OrderBooks.md](./06-Ode-to-OrderBooks.md) | Why Vibe complements Hyperliquid |
-| **7. The Hyperliquid Upgrade** | [07-The-Hyperliquid-Upgrade.md](./07-The-Hyperliquid-Upgrade.md) | Why Vibe should sell Hyperliquid's community a better Hyperliquid |
+| **7. The CLOB Upgrade** | [07-The-CLOB-Upgrade.md](./07-The-CLOB-Upgrade.md) | Why Vibe should strengthen orderbook ecosystems before competing directly |
 | **8. The House of All Finance** | [08-The-House-of-All-Finance.md](./08-The-House-of-All-Finance.md) | From crypto listing reform to finance-wide infrastructure |
 | **9. Conclusion** | [09-Conclusion.md](./09-Conclusion.md) | Final thesis |
 
