@@ -1,4 +1,4 @@
-# Section 7: The Orderbook Protocol Upgrade
+# Section 7: The CLOB Upgrade
 
 
 Zero sum thinking does not get us anywhere, the most powerful move is not to compete with CLOB DEXs, but to improve them.
