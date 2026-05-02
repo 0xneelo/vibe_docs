@@ -10,7 +10,7 @@ This NFT acts as the user's referral identity anchor and code carrier.
 The transcript describes two reward rails:
 
 - **Trading rakeback**: based on the user's own rolling activity.
-- **Referral rakeback**: based on referred-user activity over the same rolling window.
+- **Referral Rewards**: based on referred-user activity over the same rolling window.
 
 Both rails rely on tier logic and attribution integrity. The primary challenge is not computation, but consistent and auditable attribution.
 

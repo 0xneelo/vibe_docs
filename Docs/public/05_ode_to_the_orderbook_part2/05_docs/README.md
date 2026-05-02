@@ -17,8 +17,7 @@ This sequel sharpens the Hyperliquid-facing argument from Part I. The thesis is 
 | **4. The Hyperliquid Gap** | [04-The-Hyperliquid-Gap.md](./04-The-Hyperliquid-Gap.md) | Why HIP-3 is progress but not enough |
 | **5. The Vibe Assembly Line** | [05-The-Vibe-Assembly-Line.md](./05-The-Vibe-Assembly-Line.md) | Launchpad -> DEX -> Vibe -> Order Book |
 | **6. Programmatic Graduation** | [06-Programmatic-Graduation.md](./06-Programmatic-Graduation.md) | Rules, thresholds, and automatic market promotion |
-| **7. House of All Finance** | [07-House-of-All-Finance.md](./07-House-of-All-Finance.md) | How order books scale once the bootstrap layer exists |
-| **8. Conclusion** | [08-Conclusion.md](./08-Conclusion.md) | Final thesis |
+| **7. Conclusion** | [08-Conclusion.md](./08-Conclusion.md) | Final thesis |
 
 ---
 

@@ -1,0 +1,60 @@
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+  window.dataLayer.push(arguments);
+}
+
+function isLikelyPasswordElem(elem) {
+  return [elem.type, elem.class, elem.name, elem.id].some(
+    e => typeof e === 'string' && e.toLowerCase().includes('password'),
+  );
+}
+
+function sanitizePush(ev) {
+  if (
+    (ev.event === 'gtm.click' && isLikelyPasswordElem(ev['gtm.element'])) ||
+    (ev.event === 'gtm.formSubmit' &&
+      ev['gtm.element'] &&
+      Array.from(ev['gtm.element']).some(formChild =>
+        isLikelyPasswordElem(formChild),
+      ))
+  ) {
+    ev['gtm.element'] = undefined;
+  }
+  return ev;
+}
+
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 1000,
+});
+
+const gtmId = new URL(document.getElementById('gtm').src).searchParams.get(
+  'id',
+);
+
+(function (w, d, s, l, i) {
+  w[l] = w[l] || [];
+  w[l].push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
+  var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s),
+    dl = l != 'dataLayer' ? '&l=' + l : '';
+  j.async = true;
+  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+  j.addEventListener('load', () => {
+    // Once gtag is loaded, dataLayer push method is replaced with a custom gtag push method.
+    // So we must save the gtag push method to be able to call it once sanitizing is done
+    window.dataLayer.realPush = window.dataLayer.push;
+    window.dataLayer.push = ev => {
+      sanitizedEvent = sanitizePush(ev);
+      window.dataLayer.realPush(sanitizedEvent);
+    };
+  });
+  f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', gtmId);

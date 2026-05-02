@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-13T17:30:14.123277+00:00",
+  "generatedAt": "2026-05-02T12:16:33.536015+00:00",
   "collections": [
     {
       "key": "01_perp_classes_zscore",
@@ -115,7 +115,7 @@
         "04-ode-to-the-orderbook::04-docs/04-the-assembly-line",
         "04-ode-to-the-orderbook::04-docs/05-hardening-the-lifecycle",
         "04-ode-to-the-orderbook::04-docs/06-ode-to-orderbooks",
-        "04-ode-to-the-orderbook::04-docs/07-the-hyperliquid-upgrade",
+        "04-ode-to-the-orderbook::04-docs/07-the-clob-upgrade",
         "04-ode-to-the-orderbook::04-docs/08-the-house-of-all-finance",
         "04-ode-to-the-orderbook::04-docs/09-conclusion",
         "04-ode-to-the-orderbook::04-docs/overview"
@@ -141,15 +141,14 @@
         "05-ode-to-the-orderbook-part2::05-docs/00-abstract",
         "05-ode-to-the-orderbook-part2::05-docs/01-introduction",
         "05-ode-to-the-orderbook-part2::05-docs/02-the-problem-with-listings",
-        "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-vibes-based-listings",
+        "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-narrative-based-listings",
         "05-ode-to-the-orderbook-part2::05-docs/04-the-hyperliquid-gap",
         "05-ode-to-the-orderbook-part2::05-docs/05-the-vibe-assembly-line",
         "05-ode-to-the-orderbook-part2::05-docs/06-programmatic-graduation",
-        "05-ode-to-the-orderbook-part2::05-docs/07-house-of-all-finance",
         "05-ode-to-the-orderbook-part2::05-docs/08-conclusion",
         "05-ode-to-the-orderbook-part2::05-docs/overview"
       ],
-      "pageCount": 10
+      "pageCount": 9
     },
     {
       "key": "06_usdc_token_perps",
@@ -525,10 +524,13 @@
         "17-referral-program::17-docs/09-metrics-framework",
         "17-referral-program::17-docs/10-open-decisions",
         "17-referral-program::17-docs/11-conclusion",
+        "17-referral-program::17-docs/12-product-metrics-prebeta-beta",
         "17-referral-program::17-docs/12-rewards-packs-artifact-system",
+        "17-referral-program::17-docs/13-hypothetical-tokenized-points-perps",
+        "17-referral-program::17-docs/14-meeting-traceability",
         "17-referral-program::17-docs/overview"
       ],
-      "pageCount": 14
+      "pageCount": 17
     }
   ],
   "pages": [
@@ -3780,23 +3782,23 @@
         }
       ],
       "prevId": "04-ode-to-the-orderbook::04-docs/05-hardening-the-lifecycle",
-      "nextId": "04-ode-to-the-orderbook::04-docs/07-the-hyperliquid-upgrade"
+      "nextId": "04-ode-to-the-orderbook::04-docs/07-the-clob-upgrade"
     },
     {
-      "id": "04-ode-to-the-orderbook::04-docs/07-the-hyperliquid-upgrade",
+      "id": "04-ode-to-the-orderbook::04-docs/07-the-clob-upgrade",
       "collectionKey": "04_ode_to_the_orderbook",
       "collectionSlug": "04-ode-to-the-orderbook",
-      "relativePath": "04_docs/07-The-Hyperliquid-Upgrade.md",
-      "routeSlug": "04-docs/07-the-hyperliquid-upgrade",
-      "href": "/docs/04-ode-to-the-orderbook/04-docs/07-the-hyperliquid-upgrade",
-      "title": "Section 7: The Hyperliquid Upgrade",
-      "summary": "The most powerful move is not to attack Hyperliquid directly.",
-      "html": "<h1 id=\"section-7-the-hyperliquid-upgrade\">Section 7: The Hyperliquid Upgrade</h1>\n<p>The most powerful move is not to attack Hyperliquid directly.</p>\n<p>It is to position VIbe to the Hyperliquid community as a product that makes Hyperliquid better.</p>\n<p>That is a very different posture from open competition. Instead of saying &ldquo;we built another majors venue,&rdquo; Vibe can say:</p>\n<ul>\n<li>we bootstrap the markets Hyperliquid cannot list yet</li>\n<li>we generate real demand before listing</li>\n<li>we help the best assets arrive on Hyperliquid already hardened</li>\n<li>we make the entire Hyperliquid ecosystem more scalable</li>\n</ul>\n<p>This changes the strategic relationship completely.</p>\n<h2 id=\"7-1-improve-before-replacing\">7.1 Improve Before Replacing</h2>\n<p>If Vibe complements Hyperliquid, then the Hyperliquid community evaluates Vibe not as a weaker substitute for the thing they already trust, but as an enhancer of that thing. That is much easier to adopt, much easier to defend, and much more likely to earn community support.</p>\n<p>In practical terms, Vibe can become the upstream machine that:</p>\n<ul>\n<li>discovers which long-tail assets deserve deeper execution</li>\n<li>creates perp history before order book graduation</li>\n<li>provides an earlier venue for shorting and real price discovery</li>\n<li>reduces the burden on Hyperliquid to guess which markets matter</li>\n</ul>\n<p>This means Vibe is not trying to beat Hyperliquid on its strongest terrain. It is trying to become indispensable to Hyperliquid&rsquo;s continued expansion.</p>\n<h2 id=\"7-2-trust-flows-upstream\">7.2 Trust Flows Upstream</h2>\n<p>Once Vibe repeatedly improves outcomes for the Hyperliquid community, trust can begin to move upstream.</p>\n<p>At first, users trust Vibe because it feeds better markets into Hyperliquid. Over time, they may trust Vibe because it is where market discovery starts, where the earliest perp expression happens, and where the next important asset first becomes legible.</p>\n<p>That is strategically significant. A company that owns upstream trust can become much more powerful than a company that merely copies downstream execution.</p>\n<h2 id=\"7-3-when-cooperation-becomes-optional\">7.3 When Cooperation Becomes Optional</h2>\n<p>This is also what makes the strategy more dangerous to Hyperliquid in the long run than direct imitation would be.</p>\n<p>If Vibe becomes indispensable to the community, then it accumulates:</p>\n<ul>\n<li>distribution</li>\n<li>credibility</li>\n<li>listing influence</li>\n<li>trader trust</li>\n<li>a proven path from early market formation to mature execution</li>\n</ul>\n<p>At that point, Vibe has the option to remain a complement. But it no longer has to. If it ever wants to offer majors independently, it can do so from a position of earned trust rather than speculative ambition.</p>\n<p>In other words, the path to becoming a true competitor may begin with refusing to compete too early.</p>\n<h2 id=\"7-4-the-role-of-sshe\">7.4 The Role of SSHE</h2>\n<p><code>SSHE</code> matters here because it gives Vibe an additional layer of flexibility. Not every successful market will move directly from bootstrap mode into Hyperliquid. Some will be too early. Some will be too expensive to list there. Some may need an intermediate stage where deeper structure exists without full order book graduation.</p>\n<p>That makes <code>SSHE</code> useful in two ways:</p>\n<ul>\n<li>as a middle step between Vibe bootstrap markets and Hyperliquid</li>\n<li>as a fallback execution venue when Hyperliquid listing is too costly or unavailable</li>\n</ul>\n<p>This strengthens the overall strategy. Vibe is no longer dependent on a single graduation endpoint. It can improve Hyperliquid where possible, use SSHE where practical, and still preserve its own path to deeper execution if the market structure changes.</p>\n<p>That is not weakness. It is optionality.</p>",
+      "relativePath": "04_docs/07-The-CLOB-Upgrade.md",
+      "routeSlug": "04-docs/07-the-clob-upgrade",
+      "href": "/docs/04-ode-to-the-orderbook/04-docs/07-the-clob-upgrade",
+      "title": "Section 7: The Orderbook Protocol Upgrade",
+      "summary": "The most powerful move is not to compete directly with CLOB protocols.",
+      "html": "<h1 id=\"section-7-the-orderbook-protocol-upgrade\">Section 7: The Orderbook Protocol Upgrade</h1>\n<p>The most powerful move is not to compete directly with CLOB protocols.</p>\n<p>It is to position Vibe with CLOB DEX communities as a product that makes orderbook ecosystems stronger.</p>\n<p>That is a very different posture from open competition. Instead of saying &ldquo;we built another majors venue,&rdquo; Vibe can say:</p>\n<ul>\n<li>we bootstrap markets that orderbooks cannot list yet</li>\n<li>we generate real demand before listing</li>\n<li>we help the best assets arrive on orderbooks with stronger market history</li>\n<li>we make the broader orderbook space more scalable</li>\n</ul>\n<p>This changes the strategic relationship completely.</p>\n<h2 id=\"7-1-improve-before-replacing\">7.1 Improve Before Replacing</h2>\n<p>If Vibe complements orderbooks, then the CLOB ecosystem evaluates Vibe not as a weaker substitute for the venues it already trusts, but as an enhancer of those venues. That is much easier to adopt, much easier to defend, and much more likely to earn community support.</p>\n<p>In practical terms, Vibe can become the upstream machine that:</p>\n<ul>\n<li>discovers which long-tail assets deserve deeper execution</li>\n<li>creates perp history before order book graduation</li>\n<li>provides an earlier venue for shorting and real price discovery</li>\n<li>reduces the burden on orderbooks to guess which markets matter</li>\n</ul>\n<p>This means Vibe is not trying to beat orderbooks on their strongest terrain. It is trying to become useful to the continued expansion of orderbook liquidity.</p>\n<h2 id=\"7-2-trust-flows-upstream\">7.2 Trust Flows Upstream</h2>\n<p>Once Vibe repeatedly improves outcomes for CLOB communities, trust can begin to move upstream.</p>\n<p>At first, users trust Vibe because it feeds better markets into orderbooks. Over time, they may trust Vibe because it is where market discovery starts, where the earliest perp expression happens, and where the next important asset first becomes legible.</p>\n<p>That is strategically significant. A company that owns upstream trust can become much more powerful than a company that merely copies downstream execution.</p>\n<h2 id=\"7-3-when-cooperation-creates-optionality\">7.3 When Cooperation Creates Optionality</h2>\n<p>This is also what makes the strategy more durable in the long run than direct imitation would be.</p>\n<p>If Vibe becomes indispensable to the community, then it accumulates:</p>\n<ul>\n<li>distribution</li>\n<li>credibility</li>\n<li>listing influence</li>\n<li>trader trust</li>\n<li>a proven path from early market formation to mature execution</li>\n</ul>\n<p>At that point, Vibe can remain a complement, expand into deeper execution, or support majors independently from a position of earned trust rather than speculative ambition.</p>\n<p>In other words, the path to deeper market ownership may begin with refusing to compete too early.</p>\n<h2 id=\"7-4-the-role-of-sshe-as-an-internal-orderbook-layer\">7.4 The Role of SSHE as an Internal Orderbook Layer</h2>\n<p><code>SSHE</code> matters here because it gives Vibe an additional internal layer of flexibility. Not every successful market will move directly from bootstrap mode into external orderbooks. Some will be too early. Some will be too expensive to list there. Some may need an intermediate stage where deeper structure exists without full order book graduation.</p>\n<p>That makes <code>SSHE</code> useful in two ways:</p>\n<ul>\n<li>as a middle step between Vibe bootstrap markets and external orderbooks</li>\n<li>as a fallback execution venue when orderbook listing is too costly or unavailable</li>\n</ul>\n<p>This strengthens the overall strategy. Vibe is no longer dependent on a single graduation endpoint. It can improve orderbook ecosystems where possible, use SSHE where practical, and still preserve its own path to deeper execution if the market structure changes.</p>\n<p>That is not weakness. It is optionality.</p>",
       "headings": [
         {
           "level": 1,
-          "title": "Section 7: The Hyperliquid Upgrade",
-          "id": "section-7-the-hyperliquid-upgrade"
+          "title": "Section 7: The Orderbook Protocol Upgrade",
+          "id": "section-7-the-orderbook-protocol-upgrade"
         },
         {
           "level": 2,
@@ -3810,13 +3812,13 @@
         },
         {
           "level": 2,
-          "title": "7.3 When Cooperation Becomes Optional",
-          "id": "7-3-when-cooperation-becomes-optional"
+          "title": "7.3 When Cooperation Creates Optionality",
+          "id": "7-3-when-cooperation-creates-optionality"
         },
         {
           "level": 2,
-          "title": "7.4 The Role of SSHE",
-          "id": "7-4-the-role-of-sshe"
+          "title": "7.4 The Role of SSHE as an Internal Orderbook Layer",
+          "id": "7-4-the-role-of-sshe-as-an-internal-orderbook-layer"
         }
       ],
       "prevId": "04-ode-to-the-orderbook::04-docs/06-ode-to-orderbooks",
@@ -3829,17 +3831,17 @@
       "relativePath": "04_docs/08-The-House-of-All-Finance.md",
       "routeSlug": "04-docs/08-the-house-of-all-finance",
       "href": "/docs/04-ode-to-the-orderbook/04-docs/08-the-house-of-all-finance",
-      "title": "Section 8: The House of All Finance (Hyperliquid, Symmio and Vibe)",
-      "summary": "If finance is to become truly open, then listing must become more protocol-defined and less relationship-defined.",
-      "html": "<h1 id=\"section-8-the-house-of-all-finance-hyperliquid-symmio-and-vibe\">Section 8: The House of All Finance (Hyperliquid, Symmio and Vibe)</h1>\n<p>If finance is to become truly open, then listing must become more protocol-defined and less relationship-defined.</p>\n<p>The broader significance of Vibe is that it turns market creation into infrastructure. Once the bootstrap layer is automated, order book venues can stop acting primarily as guessers and start acting as absorbers of proven demand.</p>\n<p>That has implications far beyond memecoins.</p>\n<p>The same assembly-line logic can apply to any new asset category:</p>\n<ul>\n<li>crypto long-tail assets</li>\n<li>tokenized equities</li>\n<li>niche commodities</li>\n<li>local or thematic markets</li>\n<li>eventually any financial object that benefits from early discovery before mature execution</li>\n</ul>\n<p>In this world, order books become the visible top layer of a much deeper machine. Beneath them sits a permissionless substrate that discovers, tests, filters, and graduates markets.</p>\n<p>That is how a platform moves closer to becoming the house of all finance: not by directly listing everything, but by being connected to a system that can permissionlessly prepare anything.</p>",
+      "title": "Section 8: The House of All Finance",
+      "summary": "CLOB protocols, OTC infrastructure, and verification layers working as one market-formation system",
+      "html": "<h1 id=\"section-8-the-house-of-all-finance\">Section 8: The House of All Finance</h1>\n<p><em>CLOB protocols, OTC infrastructure, and verification layers working as one market-formation system</em></p>\n<p>If finance is to become truly open, then listing must become more protocol-defined and less relationship-defined.</p>\n<p>Orderbooks are unmatched at scale. But scale is only useful once a market is real. Vibe helps make markets real by bootstrapping the stage at which genuine participation, risk transfer, and shorting first emerge.</p>\n<p>The broader significance of Vibe is that it turns market creation into infrastructure. Once the bootstrap layer is automated, orderbook venues can stop acting primarily as guessers and start acting as absorbers of proven demand.</p>\n<p>That is why the partnership thesis matters:</p>\n<ul>\n<li>Vibe discovers demand</li>\n<li>Vibe hardens the lifecycle</li>\n<li>flexible execution infrastructure supports markets before they are ready for full orderbook depth</li>\n<li>orderbooks scale efficiency and institutionalize the winners</li>\n</ul>\n<p>Together, these layers form a continuous system rather than disconnected worlds.</p>\n<p>That has implications far beyond memecoins.</p>\n<p>The same assembly-line logic can apply to any new asset category:</p>\n<ul>\n<li>crypto long-tail assets</li>\n<li>tokenized equities</li>\n<li>niche commodities</li>\n<li>local or thematic markets</li>\n<li>eventually any financial object that benefits from early discovery before mature execution</li>\n</ul>\n<p>In this world, orderbooks become the visible top layer of a much deeper machine. Beneath them sits a permissionless substrate that discovers, tests, filters, and graduates markets.</p>\n<p>That is how a platform moves closer to becoming the house of all finance: not by directly listing everything, but by being connected to a system that can permissionlessly prepare anything.</p>",
       "headings": [
         {
           "level": 1,
-          "title": "Section 8: The House of All Finance (Hyperliquid, Symmio and Vibe)",
-          "id": "section-8-the-house-of-all-finance-hyperliquid-symmio-and-vibe"
+          "title": "Section 8: The House of All Finance",
+          "id": "section-8-the-house-of-all-finance"
         }
       ],
-      "prevId": "04-ode-to-the-orderbook::04-docs/07-the-hyperliquid-upgrade",
+      "prevId": "04-ode-to-the-orderbook::04-docs/07-the-clob-upgrade",
       "nextId": "04-ode-to-the-orderbook::04-docs/09-conclusion"
     },
     {
@@ -3876,7 +3878,7 @@
       "href": "/docs/04-ode-to-the-orderbook/04-docs/overview",
       "title": "Ode to OrderBooks",
       "summary": "This dissertation argues that Vibe does not compete with order books. It completes them. Order books are the best end-state for deep, highly traded assets, but they are structural...",
-      "html": "<h1 id=\"ode-to-orderbooks\">Ode to OrderBooks</h1>\n<h2 id=\"dissertation-overview\">Dissertation Overview</h2>\n<p>This dissertation argues that Vibe does not compete with order books. It completes them. Order books are the best end-state for deep, highly traded assets, but they are structurally bad at bootstrapping the long tail of new markets. Vibe fills that gap with a hybrid solver + RFQ layer that can launch perpetuals early, discover real demand, harden the token lifecycle, and then graduate mature markets into full order books such as Hyperliquid.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Executive summary</td>\n</tr>\n<tr>\n<td><strong>1. Introduction</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/01-introduction\">01-Introduction.md</a></td>\n<td>Why order books need help</td>\n</tr>\n<tr>\n<td><strong>2. The Limit of Order Books</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/02-the-limit-of-order-books\">02-The-Limit-of-Order-Books.md</a></td>\n<td>Selectivity, cost, and the listing gap</td>\n</tr>\n<tr>\n<td><strong>3. Vibe as Bootstrap Layer</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/03-vibe-as-bootstrap-layer\">03-Vibe-as-Bootstrap-Layer.md</a></td>\n<td>Hybrid solver and continuous liquidity</td>\n</tr>\n<tr>\n<td><strong>4. The Assembly Line</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/04-the-assembly-line\">04-The-Assembly-Line.md</a></td>\n<td>Launchpad -&gt; DEX -&gt; Vibe -&gt; SSHE / Hyperliquid</td>\n</tr>\n<tr>\n<td><strong>5. Hardening the Lifecycle</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/05-hardening-the-lifecycle\">05-Hardening-the-Lifecycle.md</a></td>\n<td>Shorting, truth, and survival</td>\n</tr>\n<tr>\n<td><strong>6. Ode to OrderBooks</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/06-ode-to-orderbooks\">06-Ode-to-OrderBooks.md</a></td>\n<td>Why Vibe complements Hyperliquid</td>\n</tr>\n<tr>\n<td><strong>7. The Hyperliquid Upgrade</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/07-the-hyperliquid-upgrade\">07-The-Hyperliquid-Upgrade.md</a></td>\n<td>Why Vibe should sell Hyperliquid&rsquo;s community a better Hyperliquid</td>\n</tr>\n<tr>\n<td><strong>8. The House of All Finance</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/08-the-house-of-all-finance\">08-The-House-of-All-Finance.md</a></td>\n<td>From crypto listing reform to finance-wide infrastructure</td>\n</tr>\n<tr>\n<td><strong>9. Conclusion</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/09-conclusion\">09-Conclusion.md</a></td>\n<td>Final thesis</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"core-thesis\">Core Thesis</h2>\n<ul>\n<li>Order books are excellent for synchronous matching of mature, liquid assets.</li>\n<li>They are poor at bootstrapping the millions of assets created in permissionless markets.</li>\n<li>Vibe is the missing bootstrap and discovery layer beneath order books.</li>\n<li>Vibe discovers demand; order books scale efficiency.</li>\n<li>Vibe can improve Hyperliquid before it ever needs to compete with Hyperliquid.</li>\n<li>SSHE can serve as an intermediate or fallback execution layer when direct Hyperliquid listing is too expensive.</li>\n<li>A fully automated listing assembly line is how crypto matures into open finance.</li>\n</ul>\n<hr>\n<h2 id=\"source\">Source</h2>\n<p>Based primarily on <code>05_transcripts/transcript.md</code>, with supporting context from the existing Vibe papers on lifecycle control, market bootstrap, and order book graduation.</p>\n<hr>\n<p><em>Version 1.0 - February 2026</em></p>",
+      "html": "<h1 id=\"ode-to-orderbooks\">Ode to OrderBooks</h1>\n<h2 id=\"dissertation-overview\">Dissertation Overview</h2>\n<p>This dissertation argues that Vibe does not compete with order books. It completes them. Order books are the best end-state for deep, highly traded assets, but they are structurally bad at bootstrapping the long tail of new markets. Vibe fills that gap with a hybrid solver + RFQ layer that can launch perpetuals early, discover real demand, harden the token lifecycle, and then graduate mature markets into full order books such as Hyperliquid.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Executive summary</td>\n</tr>\n<tr>\n<td><strong>1. Introduction</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/01-introduction\">01-Introduction.md</a></td>\n<td>Why order books need help</td>\n</tr>\n<tr>\n<td><strong>2. The Limit of Order Books</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/02-the-limit-of-order-books\">02-The-Limit-of-Order-Books.md</a></td>\n<td>Selectivity, cost, and the listing gap</td>\n</tr>\n<tr>\n<td><strong>3. Vibe as Bootstrap Layer</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/03-vibe-as-bootstrap-layer\">03-Vibe-as-Bootstrap-Layer.md</a></td>\n<td>Hybrid solver and continuous liquidity</td>\n</tr>\n<tr>\n<td><strong>4. The Assembly Line</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/04-the-assembly-line\">04-The-Assembly-Line.md</a></td>\n<td>Launchpad -&gt; DEX -&gt; Vibe -&gt; SSHE / Hyperliquid</td>\n</tr>\n<tr>\n<td><strong>5. Hardening the Lifecycle</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/05-hardening-the-lifecycle\">05-Hardening-the-Lifecycle.md</a></td>\n<td>Shorting, truth, and survival</td>\n</tr>\n<tr>\n<td><strong>6. Ode to OrderBooks</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/06-ode-to-orderbooks\">06-Ode-to-OrderBooks.md</a></td>\n<td>Why Vibe complements Hyperliquid</td>\n</tr>\n<tr>\n<td><strong>7. The Hyperliquid Upgrade</strong></td>\n<td><a href=\"./07-The-Hyperliquid-Upgrade.md\">07-The-Hyperliquid-Upgrade.md</a></td>\n<td>Why Vibe should sell Hyperliquid&rsquo;s community a better Hyperliquid</td>\n</tr>\n<tr>\n<td><strong>8. The House of All Finance</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/08-the-house-of-all-finance\">08-The-House-of-All-Finance.md</a></td>\n<td>From crypto listing reform to finance-wide infrastructure</td>\n</tr>\n<tr>\n<td><strong>9. Conclusion</strong></td>\n<td><a href=\"/docs/04-ode-to-the-orderbook/04-docs/09-conclusion\">09-Conclusion.md</a></td>\n<td>Final thesis</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"core-thesis\">Core Thesis</h2>\n<ul>\n<li>Order books are excellent for synchronous matching of mature, liquid assets.</li>\n<li>They are poor at bootstrapping the millions of assets created in permissionless markets.</li>\n<li>Vibe is the missing bootstrap and discovery layer beneath order books.</li>\n<li>Vibe discovers demand; order books scale efficiency.</li>\n<li>Vibe can improve Hyperliquid before it ever needs to compete with Hyperliquid.</li>\n<li>SSHE can serve as an intermediate or fallback execution layer when direct Hyperliquid listing is too expensive.</li>\n<li>A fully automated listing assembly line is how crypto matures into open finance.</li>\n</ul>\n<hr>\n<h2 id=\"source\">Source</h2>\n<p>Based primarily on <code>05_transcripts/transcript.md</code>, with supporting context from the existing Vibe papers on lifecycle control, market bootstrap, and order book graduation.</p>\n<hr>\n<p><em>Version 1.0 - February 2026</em></p>",
       "headings": [
         {
           "level": 1,
@@ -3970,15 +3972,15 @@
         }
       ],
       "prevId": "05-ode-to-the-orderbook-part2::05-docs/01-introduction",
-      "nextId": "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-vibes-based-listings"
+      "nextId": "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-narrative-based-listings"
     },
     {
-      "id": "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-vibes-based-listings",
+      "id": "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-narrative-based-listings",
       "collectionKey": "05_ode_to_the_orderbook_part2",
       "collectionSlug": "05-ode-to-the-orderbook-part2",
-      "relativePath": "05_docs/03-The-End-of-Vibes-Based-Listings.md",
-      "routeSlug": "05-docs/03-the-end-of-vibes-based-listings",
-      "href": "/docs/05-ode-to-the-orderbook-part2/05-docs/03-the-end-of-vibes-based-listings",
+      "relativePath": "05_docs/03-The-End-of-Narrative-Based-Listings.md",
+      "routeSlug": "05-docs/03-the-end-of-narrative-based-listings",
+      "href": "/docs/05-ode-to-the-orderbook-part2/05-docs/03-the-end-of-narrative-based-listings",
       "title": "Section 3: The End of Vibes-Based Listings",
       "summary": "The transcript puts the problem clearly: every permissioned listing venue operates on two axes, actual interest and perceived interest. The tragedy is that it must list based on t...",
       "html": "<h1 id=\"section-3-the-end-of-vibes-based-listings\">Section 3: The End of Vibes-Based Listings</h1>\n<p>The transcript puts the problem clearly: every permissioned listing venue operates on two axes, actual interest and perceived interest. The tragedy is that it must list based on the second, not the first.</p>\n<p>That is the essence of vibes-based listing.</p>\n<p>A venue cannot directly observe the future depth of a perp market that does not yet exist, so it substitutes heuristics:</p>\n<ul>\n<li>spot volume</li>\n<li>narrative strength</li>\n<li>community pressure</li>\n<li>auction outcomes</li>\n<li>relationships</li>\n<li>prior exchange listings</li>\n</ul>\n<p>These are not useless signals. They are simply inferior to the thing the exchange actually wants to know: will traders trade this perp enough for the market to function?</p>\n<p>Vibe ends vibes-based listing by producing that missing information directly. Instead of guessing demand, it lets demand appear in a permissionless environment first.</p>",
@@ -4009,7 +4011,7 @@
           "id": "section-4-the-hyperliquid-gap"
         }
       ],
-      "prevId": "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-vibes-based-listings",
+      "prevId": "05-ode-to-the-orderbook-part2::05-docs/03-the-end-of-narrative-based-listings",
       "nextId": "05-ode-to-the-orderbook-part2::05-docs/05-the-vibe-assembly-line"
     },
     {
@@ -4050,26 +4052,6 @@
         }
       ],
       "prevId": "05-ode-to-the-orderbook-part2::05-docs/05-the-vibe-assembly-line",
-      "nextId": "05-ode-to-the-orderbook-part2::05-docs/07-house-of-all-finance"
-    },
-    {
-      "id": "05-ode-to-the-orderbook-part2::05-docs/07-house-of-all-finance",
-      "collectionKey": "05_ode_to_the_orderbook_part2",
-      "collectionSlug": "05-ode-to-the-orderbook-part2",
-      "relativePath": "05_docs/07-House-of-All-Finance.md",
-      "routeSlug": "05-docs/07-house-of-all-finance",
-      "href": "/docs/05-ode-to-the-orderbook-part2/05-docs/07-house-of-all-finance",
-      "title": "Section 7: House of All Finance",
-      "summary": "If Hyperliquid wants to house all finance, it must connect to a system that can permissionlessly prepare all finance.",
-      "html": "<h1 id=\"section-7-house-of-all-finance\">Section 7: House of All Finance</h1>\n<p>If Hyperliquid wants to house all finance, it must connect to a system that can permissionlessly prepare all finance.</p>\n<p>Order books are unmatched at scale. But scale is only useful once a market is real. Vibe helps make markets real by bootstrapping the stage at which genuine participation, risk transfer, and shorting first emerge.</p>\n<p>That is why the partnership thesis matters:</p>\n<ul>\n<li>Vibe discovers demand</li>\n<li>Hyperliquid scales efficiency</li>\n<li>Vibe hardens the lifecycle</li>\n<li>Hyperliquid institutionalizes the winners</li>\n</ul>\n<p>Together they form a continuous system rather than two disconnected worlds.</p>\n<p>This does not only apply to memecoins. The same model can extend to any asset class that benefits from early discovery before mature execution.</p>",
-      "headings": [
-        {
-          "level": 1,
-          "title": "Section 7: House of All Finance",
-          "id": "section-7-house-of-all-finance"
-        }
-      ],
-      "prevId": "05-ode-to-the-orderbook-part2::05-docs/06-programmatic-graduation",
       "nextId": "05-ode-to-the-orderbook-part2::05-docs/08-conclusion"
     },
     {
@@ -4094,7 +4076,7 @@
           "id": "source"
         }
       ],
-      "prevId": "05-ode-to-the-orderbook-part2::05-docs/07-house-of-all-finance",
+      "prevId": "05-ode-to-the-orderbook-part2::05-docs/06-programmatic-graduation",
       "nextId": "05-ode-to-the-orderbook-part2::05-docs/overview"
     },
     {
@@ -4106,7 +4088,7 @@
       "href": "/docs/05-ode-to-the-orderbook-part2/05-docs/overview",
       "title": "Ode to OrderBooks, Part II",
       "summary": "This sequel sharpens the Hyperliquid-facing argument from Part I. The thesis is that order books are not broken, but their listing logic is incomplete. As long as new markets must...",
-      "html": "<h1 id=\"ode-to-orderbooks-part-ii\">Ode to OrderBooks, Part II</h1>\n<h2 id=\"dissertation-overview\">Dissertation Overview</h2>\n<p>This sequel sharpens the Hyperliquid-facing argument from Part I. The thesis is that order books are not broken, but their listing logic is incomplete. As long as new markets must be manually selected, auctioned, or judged through imperfect signals, the industry remains trapped in vibes-based listing. Vibe offers the missing layer: a permissionless perpetual bootstrap and discovery engine that can generate real data, mature markets over time, and feed pre-qualified assets into order book venues.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Executive summary</td>\n</tr>\n<tr>\n<td><strong>1. Introduction</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/01-introduction\">01-Introduction.md</a></td>\n<td>Part II framing</td>\n</tr>\n<tr>\n<td><strong>2. The Problem with Listings</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/02-the-problem-with-listings\">02-The-Problem-with-Listings.md</a></td>\n<td>Why selective systems drift into gatekeeping</td>\n</tr>\n<tr>\n<td><strong>3. The End of Vibes-Based Listings</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/03-the-end-of-vibes-based-listings\">03-The-End-of-Vibes-Based-Listings.md</a></td>\n<td>Actual vs perceived interest</td>\n</tr>\n<tr>\n<td><strong>4. The Hyperliquid Gap</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/04-the-hyperliquid-gap\">04-The-Hyperliquid-Gap.md</a></td>\n<td>Why HIP-3 is progress but not enough</td>\n</tr>\n<tr>\n<td><strong>5. The Vibe Assembly Line</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/05-the-vibe-assembly-line\">05-The-Vibe-Assembly-Line.md</a></td>\n<td>Launchpad -&gt; DEX -&gt; Vibe -&gt; Order Book</td>\n</tr>\n<tr>\n<td><strong>6. Programmatic Graduation</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/06-programmatic-graduation\">06-Programmatic-Graduation.md</a></td>\n<td>Rules, thresholds, and automatic market promotion</td>\n</tr>\n<tr>\n<td><strong>7. House of All Finance</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/07-house-of-all-finance\">07-House-of-All-Finance.md</a></td>\n<td>How order books scale once the bootstrap layer exists</td>\n</tr>\n<tr>\n<td><strong>8. Conclusion</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/08-conclusion\">08-Conclusion.md</a></td>\n<td>Final thesis</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"core-thesis\">Core Thesis</h2>\n<ul>\n<li>Order books should remain the mature execution layer.</li>\n<li>The real problem is not matching, but listing.</li>\n<li>Any selective listing venue is forced to rely on perceived interest.</li>\n<li>Vibe creates actual interest data by bootstrapping perp markets permissionlessly.</li>\n<li>That lets Hyperliquid list markets based on market maturity rather than vibes.</li>\n</ul>\n<hr>\n<h2 id=\"source\">Source</h2>\n<p>Based primarily on <code>06_transcripts/source_notes/06_transcript.md</code>.</p>\n<hr>\n<p><em>Version 1.0 - February 2026</em></p>",
+      "html": "<h1 id=\"ode-to-orderbooks-part-ii\">Ode to OrderBooks, Part II</h1>\n<h2 id=\"dissertation-overview\">Dissertation Overview</h2>\n<p>This sequel sharpens the Hyperliquid-facing argument from Part I. The thesis is that order books are not broken, but their listing logic is incomplete. As long as new markets must be manually selected, auctioned, or judged through imperfect signals, the industry remains trapped in vibes-based listing. Vibe offers the missing layer: a permissionless perpetual bootstrap and discovery engine that can generate real data, mature markets over time, and feed pre-qualified assets into order book venues.</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Executive summary</td>\n</tr>\n<tr>\n<td><strong>1. Introduction</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/01-introduction\">01-Introduction.md</a></td>\n<td>Part II framing</td>\n</tr>\n<tr>\n<td><strong>2. The Problem with Listings</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/02-the-problem-with-listings\">02-The-Problem-with-Listings.md</a></td>\n<td>Why selective systems drift into gatekeeping</td>\n</tr>\n<tr>\n<td><strong>3. The End of Vibes-Based Listings</strong></td>\n<td><a href=\"./03-The-End-of-Vibes-Based-Listings.md\">03-The-End-of-Vibes-Based-Listings.md</a></td>\n<td>Actual vs perceived interest</td>\n</tr>\n<tr>\n<td><strong>4. The Hyperliquid Gap</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/04-the-hyperliquid-gap\">04-The-Hyperliquid-Gap.md</a></td>\n<td>Why HIP-3 is progress but not enough</td>\n</tr>\n<tr>\n<td><strong>5. The Vibe Assembly Line</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/05-the-vibe-assembly-line\">05-The-Vibe-Assembly-Line.md</a></td>\n<td>Launchpad -&gt; DEX -&gt; Vibe -&gt; Order Book</td>\n</tr>\n<tr>\n<td><strong>6. Programmatic Graduation</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/06-programmatic-graduation\">06-Programmatic-Graduation.md</a></td>\n<td>Rules, thresholds, and automatic market promotion</td>\n</tr>\n<tr>\n<td><strong>7. Conclusion</strong></td>\n<td><a href=\"/docs/05-ode-to-the-orderbook-part2/05-docs/08-conclusion\">08-Conclusion.md</a></td>\n<td>Final thesis</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"core-thesis\">Core Thesis</h2>\n<ul>\n<li>Order books should remain the mature execution layer.</li>\n<li>The real problem is not matching, but listing.</li>\n<li>Any selective listing venue is forced to rely on perceived interest.</li>\n<li>Vibe creates actual interest data by bootstrapping perp markets permissionlessly.</li>\n<li>That lets Hyperliquid list markets based on market maturity rather than vibes.</li>\n</ul>\n<hr>\n<h2 id=\"source\">Source</h2>\n<p>Based primarily on <code>06_transcripts/source_notes/06_transcript.md</code>.</p>\n<hr>\n<p><em>Version 1.0 - February 2026</em></p>",
       "headings": [
         {
           "level": 1,
@@ -11534,7 +11516,7 @@
       "href": "/docs/17-referral-program/17-docs/00-abstract",
       "title": "Abstract",
       "summary": "The referral layer is a market-formation primitive, not only a distribution feature.",
-      "html": "<h1 id=\"abstract\">Abstract</h1>\n<p>The referral layer is a market-formation primitive, not only a distribution feature.</p>\n<p>This paper frames referral architecture around one core objective: increase high-quality market listings while preserving fee integrity and minimizing abuse surfaces.</p>\n<p>Three structural tensions define the design space:</p>\n<ol>\n<li>\n<p><strong>On-chain trust vs off-chain flexibility</strong><br>\n   Referral identity and claim settlement benefit from on-chain guarantees, while partner-specific economics often require configurable off-chain logic.</p>\n</li>\n<li>\n<p><strong>Growth speed vs gaming resistance</strong><br>\n   Open referral issuance drives adoption, but unbounded issuance and unequal perks can produce code shopping, self-referral loops, and attribution disputes.</p>\n</li>\n<li>\n<p><strong>Simple rewards vs composable reward markets</strong><br>\n   Basic rakeback is understandable and immediate. Points, packs, and artifacts add engagement depth but require stronger accounting, anti-inflation controls, and clear eligibility rules.</p>\n</li>\n</ol>\n<p>The proposed architecture is phased:\n- start with access-gated launch and constrained incentives,\n- unify access and referral identity,\n- then expand into optional-code participation with standardized benefits and market-level economics.</p>\n<p>Security posture is treated as first-class:\n- minimize privileged signers,\n- enforce replay-safe claim paths,\n- use cooldowns and anomaly checks for reward bridging,\n- and separate public policy from private commercial overlays.</p>\n<p>The result is a referral program that scales with listings, aligns incentives across traders, creators, and partners, and remains auditable under growth.</p>",
+      "html": "<h1 id=\"abstract\">Abstract</h1>\n<p>The referral layer is a market-formation primitive, not only a distribution feature.</p>\n<p>This paper frames referral architecture around one core objective: increase high-quality market listings while preserving fee integrity and minimizing abuse surfaces.</p>\n<p>This paper documents how a referral system can evolve from invite-gated onboarding to a scalable, incentive-aligned growth layer.</p>\n<p>The model combines:\n- on-chain referral identity\n- tiered rakeback for traders and referrers\n- points and reward abstractions\n- market-level partner economics\n- operational safeguards</p>\n<p>Three structural tensions define the design space:</p>\n<ol>\n<li>\n<p><strong>On-chain trust vs off-chain flexibility</strong><br>\n   Referral identity and claim settlement benefit from on-chain guarantees, while partner-specific economics often require configurable off-chain logic.</p>\n</li>\n<li>\n<p><strong>Growth speed vs gaming resistance</strong><br>\n   Open referral issuance drives adoption, but unbounded issuance and unequal perks can produce code shopping, self-referral loops, and attribution disputes.</p>\n</li>\n<li>\n<p><strong>Simple rewards vs composable reward markets</strong><br>\n   Basic rakeback is understandable and immediate. Points, Referrals, packs, and artifacts add engagement depth but require stronger accounting, anti-inflation controls, and clear eligibility rules.</p>\n</li>\n</ol>\n<p>The proposed architecture is phased:\n- start with access-gated launch and constrained incentives,\n- unify access and referral identity,\n- then expand into optional-code participation with standardized benefits and market-level economics.</p>\n<p>Security posture is treated as first-class:\n- minimize privileged signers,\n- enforce replay-safe claim paths,\n- use cooldowns and anomaly checks for reward bridging,\n- and separate public policy from private commercial overlays.</p>\n<p>The result is a referral program that scales with listings, aligns incentives across traders, creators, and partners, and remains auditable under growth.</p>",
       "headings": [
         {
           "level": 1,
@@ -11554,7 +11536,7 @@
       "href": "/docs/17-referral-program/17-docs/01-system-baseline",
       "title": "Section 1: System Baseline",
       "summary": "The baseline model uses a referral NFT minted during account creation.",
-      "html": "<h1 id=\"section-1-system-baseline\">Section 1: System Baseline</h1>\n<h2 id=\"1-1-referral-identity\">1.1 Referral Identity</h2>\n<p>The baseline model uses a referral NFT minted during account creation.\nThis NFT acts as the user&rsquo;s referral identity anchor and code carrier.</p>\n<h2 id=\"1-2-two-incentive-rails\">1.2 Two Incentive Rails</h2>\n<p>The transcript describes two reward rails:</p>\n<ul>\n<li><strong>Trading rakeback</strong>: based on the user&rsquo;s own rolling activity.</li>\n<li><strong>Referral rakeback</strong>: based on referred-user activity over the same rolling window.</li>\n</ul>\n<p>Both rails rely on tier logic and attribution integrity. The primary challenge is not computation, but consistent and auditable attribution.</p>\n<h2 id=\"1-3-points-separation\">1.3 Points Separation</h2>\n<p>Points are treated as a separate rewards layer from referral NFT state.\nThis separation improves iteration speed but introduces trust concentration if balances are only off-chain.</p>\n<h2 id=\"1-4-operational-reality\">1.4 Operational Reality</h2>\n<p>The baseline system is functional for early-stage growth but has known limits:</p>\n<ul>\n<li>ambiguous referral graph portability,</li>\n<li>mixed on-chain/off-chain accountability,</li>\n<li>private deal logic that can obscure public economics,</li>\n<li>and weak guarantees if points are treated as economically transferable before hardened controls.</li>\n</ul>\n<h2 id=\"1-5-design-requirement\">1.5 Design Requirement</h2>\n<p>The next architecture must preserve what works (speed and flexibility) while reducing hidden trust assumptions.\nThat means moving from &ldquo;features that work&rdquo; to &ldquo;incentives that remain reliable under scale and adversarial behavior.&rdquo;</p>",
+      "html": "<h1 id=\"section-1-system-baseline\">Section 1: System Baseline</h1>\n<h2 id=\"1-1-referral-identity\">1.1 Referral Identity</h2>\n<p>The baseline model uses a referral NFT minted during account creation.\nThis NFT acts as the user&rsquo;s referral identity anchor and code carrier.</p>\n<h2 id=\"1-2-two-incentive-rails\">1.2 Two Incentive Rails</h2>\n<p>The transcript describes two reward rails:</p>\n<ul>\n<li><strong>Trading rakeback</strong>: based on the user&rsquo;s own rolling activity.</li>\n<li><strong>Referral Rewards</strong>: based on referred-user activity over the same rolling window.</li>\n</ul>\n<p>Both rails rely on tier logic and attribution integrity. The primary challenge is not computation, but consistent and auditable attribution.</p>\n<h2 id=\"1-3-points-separation\">1.3 Points Separation</h2>\n<p>Points are treated as a separate rewards layer from referral NFT state.\nThis separation improves iteration speed but introduces trust concentration if balances are only off-chain.</p>\n<h2 id=\"1-4-operational-reality\">1.4 Operational Reality</h2>\n<p>The baseline system is functional for early-stage growth but has known limits:</p>\n<ul>\n<li>ambiguous referral graph portability,</li>\n<li>mixed on-chain/off-chain accountability,</li>\n<li>private deal logic that can obscure public economics,</li>\n<li>and weak guarantees if points are treated as economically transferable before hardened controls.</li>\n</ul>\n<h2 id=\"1-5-design-requirement\">1.5 Design Requirement</h2>\n<p>The next architecture must preserve what works (speed and flexibility) while reducing hidden trust assumptions.\nThat means moving from &ldquo;features that work&rdquo; to &ldquo;incentives that remain reliable under scale and adversarial behavior.&rdquo;</p>",
       "headings": [
         {
           "level": 1,
@@ -11599,7 +11581,7 @@
       "href": "/docs/17-referral-program/17-docs/02-architecture",
       "title": "Section 2: Architecture",
       "summary": "The referral stack spans three planes:",
-      "html": "<h1 id=\"section-2-architecture\">Section 2: Architecture</h1>\n<h2 id=\"2-1-component-boundaries\">2.1 Component Boundaries</h2>\n<p>The referral stack spans three planes:</p>\n<ol>\n<li><strong>On-chain identity and settlement</strong></li>\n<li><strong>Off-chain attribution and policy logic</strong></li>\n<li><strong>User-facing access and claims UX</strong></li>\n</ol>\n<h2 id=\"2-2-canonical-flow\">2.2 Canonical Flow</h2>\n<ol>\n<li>User onboards and receives referral identity.</li>\n<li>Trades and referrals generate fee-linked activity.</li>\n<li>Indexing services compute rolling windows and tiers.</li>\n<li>Claim authorizations are issued with replay-safe signatures.</li>\n<li>Users settle claims through a claim contract path.</li>\n</ol>\n<h2 id=\"2-3-trust-boundaries\">2.3 Trust Boundaries</h2>\n<p>The architecture should explicitly separate:</p>\n<ul>\n<li><strong>deterministic state</strong> (identity, claim consumption, nonces),</li>\n<li><strong>policy state</strong> (tier tables, private overlays),</li>\n<li><strong>monitoring state</strong> (anomaly and reconciliation pipelines).</li>\n</ul>\n<h2 id=\"2-4-failure-modes-to-design-against\">2.4 Failure Modes to Design Against</h2>\n<ul>\n<li>signer key compromise,</li>\n<li>stale or inconsistent index data,</li>\n<li>referral graph mutation without audit trails,</li>\n<li>and claim replay or double-credit paths.</li>\n</ul>\n<h2 id=\"2-5-target-principle\">2.5 Target Principle</h2>\n<p>Keep policy agility off-chain where needed, but make settlement integrity on-chain by default.\nIf a rule can change quickly, it must be transparently versioned.\nIf value can be claimed, it must be cryptographically constrained.</p>",
+      "html": "<h1 id=\"section-2-architecture\">Section 2: Architecture</h1>\n<h2 id=\"2-1-component-boundaries\">2.1 Component Boundaries</h2>\n<p>The referral stack spans three planes:</p>\n<ol>\n<li><strong>On-chain identity and settlement</strong></li>\n<li><strong>Off-chain attribution and policy logic</strong></li>\n<li><strong>User-facing access and claims UX</strong></li>\n</ol>\n<h2 id=\"2-2-canonical-flow\">2.2 Canonical Flow</h2>\n<ol>\n<li>User onboards and receives base referral identity.</li>\n<li>Trades and referrals generate fee-linked activity.</li>\n<li>Indexing services compute rolling windows and tiers.</li>\n<li>Referral code activation is gated by policy thresholds (for example, reaching rakeback tier 2 or cumulative trading volume such as $10M).</li>\n<li>Claim authorizations are issued with replay-safe signatures.</li>\n<li>Users settle claims through a claim contract path.</li>\n</ol>\n<h2 id=\"2-3-referral-code-activation-policy\">2.3 Referral Code Activation Policy</h2>\n<p>Referral identity and referral code activation are separate states.</p>\n<p>A user can hold identity metadata at onboarding, while reward-eligible code activation requires one of:</p>\n<ul>\n<li>a minimum performance threshold (for example, rakeback tier 2), or</li>\n<li>a minimum cumulative trading threshold (for example, $10M volume).</li>\n</ul>\n<p>Administrative exceptions are allowed for selected parties, including:</p>\n<ul>\n<li>strategic partners,</li>\n<li>designated contributors,</li>\n<li>and users who materially helped test during closed alpha or pre-beta.</li>\n</ul>\n<p>Pre-beta is treated as a transition period (roughly 30-60 days after beta launch) where referral codes may exist but are not yet globally activated for normal reward routing.</p>\n<h2 id=\"2-4-trust-boundaries\">2.4 Trust Boundaries</h2>\n<p>The architecture should explicitly separate:</p>\n<ul>\n<li><strong>deterministic state</strong> (identity, claim consumption, nonces),</li>\n<li><strong>policy state</strong> (tier tables, private overlays),</li>\n<li><strong>monitoring state</strong> (anomaly and reconciliation pipelines).</li>\n</ul>\n<h2 id=\"2-5-failure-modes-to-design-against\">2.5 Failure Modes to Design Against</h2>\n<ul>\n<li>signer key compromise,</li>\n<li>stale or inconsistent index data,</li>\n<li>referral graph mutation without audit trails,</li>\n<li>and claim replay or double-credit paths.</li>\n</ul>\n<h2 id=\"2-6-target-principle\">2.6 Target Principle</h2>\n<p>Keep policy agility off-chain where needed, but make settlement integrity on-chain by default.\nIf a rule can change quickly, it must be transparently versioned.\nIf value can be claimed, it must be cryptographically constrained.</p>",
       "headings": [
         {
           "level": 1,
@@ -11618,18 +11600,23 @@
         },
         {
           "level": 2,
-          "title": "2.3 Trust Boundaries",
-          "id": "2-3-trust-boundaries"
+          "title": "2.3 Referral Code Activation Policy",
+          "id": "2-3-referral-code-activation-policy"
         },
         {
           "level": 2,
-          "title": "2.4 Failure Modes to Design Against",
-          "id": "2-4-failure-modes-to-design-against"
+          "title": "2.4 Trust Boundaries",
+          "id": "2-4-trust-boundaries"
         },
         {
           "level": 2,
-          "title": "2.5 Target Principle",
-          "id": "2-5-target-principle"
+          "title": "2.5 Failure Modes to Design Against",
+          "id": "2-5-failure-modes-to-design-against"
+        },
+        {
+          "level": 2,
+          "title": "2.6 Target Principle",
+          "id": "2-6-target-principle"
         }
       ],
       "prevId": "17-referral-program::17-docs/01-system-baseline",
@@ -12053,6 +12040,76 @@
         }
       ],
       "prevId": "17-referral-program::17-docs/10-open-decisions",
+      "nextId": "17-referral-program::17-docs/12-product-metrics-prebeta-beta"
+    },
+    {
+      "id": "17-referral-program::17-docs/12-product-metrics-prebeta-beta",
+      "collectionKey": "17_referral_program",
+      "collectionSlug": "17-referral-program",
+      "relativePath": "17_docs/12_product_metrics_prebeta_beta.md",
+      "routeSlug": "17-docs/12-product-metrics-prebeta-beta",
+      "href": "/docs/17-referral-program/17-docs/12-product-metrics-prebeta-beta",
+      "title": "Product Metrics Framework",
+      "summary": "This chapter defines a public KPI framework for the referral program rollout.",
+      "html": "<h1 id=\"product-metrics-framework\">Product Metrics Framework</h1>\n<p>This chapter defines a public KPI framework for the referral program rollout.\nIt is written for external readers tracking product maturity, growth quality, and market depth.</p>\n<hr>\n<h2 id=\"1-phase-definitions\">1) Phase definitions</h2>\n<ul>\n<li><strong>Beta access-gated:</strong> Access-gated onboarding and controlled market growth.</li>\n<li><strong>Beta:</strong> Referral mechanics and attribution are live at broader scale.</li>\n<li><strong>Open phase:</strong> Access is broadly available, with referral benefits acting as an accelerator layer.</li>\n</ul>\n<hr>\n<h2 id=\"2-north-star-metric\">2) North-star metric</h2>\n<h3 id=\"market-creation-velocity\">Market creation velocity</h3>\n<p>The primary metric is the rate of high-quality market listings.\nThis reflects whether the platform is continuously expanding tradable opportunities.</p>\n<h3 id=\"why-this-matters\">Why this matters</h3>\n<ul>\n<li>Listings are the top-of-funnel for both trader demand and fee generation.</li>\n<li>More high-quality listings increase discovery, retention, and partner value.</li>\n</ul>\n<hr>\n<h2 id=\"3-supporting-kpi-set\">3) Supporting KPI set</h2>\n<table>\n<thead>\n<tr>\n<th>KPI</th>\n<th>What it measures</th>\n<th>Why it matters</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>New listings per week</td>\n<td>Supply growth</td>\n<td>Tracks chapter-level growth objective</td>\n</tr>\n<tr>\n<td>Active markets</td>\n<td>Market depth</td>\n<td>Distinguishes creation from sustained activity</td>\n</tr>\n<tr>\n<td>Time-to-first-listing</td>\n<td>Onboarding efficiency</td>\n<td>Measures friction for new creators</td>\n</tr>\n<tr>\n<td>Weekly active listers</td>\n<td>Creator retention</td>\n<td>Indicates repeat supply behavior</td>\n</tr>\n<tr>\n<td>Referral attach rate</td>\n<td>Growth loop health</td>\n<td>Shows attribution participation</td>\n</tr>\n<tr>\n<td>Traders per active market</td>\n<td>Demand distribution</td>\n<td>Detects concentration risk</td>\n</tr>\n<tr>\n<td>Fee-generating volume</td>\n<td>Monetization quality</td>\n<td>Links usage to economic output</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"4-phase-targets-illustrative\">4) Phase targets (illustrative)</h2>\n<p>Targets should be finalized in public release notes for each milestone.\nIllustrative rollout bands:</p>\n<ul>\n<li><strong>Pre-beta:</strong> controlled growth with stable operations and no critical flow outages.</li>\n<li><strong>Beta:</strong> measurable referral attribution, stronger listing velocity, and improved market activation rates.</li>\n<li><strong>Open phase:</strong> broad participation with consistent quality controls and predictable conversion funnels.</li>\n</ul>\n<hr>\n<h2 id=\"5-dashboard-architecture\">5) Dashboard architecture</h2>\n<p>Minimum external dashboard views:</p>\n<ol>\n<li><strong>Acquisition funnel</strong>\n   - Code issued -&gt; signup -&gt; first deposit -&gt; first trade -&gt; first listing</li>\n<li><strong>Market supply</strong>\n   - New listings/day, active markets, repeat listers</li>\n<li><strong>Market demand</strong>\n   - Trades per market decile, depth concentration, turnover</li>\n<li><strong>Integrity</strong>\n   - Anomaly flags, suspicious volume ratio, false-positive rate over time</li>\n</ol>\n<hr>\n<h2 id=\"6-reporting-standards\">6) Reporting standards</h2>\n<ul>\n<li>Publish metrics with clear phase labels.</li>\n<li>Separate organic growth from partner campaign imports.</li>\n<li>Keep definitions stable across periods to avoid artificial trend shifts.</li>\n<li>Version KPI formulas whenever scoring logic changes.</li>\n</ul>\n<hr>\n<h2 id=\"7-guardrails\">7) Guardrails</h2>\n<ul>\n<li>Do not optimize headline KPIs by lowering market quality thresholds.</li>\n<li>Keep anti-gaming controls active when incentive surfaces expand.</li>\n<li>Ensure referral growth does not outpace monitoring and dispute tooling.</li>\n</ul>\n<hr>\n<h2 id=\"8-related-chapters\">8) Related chapters</h2>\n<ul>\n<li><a href=\"06_access_codes_three_phase_plan.md\">06_access_codes_three_phase_plan.md</a></li>\n<li><a href=\"04_points_economy_and_leaderboards.md\">04_points_economy_and_leaderboards.md</a></li>\n<li><a href=\"11_delivery_timeline_milestones.md\">11_delivery_timeline_milestones.md</a></li>\n</ul>",
+      "headings": [
+        {
+          "level": 1,
+          "title": "Product Metrics Framework",
+          "id": "product-metrics-framework"
+        },
+        {
+          "level": 2,
+          "title": "1) Phase definitions",
+          "id": "1-phase-definitions"
+        },
+        {
+          "level": 2,
+          "title": "2) North-star metric",
+          "id": "2-north-star-metric"
+        },
+        {
+          "level": 3,
+          "title": "Market creation velocity",
+          "id": "market-creation-velocity"
+        },
+        {
+          "level": 3,
+          "title": "Why this matters",
+          "id": "why-this-matters"
+        },
+        {
+          "level": 2,
+          "title": "3) Supporting KPI set",
+          "id": "3-supporting-kpi-set"
+        },
+        {
+          "level": 2,
+          "title": "4) Phase targets (illustrative)",
+          "id": "4-phase-targets-illustrative"
+        },
+        {
+          "level": 2,
+          "title": "5) Dashboard architecture",
+          "id": "5-dashboard-architecture"
+        },
+        {
+          "level": 2,
+          "title": "6) Reporting standards",
+          "id": "6-reporting-standards"
+        },
+        {
+          "level": 2,
+          "title": "7) Guardrails",
+          "id": "7-guardrails"
+        },
+        {
+          "level": 2,
+          "title": "8) Related chapters",
+          "id": "8-related-chapters"
+        }
+      ],
+      "prevId": "17-referral-program::17-docs/11-conclusion",
       "nextId": "17-referral-program::17-docs/12-rewards-packs-artifact-system"
     },
     {
@@ -12063,8 +12120,8 @@
       "routeSlug": "17-docs/12-rewards-packs-artifact-system",
       "href": "/docs/17-referral-program/17-docs/12-rewards-packs-artifact-system",
       "title": "Section 12: Rewards, Packs, and Artifact System",
-      "summary": "The reward architecture separates base value from game mechanics:",
-      "html": "<h1 id=\"section-12-rewards-packs-and-artifact-system\">Section 12: Rewards, Packs, and Artifact System</h1>\n<h2 id=\"12-1-core-shift-brainstorming\">12.1 Core Shift (Brainstorming)</h2>\n<p>The reward architecture separates base value from game mechanics:</p>\n<ul>\n<li><strong>Points are the reward ledger</strong></li>\n<li><strong>Packs and artifacts are the game and market layer</strong></li>\n</ul>\n<p>This separation keeps the core accounting simple while enabling engagement and secondary-market behavior.</p>\n<h2 id=\"12-2-end-to-end-loop\">12.2 End-to-End Loop</h2>\n<ol>\n<li>Users earn points off-chain.</li>\n<li>Points are claimed on-chain with a vesting delay.</li>\n<li>Claimed points can be held or converted into packs.</li>\n<li>Packs can be held, traded, or opened.</li>\n<li>Opened packs mint artifacts that carry embedded points and optional boosts.</li>\n<li>Users can hold or trade points, packs, and artifacts.</li>\n<li>TGE eligibility is calculated from total qualifying point exposure across all three forms.</li>\n</ol>\n<h2 id=\"12-3-user-flow\">12.3 User Flow</h2>\n<h3 id=\"earn\">Earn</h3>\n<ul>\n<li>Trading activity</li>\n<li>LP participation</li>\n<li>Referral contribution</li>\n</ul>\n<h3 id=\"claim\">Claim</h3>\n<ul>\n<li>Points are finalized off-chain first.</li>\n<li>Users claim on-chain to move into economically active state.</li>\n</ul>\n<h3 id=\"vesting\">Vesting</h3>\n<ul>\n<li>First claim enters a 7-day vesting window.</li>\n<li>Subsequent daily claims unlock on a rolling 7-day schedule.</li>\n</ul>\n<h3 id=\"convert-and-manage-exposure\">Convert and Manage Exposure</h3>\n<ul>\n<li>Hold points for direct exposure.</li>\n<li>Hold packs for unopened expected-value exposure.</li>\n<li>Open packs for artifact exposure with variance and optional boosts.</li>\n</ul>\n<h2 id=\"12-4-point-system-requirements\">12.4 Point System Requirements</h2>\n<h3 id=\"distribution\">Distribution</h3>\n<ul>\n<li>Daily distribution cadence</li>\n<li>Deterministic formula inputs (fees, volume, LP, referrals)</li>\n<li>Source-bucketed accounting</li>\n</ul>\n<h3 id=\"finalization\">Finalization</h3>\n<ul>\n<li>End-of-day finalization before balances are considered claimable</li>\n<li>No real-time &ldquo;final points&rdquo; display if it increases gaming risk</li>\n</ul>\n<h3 id=\"value-states\">Value States</h3>\n<ul>\n<li><strong>Unclaimed off-chain points</strong>: provisional and non-transferable</li>\n<li><strong>Claimed on-chain points</strong>: transferable and economically active</li>\n</ul>\n<h2 id=\"12-5-pack-system\">12.5 Pack System</h2>\n<h3 id=\"supply-design\">Supply Design</h3>\n<ul>\n<li>Fixed total pack supply</li>\n<li>Rarity distribution by class (for example: common to rare tiers)</li>\n</ul>\n<h3 id=\"behavior\">Behavior</h3>\n<ul>\n<li>Packs can be held, traded, or opened</li>\n<li>Unopened packs retain deterministic base value semantics at policy level</li>\n<li>Market price can trade above or below expected value</li>\n</ul>\n<h3 id=\"contents-and-ev\">Contents and EV</h3>\n<ul>\n<li>Typical pack contains multiple artifacts</li>\n<li>Expected output can be slightly deflationary versus input points to preserve scarcity</li>\n<li>Upside remains available through low-probability high-rarity outcomes</li>\n</ul>\n<h2 id=\"12-6-artifact-system\">12.6 Artifact System</h2>\n<h3 id=\"core-properties\">Core Properties</h3>\n<ul>\n<li>Finite artifact catalog</li>\n<li>Rarity classes</li>\n<li>Embedded point value per artifact</li>\n<li>Optional functional boost fields</li>\n</ul>\n<h3 id=\"slots-and-inventory\">Slots and Inventory</h3>\n<ul>\n<li>Three equip slots: head, body, item</li>\n<li>Unlimited unequipped inventory</li>\n<li>Artifacts are persistent assets, not consumables</li>\n</ul>\n<h3 id=\"behavior-2\">Behavior</h3>\n<ul>\n<li>Unequipped artifacts still retain embedded point exposure</li>\n<li>Equipped artifacts can apply boosts under explicit policy rules</li>\n</ul>\n<h2 id=\"12-7-artifact-economy-and-secondary-market\">12.7 Artifact Economy and Secondary Market</h2>\n<p>The model creates a pre-TGE market structure:</p>\n<ul>\n<li>packs trade as expected-value containers,</li>\n<li>artifacts trade as rarity-plus-exposure assets,</li>\n<li>points trade as direct exposure once transferable.</li>\n</ul>\n<p>Demand is supported by three motives:\n- exposure to future TGE allocation,\n- utility boosts,\n- and rarity/speculation.</p>\n<h2 id=\"12-8-referral-integration\">12.8 Referral Integration</h2>\n<p>Referral contributes to the same economic loop by accelerating point accumulation, which increases pack and artifact access.</p>\n<p>Potential reward surfaces include:\n- fee share,\n- point share,\n- and milestone rewards such as pack unlocks.</p>\n<p>The system objective is to align referral rewards with long-term inventory exposure, not only immediate payout.</p>\n<h2 id=\"12-9-tge-allocation-rule\">12.9 TGE Allocation Rule</h2>\n<p>Final allocation should be computed from total qualifying point exposure:</p>\n<ul>\n<li>claimed points in wallet</li>\n<li>point value represented by held packs (under defined valuation rule)</li>\n<li>embedded point value in held artifacts</li>\n</ul>\n<p>Unclaimed off-chain points should not count.</p>\n<h2 id=\"12-10-guardrails\">12.10 Guardrails</h2>\n<ol>\n<li><strong>Simplicity</strong>: keep the core flow stable (earn -&gt; claim -&gt; hold/convert -&gt; TGE accounting).</li>\n<li><strong>Supply control</strong>: fixed or tightly governed issuance.</li>\n<li><strong>Fairness</strong>: transparent EV and rarity probabilities.</li>\n<li><strong>Security</strong>: vesting delay, anomaly monitoring, and auditable state transitions.</li>\n</ol>\n<h2 id=\"12-11-rollout-notes-from-transcript\">12.11 Rollout Notes from Transcript</h2>\n<p>The transcript suggests a phased launch narrative:</p>\n<ul>\n<li>beta access period with invite-code gating,</li>\n<li>referral activation in the following phase,</li>\n<li>on-chain transferability and packs introduced in later milestones.</li>\n</ul>\n<p>Exact dates and caps should be treated as operational planning inputs, not immutable protocol guarantees.</p>",
+      "summary": "This section is a future-facing thought experiment.",
+      "html": "<h1 id=\"section-12-rewards-packs-and-artifact-system\">Section 12: Rewards, Packs, and Artifact System</h1>\n<h2 id=\"12-1-core-shift-not-finalized\">12.1 Core Shift (Not finalized)</h2>\n<p>This section is a future-facing thought experiment.</p>\n<p>It describes what <em>could</em> be built permissionlessly around on-chain point representations and pack-linked assets. It is <strong>not</strong> a statement of current product policy, and it is <strong>not</strong> an announcement of an endorsed feature.</p>\n<p>The reward architecture separates base value from game mechanics:</p>\n<ul>\n<li><strong>Points are the reward ledger</strong></li>\n<li><strong>Vibe Packs&rdquo; and artifacts are the gamified reward ledger</strong></li>\n</ul>\n<p>This separation keeps the core accounting simple while enabling engagement and secondary-market behavior.</p>\n<h2 id=\"12-2-end-to-end-loop\">12.2 End-to-End Loop</h2>\n<ol>\n<li>Users earn points off-chain.</li>\n<li>Points are claimed on-chain with a vesting delay.</li>\n<li>Claimed points can be held or converted into packs.</li>\n<li>Packs can be held, traded, or opened.</li>\n<li>Opened packs mint artifacts that carry embedded points and optional boosts.</li>\n<li>Users can hold or trade points, packs, and artifacts.</li>\n<li>Airdrop eligibility is calculated from total qualifying point exposure across all three forms.</li>\n</ol>\n<h2 id=\"12-3-user-flow\">12.3 User Flow</h2>\n<h3 id=\"earn\">Earn</h3>\n<ul>\n<li>Trading activity</li>\n<li>LP participation</li>\n<li>Referral contribution</li>\n</ul>\n<h3 id=\"claim\">Claim</h3>\n<ul>\n<li>Points are finalized off-chain first.</li>\n<li>Users claim on-chain to move into economically active state.</li>\n</ul>\n<h3 id=\"vesting\">Vesting</h3>\n<ul>\n<li>First claim enters a 7-day vesting window.</li>\n<li>Subsequent daily claims unlock on a rolling 7-day schedule.</li>\n</ul>\n<h3 id=\"convert-and-manage-exposure\">Convert and Manage Exposure</h3>\n<ul>\n<li>Hold points for direct exposure.</li>\n<li>Hold packs for unopened expected-value exposure.</li>\n<li>Open packs for artifact exposure with variance and optional boosts.</li>\n</ul>\n<h2 id=\"12-4-point-system-requirements\">12.4 Point System Requirements</h2>\n<h3 id=\"distribution\">Distribution</h3>\n<ul>\n<li>Daily distribution cadence</li>\n<li>Deterministic formula inputs (fees, volume, LP, referrals)</li>\n<li>Source-bucketed accounting</li>\n</ul>\n<h3 id=\"finalization\">Finalization</h3>\n<ul>\n<li>End-of-day finalization before balances are considered claimable</li>\n<li>No real-time &ldquo;final points&rdquo; display if it increases gaming risk</li>\n</ul>\n<h3 id=\"value-states\">Value States</h3>\n<ul>\n<li><strong>Unclaimed off-chain points</strong>: provisional and non-transferable</li>\n<li><strong>Claimed on-chain points</strong>: transferable and economically active</li>\n</ul>\n<h2 id=\"12-5-pack-system\">12.5 Pack System</h2>\n<h3 id=\"supply-design\">Supply Design</h3>\n<ul>\n<li>Fixed total pack supply</li>\n<li>Rarity distribution by class (for example: common to rare tiers)</li>\n</ul>\n<h3 id=\"behavior\">Behavior</h3>\n<ul>\n<li>Packs can be held, traded, or opened</li>\n<li>Unopened packs retain deterministic base value semantics at policy level</li>\n<li>Market price can trade above or below expected value</li>\n</ul>\n<h3 id=\"contents-and-ev\">Contents and EV</h3>\n<ul>\n<li>Typical pack contains multiple artifacts</li>\n<li>Expected output can be slightly deflationary versus input points to preserve scarcity</li>\n<li>Upside remains available through low-probability high-rarity outcomes</li>\n</ul>\n<h2 id=\"12-6-artifact-system\">12.6 Artifact System</h2>\n<h3 id=\"core-properties\">Core Properties</h3>\n<ul>\n<li>Finite artifact catalog</li>\n<li>Rarity classes</li>\n<li>Embedded point value per artifact</li>\n<li>Optional functional boost fields</li>\n</ul>\n<h3 id=\"slots-and-inventory\">Slots and Inventory</h3>\n<ul>\n<li>Three equip slots: head, body, item</li>\n<li>Unlimited unequipped inventory</li>\n<li>Artifacts are persistent assets, not consumables</li>\n</ul>\n<h3 id=\"behavior-2\">Behavior</h3>\n<ul>\n<li>Unequipped artifacts still retain embedded point exposure</li>\n<li>Equipped artifacts can apply boosts under explicit policy rules</li>\n</ul>\n<h2 id=\"12-7-artifact-economy-and-secondary-market\">12.7 Artifact Economy and Secondary Market</h2>\n<p>The model creates a pre-TGE market structure:</p>\n<ul>\n<li>packs trade as expected-value containers,</li>\n<li>artifacts trade as rarity-plus-exposure assets,</li>\n<li>points trade as direct exposure once transferable.</li>\n</ul>\n<p>Demand is supported by three motives:\n- exposure to future TGE allocation,\n- utility boosts,\n- and rarity/speculation.</p>\n<h2 id=\"12-8-referral-integration\">12.8 Referral Integration</h2>\n<p>Referral contributes to the same economic loop by accelerating point accumulation, which increases pack and artifact access.</p>\n<p>Potential reward surfaces include:\n- fee share,\n- point share,\n- and milestone rewards such as pack unlocks.</p>\n<p>The system objective is to align referral rewards with long-term inventory exposure, not only immediate payout.</p>\n<h2 id=\"12-9-tge-allocation-rule\">12.9 TGE Allocation Rule</h2>\n<p>Final allocation should be computed from total qualifying point exposure:</p>\n<ul>\n<li>claimed points in wallet</li>\n<li>point value represented by held packs (under defined valuation rule)</li>\n<li>embedded point value in held artifacts</li>\n</ul>\n<p>Unclaimed off-chain points should not count.</p>\n<h2 id=\"12-10-guardrails\">12.10 Guardrails</h2>\n<ol>\n<li><strong>Simplicity</strong>: keep the core flow stable (earn -&gt; claim -&gt; hold/convert -&gt; TGE accounting).</li>\n<li><strong>Supply control</strong>: fixed or tightly governed issuance.</li>\n<li><strong>Fairness</strong>: transparent EV and rarity probabilities.</li>\n<li><strong>Security</strong>: vesting delay, anomaly monitoring, and auditable state transitions.</li>\n</ol>\n<h2 id=\"12-11-rollout-notes-from-transcript\">12.11 Rollout Notes from Transcript</h2>\n<p>The transcript suggests a phased launch narrative:</p>\n<ul>\n<li>beta access period with invite-code gating,</li>\n<li>referral activation in the following phase,</li>\n<li>on-chain transferability and packs introduced in later milestones.</li>\n</ul>\n<p>Exact dates and caps should be treated as operational planning inputs, not immutable protocol guarantees.</p>\n<h2 id=\"12-12-related-hypothetical-scenario\">12.12 Related Hypothetical Scenario</h2>\n<p>For a forward-looking case study on how external builders could permissionlessly create tokenized point exposure and eventually list perp markets around that exposure, see:</p>\n<ul>\n<li><a href=\"/docs/17-referral-program/17-docs/13-hypothetical-tokenized-points-perps\">Section 13: Hypothetical Scenarios for Tokenized Points Perpetual Markets</a></li>\n</ul>",
       "headings": [
         {
           "level": 1,
@@ -12073,8 +12130,8 @@
         },
         {
           "level": 2,
-          "title": "12.1 Core Shift (Brainstorming)",
-          "id": "12-1-core-shift-brainstorming"
+          "title": "12.1 Core Shift (Not finalized)",
+          "id": "12-1-core-shift-not-finalized"
         },
         {
           "level": 2,
@@ -12190,9 +12247,139 @@
           "level": 2,
           "title": "12.11 Rollout Notes from Transcript",
           "id": "12-11-rollout-notes-from-transcript"
+        },
+        {
+          "level": 2,
+          "title": "12.12 Related Hypothetical Scenario",
+          "id": "12-12-related-hypothetical-scenario"
         }
       ],
-      "prevId": "17-referral-program::17-docs/11-conclusion",
+      "prevId": "17-referral-program::17-docs/12-product-metrics-prebeta-beta",
+      "nextId": "17-referral-program::17-docs/13-hypothetical-tokenized-points-perps"
+    },
+    {
+      "id": "17-referral-program::17-docs/13-hypothetical-tokenized-points-perps",
+      "collectionKey": "17_referral_program",
+      "collectionSlug": "17-referral-program",
+      "relativePath": "17_docs/13-Hypothetical-Tokenized-Points-Perps.md",
+      "routeSlug": "17-docs/13-hypothetical-tokenized-points-perps",
+      "href": "/docs/17-referral-program/17-docs/13-hypothetical-tokenized-points-perps",
+      "title": "Section 13: Hypothetical Scenarios for Tokenized Points Perpetual Markets",
+      "summary": "This section is a future-facing thought experiment.",
+      "html": "<h1 id=\"section-13-hypothetical-scenarios-for-tokenized-points-perpetual-markets\">Section 13: Hypothetical Scenarios for Tokenized Points Perpetual Markets</h1>\n<h2 id=\"13-1-scope-and-disclaimer\">13.1 Scope and Disclaimer</h2>\n<p>This section is a future-facing thought experiment.</p>\n<p>It describes what <em>could</em> be built permissionlessly around on-chain point representations and pack-linked assets. It is <strong>not</strong> a statement of current product policy, and it is <strong>not</strong> an announcement of an endorsed feature.</p>\n<p>Stated plainly:\n- this is hypothetical,\n- this is not the default intended user flow,\n- and no protocol team policy should be inferred from this scenario.</p>\n<h2 id=\"13-2-why-this-scenario-matters\">13.2 Why This Scenario Matters</h2>\n<p>The rewards architecture already creates composable economic objects:</p>\n<ol>\n<li>points are earned,</li>\n<li>points can be claimed on-chain,</li>\n<li>points can convert into packs,</li>\n<li>packs open into artifacts with embedded point exposure.</li>\n</ol>\n<p>Once value-bearing units exist on-chain, the design space expands to include much of finance and beyond; with Vibe Trading in place, external builders can compose additional rails around those units, including derivative rails.</p>\n<h2 id=\"13-3-base-hypothetical-flow\">13.3 Base Hypothetical Flow</h2>\n<h3 id=\"step-1-point-accrual\">Step 1: Point Accrual</h3>\n<ul>\n<li>users earn points from trading, referrals, LP activity, and selected programs.</li>\n</ul>\n<h3 id=\"step-2-on-chain-finalization\">Step 2: On-Chain Finalization</h3>\n<ul>\n<li>users claim points on-chain after vesting rules.</li>\n</ul>\n<h3 id=\"step-3-pack-conversion-layer\">Step 3: Pack Conversion Layer</h3>\n<ul>\n<li>points can remain as direct exposure or convert into packs and artifacts.</li>\n</ul>\n<h3 id=\"step-4-fractionalization-contract\">Step 4: Fractionalization Contract</h3>\n<ul>\n<li>an independent contract accepts deposited packs,</li>\n<li>mints an ERC-20 token that is a fractionalized representation of pooled pack exposure,</li>\n<li>and enables transferable, fungible claims on that basket.</li>\n</ul>\n<h3 id=\"step-5-market-listing-by-third-parties\">Step 5: Market Listing by Third Parties</h3>\n<ul>\n<li>external actors list that ERC-20 on permissionless spot venues (for example, Uniswap),</li>\n<li>then list the token as a perp on Vibe Trading, since any token with a qualifying DEX pool can be listed.</li>\n</ul>\n<h3 id=\"step-6-derivatives-layer\">Step 6: Derivatives Layer</h3>\n<ul>\n<li>traders can express long/short views on point-linked value through leverage markets built by independent builders on Vibe Trading.</li>\n</ul>\n<h2 id=\"13-4-what-becomes-possible\">13.4 What Becomes Possible</h2>\n<p>If that stack exists, participants could:</p>\n<ul>\n<li>trade direct point exposure with leverage,</li>\n<li>trade expected-value pack exposure,</li>\n<li>hedge inventory acquired through rewards activity,</li>\n<li>speculate on future reward demand and narrative cycles,</li>\n<li>and create market-making or Option strategies around point-linked volatility.</li>\n</ul>\n<p>In this framing, rewards stop being a passive &ldquo;wait for TGE&rdquo; mechanic and become an active pre-TGE market structure.</p>\n<h2 id=\"13-5-hypothetical-case-study\">13.5 Hypothetical Case Study</h2>\n<p>Assume the following sequence:</p>\n<ol>\n<li>A User accumulates claimed points.</li>\n<li>Users convert points into &ldquo;Vibe Packs&rdquo;, which are NFTs which can be traded on any Marketplace.</li>\n<li>A third-party vault contract pools unopened packs and issues <code>Vibe Points</code>.</li>\n<li><code>Vibe Points</code> gains liquidity on spot markets.</li>\n<li>A permissionless perp venue like Vibe Trading lists <code>Vibe Points</code>.</li>\n</ol>\n<p>Result:\n- holders can hedge reward exposure,\n- speculators can price forward sentiment,\n- market makers can arbitrage spot/perp basis,\n- and reward-linked assets gain continuous price discovery.</p>\n<h2 id=\"13-6-strategic-upside\">13.6 Strategic Upside</h2>\n<p>This scenario expands the design space in five ways:</p>\n<ol>\n<li>\n<p><strong>Liquidity before token launch</strong><br>\n   Value can circulate before a canonical token event.</p>\n</li>\n<li>\n<p><strong>Risk transfer</strong><br>\n   Participants can reduce inventory risk instead of passively holding.</p>\n</li>\n<li>\n<p><strong>Builder composability</strong><br>\n   Third parties can launch products without centralized coordination.</p>\n</li>\n<li>\n<p><strong>Faster market feedback</strong><br>\n   Pricing surfaces emerge earlier than TGE.</p>\n</li>\n<li>\n<p><strong>New growth loops</strong><br>\n   Referral and pack demand can compound when exposure becomes tradable.</p>\n</li>\n</ol>\n<h2 id=\"13-7-major-risks-and-constraints\">13.7 Major Risks and Constraints</h2>\n<p>Any such ecosystem must address:</p>\n<ul>\n<li>manipulation risk in thin early markets,</li>\n<li>valuation ambiguity for pack-backed ERC-20 wrappers,</li>\n<li>reflexive leverage loops in low-liquidity conditions,</li>\n<li>legal and disclosure constraints for derivative-like products,</li>\n<li>and user confusion between official and third-party instruments.</li>\n</ul>\n<p>Within this hypothetical framing, Vibe Trading is structurally well-suited to host this type of market, which makes it a strong case study for how tokenized point exposure could evolve into tradable perp rails.</p>\n<p>Strong labeling, transparent risk communication, and clear separation of official vs community-built markets are mandatory.</p>\n<h2 id=\"13-8-final-take\">13.8 Final Take</h2>\n<p>In a permissionless environment, composability creates optionality that extends beyond the intended first-party product path.</p>\n<p>The core insight is simple:\n- points become on-chain state,\n- on-chain state becomes financial primitive,\n- and financial primitives can become derivative markets.</p>\n<p>Whether or not the core team chooses to support that path directly, the architecture makes the scenario technically plausible from day one.</p>",
+      "headings": [
+        {
+          "level": 1,
+          "title": "Section 13: Hypothetical Scenarios for Tokenized Points Perpetual Markets",
+          "id": "section-13-hypothetical-scenarios-for-tokenized-points-perpetual-markets"
+        },
+        {
+          "level": 2,
+          "title": "13.1 Scope and Disclaimer",
+          "id": "13-1-scope-and-disclaimer"
+        },
+        {
+          "level": 2,
+          "title": "13.2 Why This Scenario Matters",
+          "id": "13-2-why-this-scenario-matters"
+        },
+        {
+          "level": 2,
+          "title": "13.3 Base Hypothetical Flow",
+          "id": "13-3-base-hypothetical-flow"
+        },
+        {
+          "level": 3,
+          "title": "Step 1: Point Accrual",
+          "id": "step-1-point-accrual"
+        },
+        {
+          "level": 3,
+          "title": "Step 2: On-Chain Finalization",
+          "id": "step-2-on-chain-finalization"
+        },
+        {
+          "level": 3,
+          "title": "Step 3: Pack Conversion Layer",
+          "id": "step-3-pack-conversion-layer"
+        },
+        {
+          "level": 3,
+          "title": "Step 4: Fractionalization Contract",
+          "id": "step-4-fractionalization-contract"
+        },
+        {
+          "level": 3,
+          "title": "Step 5: Market Listing by Third Parties",
+          "id": "step-5-market-listing-by-third-parties"
+        },
+        {
+          "level": 3,
+          "title": "Step 6: Derivatives Layer",
+          "id": "step-6-derivatives-layer"
+        },
+        {
+          "level": 2,
+          "title": "13.4 What Becomes Possible",
+          "id": "13-4-what-becomes-possible"
+        },
+        {
+          "level": 2,
+          "title": "13.5 Hypothetical Case Study",
+          "id": "13-5-hypothetical-case-study"
+        },
+        {
+          "level": 2,
+          "title": "13.6 Strategic Upside",
+          "id": "13-6-strategic-upside"
+        },
+        {
+          "level": 2,
+          "title": "13.7 Major Risks and Constraints",
+          "id": "13-7-major-risks-and-constraints"
+        },
+        {
+          "level": 2,
+          "title": "13.8 Final Take",
+          "id": "13-8-final-take"
+        }
+      ],
+      "prevId": "17-referral-program::17-docs/12-rewards-packs-artifact-system",
+      "nextId": "17-referral-program::17-docs/14-meeting-traceability"
+    },
+    {
+      "id": "17-referral-program::17-docs/14-meeting-traceability",
+      "collectionKey": "17_referral_program",
+      "collectionSlug": "17-referral-program",
+      "relativePath": "17_docs/14_meeting_traceability.md",
+      "routeSlug": "17-docs/14-meeting-traceability",
+      "href": "/docs/17-referral-program/17-docs/14-meeting-traceability",
+      "title": "Design Coverage Map",
+      "summary": "This page is a public design coverage map.",
+      "html": "<h1 id=\"design-coverage-map\">Design Coverage Map</h1>\n<p>This page is a public design coverage map.\nIt explains how the referral chapter is structured and where each major concept is specified.</p>\n<hr>\n<h2 id=\"coverage-by-topic\">Coverage by topic</h2>\n<table>\n<thead>\n<tr>\n<th>Topic</th>\n<th>Primary chapter</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Program overview and strategic framing</td>\n<td><a href=\"01_executive_summary.md\">01_executive_summary.md</a></td>\n</tr>\n<tr>\n<td>Architecture and trust boundaries</td>\n<td><a href=\"02_system_architecture_nft_and_backend.md\">02_system_architecture_nft_and_backend.md</a></td>\n</tr>\n<tr>\n<td>Rakeback mechanics and policy surface</td>\n<td><a href=\"03_rakeback_deep_dive.md\">03_rakeback_deep_dive.md</a></td>\n</tr>\n<tr>\n<td>Points model and leaderboard design</td>\n<td><a href=\"04_points_economy_and_leaderboards.md\">04_points_economy_and_leaderboards.md</a></td>\n</tr>\n<tr>\n<td>Referral graph and anti-gaming controls</td>\n<td><a href=\"05_referral_graph_and_anti_gaming.md\">05_referral_graph_and_anti_gaming.md</a></td>\n</tr>\n<tr>\n<td>Access-to-referral rollout phases</td>\n<td><a href=\"06_access_codes_three_phase_plan.md\">06_access_codes_three_phase_plan.md</a></td>\n</tr>\n<tr>\n<td>LP and market-level referral economics</td>\n<td><a href=\"07_lp_pool_creator_revenue_share.md\">07_lp_pool_creator_revenue_share.md</a></td>\n</tr>\n<tr>\n<td>Category fee partnerships</td>\n<td><a href=\"08_category_program_influencer_fees.md\">08_category_program_influencer_fees.md</a></td>\n</tr>\n<tr>\n<td>Pack and artifact mechanics</td>\n<td><a href=\"09_collectible_packs_roadmap.md\">09_collectible_packs_roadmap.md</a></td>\n</tr>\n<tr>\n<td>Security and operational safeguards</td>\n<td><a href=\"10_security_cooldowns_and_operations.md\">10_security_cooldowns_and_operations.md</a></td>\n</tr>\n<tr>\n<td>Milestone planning framework</td>\n<td><a href=\"11_delivery_timeline_milestones.md\">11_delivery_timeline_milestones.md</a></td>\n</tr>\n<tr>\n<td>KPI framework and reporting model</td>\n<td><a href=\"/docs/17-referral-program/17-docs/12-product-metrics-prebeta-beta\">12_product_metrics_prebeta_beta.md</a></td>\n</tr>\n<tr>\n<td>Open technical decisions</td>\n<td><a href=\"13_technical_open_questions.md\">13_technical_open_questions.md</a></td>\n</tr>\n<tr>\n<td>Public glossary and appendices</td>\n<td><a href=\"17_glossary_and_appendix.md\">17_glossary_and_appendix.md</a></td>\n</tr>\n<tr>\n<td>Canonical rewards-loop and TGE model</td>\n<td><a href=\"18_rewards_packs_artifacts_tge.md\">18_rewards_packs_artifacts_tge.md</a></td>\n</tr>\n</tbody>\n</table>\n<hr>\n<h2 id=\"how-to-use-this-page\">How to use this page</h2>\n<ul>\n<li>Use this map as a routing layer when reviewing or updating referral documentation.</li>\n<li>Keep chapter-level details in their primary files, not duplicated here.</li>\n<li>When introducing new mechanics, update this map with the owning chapter link.</li>\n</ul>\n<hr>\n<h2 id=\"change-policy\">Change policy</h2>\n<p>When chapter scope changes:</p>\n<ol>\n<li>Update the relevant chapter first.</li>\n<li>Update this map to reflect ownership boundaries.</li>\n<li>Keep links relative so the docs site and repository views stay aligned.</li>\n</ol>",
+      "headings": [
+        {
+          "level": 1,
+          "title": "Design Coverage Map",
+          "id": "design-coverage-map"
+        },
+        {
+          "level": 2,
+          "title": "Coverage by topic",
+          "id": "coverage-by-topic"
+        },
+        {
+          "level": 2,
+          "title": "How to use this page",
+          "id": "how-to-use-this-page"
+        },
+        {
+          "level": 2,
+          "title": "Change policy",
+          "id": "change-policy"
+        }
+      ],
+      "prevId": "17-referral-program::17-docs/13-hypothetical-tokenized-points-perps",
       "nextId": "17-referral-program::17-docs/overview"
     },
     {
@@ -12204,7 +12391,7 @@
       "href": "/docs/17-referral-program/17-docs/overview",
       "title": "17 \u2014 Referral Program Architecture",
       "summary": "This paper documents how a referral system can evolve from invite-gated onboarding to a scalable, incentive-aligned growth layer.",
-      "html": "<h1 id=\"17-referral-program-architecture\">17 \u2014 Referral Program Architecture</h1>\n<p>This paper documents how a referral system can evolve from invite-gated onboarding to a scalable, incentive-aligned growth layer.</p>\n<p>The model combines:\n- on-chain referral identity\n- tiered rakeback for traders and referrers\n- points and reward abstractions\n- market-level partner economics\n- operational safeguards</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Scope, thesis, and contribution</td>\n</tr>\n<tr>\n<td><strong>1. System baseline</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/01-system-baseline\">01-System-Baseline.md</a></td>\n<td>Current referral, rakeback, and points structure</td>\n</tr>\n<tr>\n<td><strong>2. Architecture</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/02-architecture\">02-Architecture.md</a></td>\n<td>On-chain/off-chain boundaries and claim flow</td>\n</tr>\n<tr>\n<td><strong>3. Rakeback design</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/03-rakeback-design\">03-Rakeback-Design.md</a></td>\n<td>Two-channel rakeback and tier policy</td>\n</tr>\n<tr>\n<td><strong>4. Points and rewards</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/04-points-and-rewards\">04-Points-and-Rewards.md</a></td>\n<td>Points integrity, finalization, and utility</td>\n</tr>\n<tr>\n<td><strong>5. Referral economics</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/05-referral-economics\">05-Referral-Economics.md</a></td>\n<td>Anti-gaming and referral code policy</td>\n</tr>\n<tr>\n<td><strong>6. Access phasing</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/06-access-phasing\">06-Access-Phasing.md</a></td>\n<td>Pre-beta -&gt; beta -&gt; open participation</td>\n</tr>\n<tr>\n<td><strong>7. LP and category layer</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/07-lp-and-category-layer\">07-LP-and-Category-Layer.md</a></td>\n<td>Pool referrals and partner fee overlays</td>\n</tr>\n<tr>\n<td><strong>8. Security controls</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/08-security-controls\">08-Security-Controls.md</a></td>\n<td>Cooldowns, monitoring, and trust boundaries</td>\n</tr>\n<tr>\n<td><strong>9. Metrics framework</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/09-metrics-framework\">09-Metrics-Framework.md</a></td>\n<td>Public KPIs and reporting standards</td>\n</tr>\n<tr>\n<td><strong>10. Open decisions</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/10-open-decisions\">10-Open-Decisions.md</a></td>\n<td>Pending policy and implementation choices</td>\n</tr>\n<tr>\n<td><strong>11. Conclusion</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/11-conclusion\">11-Conclusion.md</a></td>\n<td>Summary and roadmap priorities</td>\n</tr>\n<tr>\n<td><strong>12. Rewards, packs, and artifacts</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/12-rewards-packs-artifact-system\">12-Rewards-Packs-Artifact-System.md</a></td>\n<td>Full game-layer design and TGE accounting model</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<p><em>Referral architecture for market-first growth</em></p>",
+      "html": "<h1 id=\"17-referral-program-architecture\">17 \u2014 Referral Program Architecture</h1>\n<p>This paper documents how a referral system can evolve from invite-gated onboarding to a scalable, incentive-aligned growth layer.</p>\n<p>The model combines:\n- on-chain referral identity\n- tiered rakeback for traders and referrers\n- points and reward abstractions\n- market-level partner economics\n- operational safeguards</p>\n<hr>\n<h2 id=\"table-of-contents\">Table of Contents</h2>\n<table>\n<thead>\n<tr>\n<th>Section</th>\n<th>File</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><strong>Abstract</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/00-abstract\">00-Abstract.md</a></td>\n<td>Scope, thesis, and contribution</td>\n</tr>\n<tr>\n<td><strong>1. System baseline</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/01-system-baseline\">01-System-Baseline.md</a></td>\n<td>Current referral, rakeback, and points structure</td>\n</tr>\n<tr>\n<td><strong>2. Architecture</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/02-architecture\">02-Architecture.md</a></td>\n<td>On-chain/off-chain boundaries and claim flow</td>\n</tr>\n<tr>\n<td><strong>3. Rakeback design</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/03-rakeback-design\">03-Rakeback-Design.md</a></td>\n<td>Two-channel rakeback and tier policy</td>\n</tr>\n<tr>\n<td><strong>4. Points and rewards</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/04-points-and-rewards\">04-Points-and-Rewards.md</a></td>\n<td>Points integrity, finalization, and utility</td>\n</tr>\n<tr>\n<td><strong>5. Referral economics</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/05-referral-economics\">05-Referral-Economics.md</a></td>\n<td>Anti-gaming and referral code policy</td>\n</tr>\n<tr>\n<td><strong>6. Access phasing</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/06-access-phasing\">06-Access-Phasing.md</a></td>\n<td>Pre-beta -&gt; beta -&gt; open participation</td>\n</tr>\n<tr>\n<td><strong>7. LP and category layer</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/07-lp-and-category-layer\">07-LP-and-Category-Layer.md</a></td>\n<td>Pool referrals and partner fee overlays</td>\n</tr>\n<tr>\n<td><strong>8. Security controls</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/08-security-controls\">08-Security-Controls.md</a></td>\n<td>Cooldowns, monitoring, and trust boundaries</td>\n</tr>\n<tr>\n<td><strong>9. Metrics framework</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/09-metrics-framework\">09-Metrics-Framework.md</a></td>\n<td>Public KPIs and reporting standards</td>\n</tr>\n<tr>\n<td><strong>10. Open decisions</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/10-open-decisions\">10-Open-Decisions.md</a></td>\n<td>Pending policy and implementation choices</td>\n</tr>\n<tr>\n<td><strong>11. Conclusion</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/11-conclusion\">11-Conclusion.md</a></td>\n<td>Summary and roadmap priorities</td>\n</tr>\n<tr>\n<td><strong>12. Rewards, packs, and artifacts</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/12-rewards-packs-artifact-system\">12-Rewards-Packs-Artifact-System.md</a></td>\n<td>Full game-layer design and TGE accounting model</td>\n</tr>\n<tr>\n<td><strong>13. Hypothetical: tokenized points perps</strong></td>\n<td><a href=\"/docs/17-referral-program/17-docs/13-hypothetical-tokenized-points-perps\">13-Hypothetical-Tokenized-Points-Perps.md</a></td>\n<td>Future-facing case study on permissionless point-token derivatives</td>\n</tr>\n</tbody>\n</table>\n<hr>\n<p><em>Referral architecture for market-first growth</em></p>",
       "headings": [
         {
           "level": 1,
@@ -12217,7 +12404,7 @@
           "id": "table-of-contents"
         }
       ],
-      "prevId": "17-referral-program::17-docs/12-rewards-packs-artifact-system",
+      "prevId": "17-referral-program::17-docs/14-meeting-traceability",
       "nextId": null
     }
   ]

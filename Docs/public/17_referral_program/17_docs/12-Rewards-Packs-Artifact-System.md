@@ -6,6 +6,8 @@ This section is a future-facing thought experiment.
 
 It describes what *could* be built permissionlessly around on-chain point representations and pack-linked assets. It is **not** a statement of current product policy, and it is **not** an announcement of an endorsed feature.
 
+
+
 The reward architecture separates base value from game mechanics:
 
 - **Points are the reward ledger**

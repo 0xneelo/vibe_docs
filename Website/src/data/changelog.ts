@@ -58,7 +58,7 @@ export const changelogEntries: ChangelogEntry[] = [
   },
   {
     id: "listing-additional",
-    dateManual: "2026-04-05",
+    dateManual: "2026-04-08",
     title: "Chapter 16: Listing Additional Notes",
     description:
       "Order-book bootstrap (dYdX MegaVault, Hyperliquid cadence), GMX-style pool limits, Percolator/Perk.fund wave, and async-tech vs sync-economics.",

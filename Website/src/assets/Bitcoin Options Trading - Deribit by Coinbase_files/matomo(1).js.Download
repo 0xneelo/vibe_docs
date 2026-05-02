@@ -1,0 +1,29 @@
+window._paq = window._paq || [];
+var _paq = window._paq;
+const matomoSiteId = new URL(
+  document.getElementById('matomo').src,
+).searchParams.get('siteId');
+const embedTrackingCode = () => {
+  setTimeout(function () {
+    _paq.push(['setTrackerUrl', 'https://deribit.matomo.cloud/matomo.php']);
+    _paq.push(['setSiteId', matomoSiteId]);
+    _paq.push(['enableHeartBeatTimer', 30]);
+    _paq.push(['setSecureCookie']);
+    _paq.push(['requireCookieConsent']);
+    const doc = document;
+    const script = doc.createElement('script');
+    const firstScript = doc.getElementsByTagName('script')[0];
+    script.type = 'text/javascript';
+    script.defer = true;
+    script.async = true;
+    script.src = 'https://cdn.matomo.cloud/deribit.matomo.cloud/matomo.js';
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }, 5);
+};
+if (window.addEventListener) {
+  window.addEventListener('load', embedTrackingCode, false);
+} else if (window.attachEvent) {
+  window.attachEvent('onload', embedTrackingCode);
+} else {
+  embedTrackingCode();
+}
